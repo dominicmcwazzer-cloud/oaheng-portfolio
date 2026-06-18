@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oaheng Motsitsi — Raw &amp; Uncut</title>
+<meta name="description" content="The work of Oaheng Motsitsi — a South African visual artist drawing identity, memory and material out of everyday life in charcoal, pastel, photography and craft.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16130F; --ink-2:#211C16; --ink-3:#2E2820;
+  --paper:#E9DBC0; --paper-warm:#E2CFAC; --cream:#F4ECDB; --cream-2:#FBF7EE;
+  --clay:#8A5A3C; --mustard:#C0902C; --mustard-2:#D7A736; --wine:#531B30; --mauve:#6E405E;
+  --tx:#1d1812; --tx-soft:#5C5447; --tx-dim:#938776;
+  --on-dark:#EFE4CC; --on-dark-soft:#C2B59A; --on-dark-dim:#857B68;
+  --display:'Fraunces',Georgia,serif; --serif:'Cormorant Garamond',Georgia,serif;
+  --body:'Inter',system-ui,sans-serif; --hand:'Caveat',cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--tx);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E")}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--mustard);color:var(--ink)}
+
+/* progress + topbar */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--clay),var(--mustard-2));z-index:120}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;justify-content:space-between;align-items:center;
+  padding:22px clamp(20px,4vw,46px);mix-blend-mode:difference;color:#fff}
+.topbar .wm{font-family:var(--display);font-weight:600;font-size:1.3rem;letter-spacing:.02em}
+.topbar .enq{font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;border:1px solid rgba(255,255,255,.6);padding:.6em 1.1em;border-radius:30px}
+
+/* side chapter index */
+.index{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:85;display:flex;flex-direction:column;gap:14px}
+.index a{display:flex;align-items:center;gap:10px;justify-content:flex-end;color:var(--tx-dim);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;opacity:.65;transition:.3s}
+.index a .dot{width:7px;height:7px;border-radius:50%;border:1.5px solid currentColor;transition:.3s;flex:none}
+.index a .lab{opacity:0;transform:translateX(6px);transition:.3s;font-weight:500}
+.index a:hover,.index a.active{opacity:1;color:var(--clay)}
+.index a:hover .lab,.index a.active .lab{opacity:1;transform:none}
+.index a.active .dot{background:var(--clay);border-color:var(--clay);box-shadow:0 0 0 4px rgba(138,90,60,.16)}
+.index.on-dark a{color:var(--on-dark-dim)} .index.on-dark a:hover,.index.on-dark a.active{color:var(--mustard-2)}
+.index.on-dark a.active .dot{background:var(--mustard-2);border-color:var(--mustard-2);box-shadow:0 0 0 4px rgba(215,167,54,.18)}
+
+/* generic */
+.dark{background:var(--ink);color:var(--on-dark)}
+.dark h1,.dark h2,.dark h3{color:var(--cream-2)}
+.cream{background:var(--cream)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+.kick{font-family:var(--body);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--clay);font-weight:600}
+.dark .kick{color:var(--mustard-2)}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;background:var(--ink);color:var(--on-dark);position:relative;display:flex;align-items:center;overflow:hidden}
+.hero .glow{position:absolute;width:80vw;height:80vw;max-width:900px;max-height:900px;border-radius:50%;
+  background:radial-gradient(circle,rgba(192,144,44,.16),transparent 62%);top:-20%;right:-15%;pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,70px);align-items:center;width:100%;position:relative;z-index:3}
+.hero-eye{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+.hero-eye span{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--on-dark-soft)}
+.hero-eye .ln{width:54px;height:1px;background:var(--mustard)}
+.hero h1{font-family:var(--display);font-weight:300;font-size:clamp(4rem,13vw,11rem);line-height:.82;letter-spacing:-.02em;color:var(--cream-2)}
+.hero h1 em{display:block;font-style:italic;font-weight:400;font-size:.42em;color:var(--mustard-2);letter-spacing:.01em;margin-top:.18em}
+.hero .lead{font-family:var(--serif);font-size:clamp(1.3rem,2.8vw,1.9rem);color:var(--on-dark-soft);max-width:42ch;margin:30px 0 0;line-height:1.4}
+.hero .lead b{color:var(--cream-2);font-weight:500;font-style:italic}
+.hero-art{position:relative;justify-self:center}
+.hero-art .fr{position:relative;background:#0f0d0a;padding:14px;box-shadow:0 40px 80px -40px #000;transform:rotate(-2deg);transition:.6s cubic-bezier(.2,.7,.2,1);border:1px solid rgba(239,228,204,.08)}
+.hero-art .fr::after{content:"";position:absolute;inset:14px;border:1px solid rgba(239,228,204,.14)}
+.hero-art .fr img{width:min(40vw,440px);aspect-ratio:3/4;object-fit:cover}
+.hero-art:hover .fr{transform:rotate(0)}
+.hero-art .cap{position:absolute;bottom:-14px;left:-14px;background:var(--mustard);color:var(--ink);font-family:var(--hand);font-size:1.4rem;padding:5px 18px;transform:rotate(-2deg);box-shadow:0 14px 30px -16px #000}
+.scrollcue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:4;text-align:center;color:var(--on-dark-dim);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase}
+.scrollcue .bar{width:1px;height:46px;background:linear-gradient(var(--mustard),transparent);margin:12px auto 0;animation:drop 1.8s ease-in-out infinite}
+@keyframes drop{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ---------- CHAPTER ---------- */
+.chapter{position:relative;padding:clamp(80px,12vh,150px) 0}
+.ch-head{max-width:760px;margin-bottom:clamp(40px,7vw,90px);position:relative}
+.ch-head.right{margin-left:auto;text-align:right}
+.numeral{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(5rem,16vw,12rem);line-height:.8;
+  color:transparent;-webkit-text-stroke:1.4px var(--clay);opacity:.32;position:absolute;top:-.35em;left:-.06em;z-index:0;pointer-events:none}
+.dark .numeral{-webkit-text-stroke-color:var(--mustard-2)}
+.ch-head.right .numeral{left:auto;right:-.06em}
+.ch-head h2{position:relative;z-index:1;font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.02em;margin:.1em 0 .35em}
+.ch-head h2 .stroke{display:block;width:120px;height:10px;margin-top:18px}
+.ch-head.right h2 .stroke{margin-left:auto}
+.ch-head p{position:relative;z-index:1;font-family:var(--serif);font-size:clamp(1.2rem,2.4vw,1.6rem);line-height:1.5;color:var(--tx-soft);max-width:52ch}
+.dark .ch-head p{color:var(--on-dark-soft)}
+.ch-head.right p{margin-left:auto}
+
+/* stage / artworks */
+.stage{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(18px,3vw,46px);align-items:start}
+.art{grid-column:span 4;position:relative;opacity:0;transition:opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1);transform:translateY(46px)}
+.art.in{opacity:1;transform:none}
+.art .ai{position:relative;transform:translateY(var(--py,0)) rotate(var(--tilt,0deg));transition:transform .5s ease;will-change:transform;cursor:pointer}
+.art .ph{position:relative;overflow:hidden;background:var(--paper-warm);box-shadow:0 30px 60px -38px rgba(20,16,10,.7)}
+.dark .art .ph{background:#0f0d0a}
+.art img{width:100%;height:auto;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .6s}
+.art .ai:hover img{transform:scale(1.04)}
+.art .ai:hover{--tilt:0deg !important}
+.art figcaption{margin-top:14px;display:flex;flex-direction:column;gap:1px}
+.art figcaption b{font-family:var(--display);font-weight:500;font-size:1.05rem;line-height:1.15}
+.art figcaption span{font-family:var(--serif);font-style:italic;color:var(--tx-soft);font-size:.95rem}
+.dark .art figcaption span{color:var(--on-dark-dim)}
+.art .plus{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(192,144,44,.92);color:var(--ink);display:grid;place-items:center;font-size:1rem;opacity:0;transform:scale(.6);transition:.3s}
+.art .ai:hover .plus{opacity:1;transform:scale(1)}
+/* spans + offsets */
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:1/-1}
+.down{margin-top:clamp(40px,9vw,150px)} .down2{margin-top:clamp(70px,15vw,240px)} .up{margin-top:clamp(-20px,-4vw,-70px)}
+.tl{--tilt:-2.4deg}.tr{--tilt:2.4deg}.tl1{--tilt:-1.4deg}.tr1{--tilt:1.4deg}
+.bleedr{margin-right:calc(-1*clamp(20px,5vw,64px))}.bleedl{margin-left:calc(-1*clamp(20px,5vw,64px))}
+.note{font-family:var(--hand);font-size:clamp(1.3rem,2.4vw,1.9rem);color:var(--clay);line-height:1.1;transform:rotate(-3deg);align-self:center}
+.dark .note{color:var(--mustard-2)}
+.note .arrow{display:block;font-size:1.6em;line-height:.6}
+
+/* pull quote */
+.pq{grid-column:2/12;text-align:center;margin:clamp(50px,8vw,110px) auto 0;max-width:24ch}
+.pq p{font-family:var(--display);font-weight:300;font-style:italic;font-size:clamp(1.8rem,4.6vw,3.2rem);line-height:1.22}
+.pq cite{display:block;font-family:var(--body);font-style:normal;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--clay);margin-top:22px}
+.dark .pq cite{color:var(--mustard-2)}
+
+/* statement */
+.stmt{background:var(--wine);color:#F3E4D8;text-align:center;padding:clamp(90px,16vh,180px) 0;position:relative;overflow:hidden}
+.stmt blockquote{font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,5vw,3.6rem);line-height:1.26;max-width:20ch;margin:24px auto}
+.stmt .sig{font-family:var(--hand);font-size:1.9rem;color:var(--mustard-2);margin-top:6px}
+.stmt .read{margin-top:30px;display:inline-block;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;border:1px solid rgba(243,228,216,.5);padding:.85em 1.6em;border-radius:30px;cursor:pointer;transition:.3s}
+.stmt .read:hover{background:#F3E4D8;color:var(--wine)}
+.stmt .full{display:none;max-width:60ch;margin:34px auto 0;text-align:left;font-family:var(--serif);font-size:1.18rem;line-height:1.6;color:#F1E0D4}
+.stmt .full p{margin-bottom:16px}
+
+/* invitation / contact */
+.invite{background:var(--ink);color:var(--on-dark);padding:clamp(90px,14vh,160px) 0}
+.invite-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,80px);align-items:center}
+.invite h2{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,7vw,5rem);line-height:1;color:var(--cream-2);margin:.16em 0 .3em}
+.invite p.l{font-family:var(--serif);font-size:1.4rem;color:var(--on-dark-soft);max-width:40ch;margin-bottom:34px}
+.clist{list-style:none}
+.clist li{display:flex;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(239,228,204,.14)}
+.clist .lbl{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mustard-2);width:92px;flex:none}
+.clist a,.clist span{font-family:var(--serif);font-size:1.3rem;color:var(--cream-2)}
+.clist a:hover{color:var(--mustard-2)}
+.cbtns{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--body);font-weight:500;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:1em 1.8em;border:1.5px solid var(--mustard);color:var(--mustard-2);border-radius:2px 16px 3px 16px;transition:.3s;cursor:pointer}
+.btn:hover{background:var(--mustard);color:var(--ink);transform:translateY(-2px)}
+.btn.fill{background:var(--mustard);color:var(--ink)} .btn.fill:hover{background:var(--mustard-2);border-color:var(--mustard-2)}
+.invite-card{border:1px solid rgba(239,228,204,.16);border-radius:3px 26px 3px 26px;padding:46px;text-align:center;background:var(--ink-2)}
+.invite-card .big{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(2rem,4vw,2.8rem);color:var(--cream-2);line-height:1.1}
+.invite-card .sig{font-family:var(--hand);font-size:1.6rem;color:var(--mustard-2);margin-top:18px}
+.invite-card small{display:block;color:var(--on-dark-dim);font-size:.84rem;margin-top:8px;letter-spacing:.04em}
+
+footer{background:#100D0A;color:var(--on-dark-dim);text-align:center;padding:40px 20px;font-size:.82rem}
+footer .fw{font-family:var(--display);font-size:1.4rem;color:var(--on-dark);margin-bottom:6px}
+footer a{color:var(--on-dark-soft)} footer a:hover{color:var(--mustard-2)}
+footer .cr{margin-top:12px;font-size:.74rem;color:#5f5847}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(12,10,7,.95);backdrop-filter:blur(7px);display:none;opacity:0;transition:.3s}
+.lb.open{display:flex;opacity:1}
+.lb-inner{margin:auto;max-width:1080px;width:92%;display:grid;grid-template-columns:1.35fr .65fr;background:var(--cream-2);box-shadow:0 40px 90px -40px #000;max-height:90vh}
+.lb-img{background:#0f0d0a;display:flex;align-items:center;justify-content:center;padding:18px;overflow:hidden}
+.lb-img img{max-height:84vh;max-width:100%;width:auto;object-fit:contain}
+.lb-info{padding:42px 38px;overflow:auto}
+.lb-info .series{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);font-weight:600}
+.lb-info h3{font-family:var(--display);font-weight:500;font-size:1.95rem;margin:.3em 0 .1em}
+.lb-info .med{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--tx-soft)}
+.lb-info .spec{display:flex;gap:26px;margin:22px 0;flex-wrap:wrap}
+.lb-info .spec small{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-dim)}
+.lb-info .spec b{font-family:var(--display);font-weight:500;font-size:1.08rem}
+.lb-info .desc{color:var(--tx-soft);font-size:1.02rem;margin-bottom:26px;line-height:1.55}
+.lb-close{position:absolute;top:22px;right:26px;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--on-dark-soft);background:transparent;color:var(--on-dark);font-size:1.4rem;cursor:pointer;transition:.25s}
+.lb-close:hover{background:var(--on-dark);color:var(--ink);transform:rotate(90deg)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;border:1.5px solid var(--on-dark-soft);background:rgba(0,0,0,.3);color:var(--on-dark);font-size:1.5rem;cursor:pointer;transition:.25s}
+.lb-nav:hover{background:var(--mustard);color:var(--ink);border-color:var(--mustard)}
+.lb-prev{left:22px}.lb-next{right:22px}
+
+@media(max-width:980px){
+  .index{display:none}
+  .hero-grid,.invite-grid{grid-template-columns:1fr;gap:44px}
+  .hero-art{order:-1;max-width:330px}
+  .lb-inner{grid-template-columns:1fr;max-height:94vh;overflow:auto}.lb-img img{max-height:52vh}.lb-nav{display:none}
+}
+@media(max-width:760px){
+  .stage{grid-template-columns:repeat(6,1fr);gap:28px}
+  .c3,.c4,.c5{grid-column:span 3}.c6,.c7,.c8{grid-column:span 6}
+  .down,.down2,.up{margin-top:0}.bleedr,.bleedl{margin:0}
+  .art{--tilt:0deg !important}
+  .note{grid-column:1/-1;transform:none;text-align:center}
+  .pq{grid-column:1/-1}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.art .ai{--py:0!important}}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .progress,.topbar,.index,.scrollcue,.lb,.plus{display:none!important}
+  .hero{min-height:auto;padding:60px 0}
+  .art{opacity:1!important;transform:none!important}
+  .art .ai{--py:0!important}
+  .chapter{padding:50px 0}
+}
+/* photo tiles (non-clickable) + exhibition timeline */
+.art.photo .ai{cursor:default}
+.art.photo .ph{background:var(--paper-warm)}
+.trio{display:grid;grid-template-columns:5fr 7fr;gap:clamp(18px,3vw,46px);align-items:start;margin-bottom:clamp(26px,5vw,60px)}
+.trio-l{grid-column:1;display:flex;flex-direction:column;gap:clamp(18px,3vw,40px)}
+.trio-r{grid-column:2}
+@media(max-width:760px){.trio{grid-template-columns:1fr}.trio-l,.trio-r{grid-column:auto}}
+.timeline{list-style:none;max-width:780px;margin:0 0 clamp(40px,6vw,80px);border-left:2px solid var(--clay)}
+.timeline li{position:relative;padding:0 0 30px 30px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:-8px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--mustard);border:2px solid var(--cream)}
+.timeline .yr{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);font-weight:600}
+.timeline b{display:block;font-family:var(--display);font-weight:500;font-size:1.5rem;line-height:1.1;margin:.06em 0 .12em}
+.timeline .v{display:block;font-family:var(--serif);font-style:italic;color:var(--tx-soft);font-size:1.08rem}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div class="topbar">
+  <a href="#top" class="wm">Oaheng</a>
+  <a href="#invite" class="enq">Enquire</a>
+</div>
+<nav class="index" id="index">
+  <a href="#origins"><span class="lab">Origins</span><span class="dot"></span></a>
+  <a href="#raw"><span class="lab">Raw &amp; Uncut</span><span class="dot"></span></a>
+  <a href="#mosali"><span class="lab">Mosali wa Afrika</span><span class="dot"></span></a>
+  <a href="#narrative"><span class="lab">The Narrative</span><span class="dot"></span></a>
+  <a href="#byhand"><span class="lab">By Hand</span><span class="dot"></span></a>
+  <a href="#monna"><span class="lab">Monna ke Nku</span><span class="dot"></span></a>
+  <a href="#becoming"><span class="lab">Becoming</span><span class="dot"></span></a>
+  <a href="#journey"><span class="lab">Exhibitions</span><span class="dot"></span></a>
+  <a href="#words"><span class="lab">Words</span><span class="dot"></span></a>
+  <a href="#invite"><span class="lab">Invitation</span><span class="dot"></span></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top" data-theme="dark">
+  <div class="glow"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eye"><span class="ln"></span><span>Visual Artist · Johannesburg</span></div>
+      <h1>Oaheng<em>Motsitsi</em></h1>
+      <p class="lead">An artist of the overlooked — drawing identity, memory and material out of everyday South African life. <b>Raw, and uncut.</b></p>
+    </div>
+    <div class="hero-art">
+      <div class="fr" data-par-host><img src="images/hero.jpg" alt="Oaheng Motsitsi at The Viewing Room Gallery, 2025"></div>
+      <span class="cap">Monna ke nku · 2025</span>
+    </div>
+  </div>
+  <div class="scrollcue">Enter the work<div class="bar"></div></div>
+</section>
+
+<!-- I ORIGINS -->
+<section class="chapter" id="origins" data-theme="light">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="numeral">I</div>
+      <span class="kick">Origins</span>
+      <h2>A childhood always on the move<span class="stroke" data-stroke></span></h2>
+      <p>Born in Upington, 2001, into a family that never stopped moving — the Northern Cape to Pretoria, place to place. Somewhere in the in-between, a child discovered that a pencil could hold what words could not. By fourteen, the decision was made.</p>
+    </div>
+    <div class="stage">
+      <figure class="art c4 tl" data-slug="early-portrait-1" data-par="5"><div class="ai"><div class="ph"><img src="images/early-portrait-1.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Early Portrait</b><span>Charcoal · 2019</span></figcaption></figure>
+      <figure class="art photo c4 tr1 down" data-par="6"><div class="ai"><div class="ph"><img src="images/portrait.jpg" loading="lazy" alt="Oaheng Motsitsi"></div></div><figcaption><b>Oaheng Motsitsi</b><span>the artist · Johannesburg</span></figcaption></figure>
+      <div class="art note c3 up">“at 14, I chose<br>this.”<span class="arrow">↘</span></div>
+      <figure class="art c4 down" data-slug="figure-study" data-par="-6"><div class="ai"><div class="ph"><img src="images/figure-study.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Figure)</b><span>Charcoal study</span></figcaption></figure>
+      <figure class="art c7 tr1 down" data-slug="anatomy" data-par="6"><div class="ai"><div class="ph"><img src="images/anatomy.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Anatomy Study</b><span>Charcoal</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- II RAW & UNCUT -->
+<section class="chapter dark" id="raw" data-theme="dark">
+  <div class="wrap">
+    <div class="ch-head right">
+      <div class="numeral">II</div>
+      <span class="kick">The room for unsaid things</span>
+      <h2>Raw &amp; Uncut<span class="stroke" data-stroke></span></h2>
+      <p>Charcoal and pastel became her first language — a room where unsaid emotion could be spoken without confrontation, without limit. Nothing polished. Everything felt.</p>
+    </div>
+    <div class="stage">
+      <figure class="art c5 tl" data-slug="tshotleho" data-par="6"><div class="ai"><div class="ph"><img src="images/tshotleho.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Tshotleho</b><span>Pastel &amp; charcoal · 2024</span></figcaption></figure>
+      <figure class="art c7 bleedr down" data-slug="mosali-thipa" data-par="-8"><div class="ai"><div class="ph"><img src="images/mosali-thipa.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Mosali o Tshwara Thipa ka Bohaleng</b><span>Charcoal on Fabriano · 2024</span></figcaption></figure>
+      <figure class="art c6 down" data-slug="ke-tswere-tshepo" data-par="7"><div class="ai"><div class="ph"><img src="images/ke-tswere-tshepo.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Ke Tshwere Tshepo</b><span>Charcoal · 2024</span></figcaption></figure>
+      <figure class="art c4 down tr1" data-slug="portrait-study" data-par="-5"><div class="ai"><div class="ph"><img src="images/portrait-study.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Cry)</b><span>Charcoal</span></figcaption></figure>
+      <figure class="art c5 up" data-slug="embrace" data-par="5"><div class="ai"><div class="ph"><img src="images/embrace.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Embrace)</b><span>Charcoal</span></figcaption></figure>
+      <div class="pq">
+        <p>“I find the most raw and uncut emotion through charcoal and pastel.”</p>
+        <cite>— Oaheng Motsitsi</cite>
+      </div>
+      <figure class="art c8 down" data-slug="se-fetileng-2" data-par="6"><div class="ai"><div class="ph"><img src="images/se-fetileng-2.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Se Fetileng</b><span>Charcoal, pencil &amp; ink · 2024</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- III MOSALI WA AFRIKA -->
+<section class="chapter cream" id="mosali" data-theme="light">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="numeral">III</div>
+      <span class="kick">Woman of Africa</span>
+      <h2>Mosali wa Afrika<span class="stroke" data-stroke></span></h2>
+      <p>She turns the camera and the cloth on the street itself — placing the body in the dust, the salon, the rubble. The viewer becomes an anonymous collaborator in lives the world is taught to overlook.</p>
+    </div>
+    <div class="stage">
+      <figure class="art c5 tl" data-slug="oaheng-1" data-par="6"><div class="ai"><div class="ph"><img src="images/oaheng-1.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Oaheng pt.1</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="art c4 down" data-slug="oaheng-2" data-par="-6"><div class="ai"><div class="ph"><img src="images/oaheng-2.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Oaheng pt.2</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="art c4 down" data-slug="holima-ntoa" data-par="-7"><div class="ai"><div class="ph"><img src="images/holima-ntoa.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Holim'a Ntoa</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="art c3 up" data-slug="past-the-surface" data-par="5"><div class="ai"><div class="ph"><img src="images/past-the-surface.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Past the Surface</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="art c12" data-slug="mereting" data-par="-5"><div class="ai"><div class="ph"><img src="images/mereting.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Mereting</b><span>Photography · triptych · 2025</span></figcaption></figure>
+      <figure class="art c4 tr1" data-slug="tse-putsoa" data-par="6"><div class="ai"><div class="ph"><img src="images/tse-putsoa.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Tse Putsoa</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="art c4 down" data-slug="untitled-greens" data-par="-6"><div class="ai"><div class="ph"><img src="images/untitled-greens.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled I</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="art c4" data-slug="untitled-market" data-par="5"><div class="ai"><div class="ph"><img src="images/untitled-market.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled II</b><span>Photography · 2024</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- IV THE NARRATIVE -->
+<section class="chapter dark" id="narrative" data-theme="dark">
+  <div class="wrap">
+    <div class="ch-head right">
+      <div class="numeral">IV</div>
+      <span class="kick">Past, Present &amp; Future · Weedlovers Market, 2025</span>
+      <h2>Reframing the narrative<span class="stroke" data-stroke></span></h2>
+      <p>Her paint turns to the nation. Orania, the flag, the forbidden fruit — works that argue with history and refuse a single, flattened “African narrative.” The differences, she insists, are the point. Shown at the <em>Past, Present &amp; Future</em> First Thursday exhibition, Weedlovers Market.</p>
+    </div>
+    <div class="stage">
+      <figure class="art c7 bleedl tl1" data-slug="aches-and-pains" data-par="6"><div class="ai"><div class="ph"><img src="images/aches-and-pains.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Aches and Pains</b><span>Ink &amp; acrylic · 2025</span></figcaption></figure>
+      <figure class="art c5 down" data-slug="orania" data-par="-6"><div class="ai"><div class="ph"><img src="images/orania.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Orania: Die Verbode Vrugte</b><span>Acrylic on glass · 2025</span></figcaption></figure>
+      <figure class="art c4 up tr1" data-slug="break-glass" data-par="6"><div class="ai"><div class="ph"><img src="images/break-glass.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Break Glass)</b><span>Mixed media · 2025</span></figcaption></figure>
+      <figure class="art c4 down" data-slug="flag" data-par="-5"><div class="ai"><div class="ph"><img src="images/flag.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Flag)</b><span>Acrylic on canvas · 2025</span></figcaption></figure>
+      <figure class="art c4" data-slug="verbode-study" data-par="5"><div class="ai"><div class="ph"><img src="images/verbode-study.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Verbode Vrugte (study)</b><span>Acrylic · 2025</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- V BY HAND -->
+<section class="chapter" id="byhand" data-theme="light">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="numeral">V</div>
+      <span class="kick">Material &amp; faith · ContraJHB</span>
+      <h2>Made by hand<span class="stroke" data-stroke></span></h2>
+      <p>Twine, resin, glass and found material pull the drawn into the physical. In the making, she honours the first Creative — the Spirit of God — through a contemporary lens.</p>
+    </div>
+    <div class="stage">
+      <figure class="art c5 tl" data-slug="tshehetso" data-par="6"><div class="ai"><div class="ph"><img src="images/tshehetso.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Tshehetso (Support)</b><span>Twine, wood &amp; resin · 2025</span></figcaption></figure>
+      <figure class="art photo c4 down" data-par="-7"><div class="ai"><div class="ph"><img src="images/twine-4.jpg" loading="lazy" alt="woven mask, ContraJHB"></div></div><figcaption><b>Tshehetso</b><span>detail · woven mask</span></figcaption></figure>
+      <figure class="art photo c3 up" data-par="5"><div class="ai"><div class="ph"><img src="images/twine-3.jpg" loading="lazy" alt="twine form, ContraJHB"></div></div><figcaption><b>Tshehetso</b><span>detail · twine form</span></figcaption></figure>
+      <figure class="art c5 down" data-slug="pattern-relief" data-par="-6"><div class="ai"><div class="ph"><img src="images/pattern-relief.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Pattern Relief)</b><span>Mixed media relief · ContraJHB</span></figcaption></figure>
+      <figure class="art photo c4 tr1" data-par="5"><div class="ai"><div class="ph"><img src="images/twine-1.jpg" loading="lazy" alt="woven relief, ContraJHB"></div></div><figcaption><b>ContraJHB</b><span>woven relief</span></figcaption></figure>
+      <figure class="art photo c4 down" data-par="-6"><div class="ai"><div class="ph"><img src="images/twine-5.jpg" loading="lazy" alt="mask relief, ContraJHB"></div></div><figcaption><b>ContraJHB</b><span>detail · mask relief</span></figcaption></figure>
+      <figure class="art photo c4 up" data-par="6"><div class="ai"><div class="ph"><img src="images/twine-6.jpg" loading="lazy" alt="woven thread detail"></div></div><figcaption><b>Tshehetso</b><span>detail · woven thread</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VI MONNA KE NKU (Viewing Room collection — titles pending Oaheng) -->
+<section class="chapter dark" id="monna" data-theme="dark">
+  <div class="wrap">
+    <div class="ch-head right">
+      <div class="numeral">VI</div>
+      <span class="kick">Collection · The Viewing Room Gallery, 2025</span>
+      <h2>Monna ke Nku<span class="stroke" data-stroke></span></h2>
+      <p>Monna ke nku — <em>a man is a sheep.</em> The body of work she showed at The Viewing Room Gallery: altars, birds and small sacrificial figures on grounds of red and earth, where her faith meets her fascination with the Voiceless — the silent endurance of those the world overlooks.</p>
+    </div>
+    <div class="stage">
+      <figure class="art c4 tl" data-slug="red-01" data-par="6"><div class="ai"><div class="ph"><img src="images/red-01.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R1</span></figcaption></figure>
+      <figure class="art c5 down" data-slug="red-02" data-par="-7"><div class="ai"><div class="ph"><img src="images/red-02.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R2</span></figcaption></figure>
+      <figure class="art c3 up" data-slug="red-03" data-par="5"><div class="ai"><div class="ph"><img src="images/red-03.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R3</span></figcaption></figure>
+      <figure class="art c4" data-slug="red-04" data-par="-5"><div class="ai"><div class="ph"><img src="images/red-04.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R4</span></figcaption></figure>
+      <figure class="art c4 down tr1" data-slug="red-05" data-par="6"><div class="ai"><div class="ph"><img src="images/red-05.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R5</span></figcaption></figure>
+      <figure class="art c5 tl1" data-slug="red-06" data-par="-6"><div class="ai"><div class="ph"><img src="images/red-06.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R6</span></figcaption></figure>
+      <figure class="art c4" data-slug="red-07" data-par="6"><div class="ai"><div class="ph"><img src="images/red-07.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R7</span></figcaption></figure>
+      <figure class="art c3 down" data-slug="red-08" data-par="-4"><div class="ai"><div class="ph"><img src="images/red-08.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R8</span></figcaption></figure>
+      <figure class="art c4 up" data-slug="red-09" data-par="5"><div class="ai"><div class="ph"><img src="images/red-09.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R9</span></figcaption></figure>
+      <figure class="art c3" data-slug="red-10" data-par="-5"><div class="ai"><div class="ph"><img src="images/red-10.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R10</span></figcaption></figure>
+      <figure class="art c4 down tl1" data-slug="red-11" data-par="6"><div class="ai"><div class="ph"><img src="images/red-11.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R11</span></figcaption></figure>
+      <figure class="art c4" data-slug="red-12" data-par="-6"><div class="ai"><div class="ph"><img src="images/red-12.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R12</span></figcaption></figure>
+      <figure class="art c4 tr1 down" data-slug="red-13" data-par="5"><div class="ai"><div class="ph"><img src="images/red-13.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled</b><span>Monna ke Nku · R13</span></figcaption></figure>
+      <figure class="art c4" data-slug="red-mask" data-par="5"><div class="ai"><div class="ph"><img src="images/red-mask.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Mask)</b><span>Monna ke Nku · 2025</span></figcaption></figure>
+      <figure class="art c6 down" data-slug="red-faces" data-par="-6"><div class="ai"><div class="ph"><img src="images/red-faces.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Composition)</b><span>Monna ke Nku · 2025</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VII BECOMING -->
+<section class="chapter cream" id="becoming" data-theme="light">
+  <div class="wrap">
+    <div class="ch-head right">
+      <div class="numeral">VII</div>
+      <span class="kick">The archive</span>
+      <h2>Becoming<span class="stroke" data-stroke></span></h2>
+      <p>Butterflies, blooms and bright studies trace an artist still in motion — living between the drawn line and the made object, the known and the next.</p>
+    </div>
+    <div class="trio">
+      <div class="trio-l">
+        <figure class="art" data-slug="sunset-scene" data-par="5"><div class="ai"><div class="ph"><img src="images/sunset-scene.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Sunset Scene</b><span>Pencil, graphite &amp; colour · 2024</span></figcaption></figure>
+        <figure class="art" data-slug="figure-teal" data-par="-4"><div class="ai"><div class="ph"><img src="images/figure-teal.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Figure in Blue)</b><span>Mixed medium</span></figcaption></figure>
+      </div>
+      <figure class="art trio-r" data-slug="fleeting" data-par="6"><div class="ai"><div class="ph"><img src="images/fleeting.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Fleeting</b><span>Mixed medium · 2024</span></figcaption></figure>
+    </div>
+    <div class="stage">
+      <figure class="art c3" data-slug="butterfly-1" data-par="5"><div class="ai"><div class="ph"><img src="images/butterfly-1.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Butterfly Study I</b><span>Ink on paper</span></figcaption></figure>
+      <figure class="art c3 down" data-slug="butterfly-2" data-par="-4"><div class="ai"><div class="ph"><img src="images/butterfly-2.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Butterfly Study II</b><span>Ink on paper</span></figcaption></figure>
+      <figure class="art c3" data-slug="butterfly-3" data-par="5"><div class="ai"><div class="ph"><img src="images/butterfly-3.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Butterfly Study III</b><span>Ink &amp; colour</span></figcaption></figure>
+      <figure class="art c3 down" data-slug="botanical" data-par="-5"><div class="ai"><div class="ph"><img src="images/botanical.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Botanical Study</b><span>Ink on paper</span></figcaption></figure>
+      <figure class="art c5 tl1" data-slug="marshmellow" data-par="6"><div class="ai"><div class="ph"><img src="images/marshmellow.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Marshmellow</b><span>Acrylic · 2024</span></figcaption></figure>
+      <figure class="art c4 down" data-slug="butterfly-gold" data-par="-6"><div class="ai"><div class="ph"><img src="images/butterfly-gold.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Monarch)</b><span>Acrylic</span></figcaption></figure>
+      <figure class="art c4 up" data-slug="pop-portrait" data-par="5"><div class="ai"><div class="ph"><img src="images/pop-portrait.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled (Portrait)</b><span>Acrylic</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VIII EXHIBITION JOURNEY -->
+<section class="chapter cream" id="journey" data-theme="light">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="numeral">VIII</div>
+      <span class="kick">On the wall · 2024–2025</span>
+      <h2>The exhibition journey<span class="stroke" data-stroke></span></h2>
+      <p>From sketchbook to gallery wall. In barely a year, Oaheng's work has moved through group shows and auctions across Gauteng — meeting the public it was always made for.</p>
+    </div>
+    <ol class="timeline">
+      <li><span class="yr">2024</span><b>The Garden Gallery</b><span class="v">A sensory group exhibition</span></li>
+      <li><span class="yr">Apr – May 2025</span><b>Monna ke Nku…</b><span class="v">Group exhibition · The Viewing Room Gallery, Brooklyn, Pretoria</span></li>
+      <li><span class="yr">June 2025</span><b>Past, Present &amp; Future</b><span class="v">Group exhibition · Weedlovers Market, Johannesburg</span></li>
+      <li><span class="yr">2025</span><b>ContraJHB</b><span class="v">Group exhibition · Johannesburg</span></li>
+      <li><span class="yr">Sept 2025</span><b>ExpressOn Art Auction</b><span class="v">Springs Art Gallery · a Heritage Month celebration of SA contemporary art</span></li>
+    </ol>
+    <div class="stage">
+      <figure class="art photo c5 tl" data-par="6"><div class="ai"><div class="ph"><img src="images/artist-1.jpg" loading="lazy" alt="Oaheng at her exhibition"></div></div><figcaption><b>Opening night</b><span>The artist in the space</span></figcaption></figure>
+      <figure class="art photo c7 down" data-par="-7"><div class="ai"><div class="ph"><img src="images/install-wall.jpg" loading="lazy" alt="Installation view"></div></div><figcaption><b>Installation</b><span>Monna ke Nku · The Viewing Room, 2025</span></figcaption></figure>
+      <figure class="art photo c8 bleedl" data-par="-5"><div class="ai"><div class="ph"><img src="images/install-group.jpg" loading="lazy" alt="Works in the gallery"></div></div><figcaption><b>In the space</b><span>Works on view</span></figcaption></figure>
+      <figure class="art photo c4 down" data-par="5"><div class="ai"><div class="ph"><img src="images/ex-monna.jpg" loading="lazy" alt="Monna ke Nku exhibition poster"></div></div><figcaption><b>Monna ke Nku…</b><span>The Viewing Room · poster</span></figcaption></figure>
+      <figure class="art photo c4 tr1" data-par="6"><div class="ai"><div class="ph"><img src="images/artist-2.jpg" loading="lazy" alt="Oaheng at the opening"></div></div><figcaption><b>At the opening</b><span>2025</span></figcaption></figure>
+      <figure class="art photo c4 down" data-par="-6"><div class="ai"><div class="ph"><img src="images/ex-expresson2.jpg" loading="lazy" alt="ExpressOn Art Auction poster"></div></div><figcaption><b>ExpressOn Art Auction</b><span>Springs Art Gallery · 2025</span></figcaption></figure>
+      <figure class="art photo c5" data-par="5"><div class="ai"><div class="ph"><img src="images/ex-expresson.jpg" loading="lazy" alt="ExpressOn Art Auction opening"></div></div><figcaption><b>Heritage Month auction</b><span>ExpressOn · Springs, 2025</span></figcaption></figure>
+      <figure class="art photo c4 down" data-par="-5"><div class="ai"><div class="ph"><img src="images/artist-3.jpg" loading="lazy" alt="Oaheng"></div></div><figcaption><b>The artist</b><span>Johannesburg · 2025</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- WORDS / STATEMENT -->
+<section class="stmt" id="words" data-theme="dark">
+  <div class="wrap">
+    <span class="kick" style="color:var(--mustard-2)">Artist Statement</span>
+    <blockquote>“I reframe identity through local voices.”</blockquote>
+    <p class="sig">Just like Oaheng — ah aha, bonono ba hae.</p>
+    <span class="read" id="readBtn">Read the full statement</span>
+    <div class="full" id="fullStmt">
+      <p>I am interested in the discourse of the “African art narrative” as well as honouring God in my work. My works challenge the African narrative; I believe that as a continent we share similarities, but I aim to highlight the differences, as they are just as important in forming the identity of the Voiceless in our societies — in my case, South Africans and those dwelling within the borders of our country.</p>
+      <p>I reframe identity through local voices. I practise in various mediums, which allows me to experiment with the emotions conjured by the viewer when relating to a topic, and to juxtapose the subject against the reaction. In the representation of God in my work, my aim is to exercise the gift given to the first Creative — culture-creator — which was the Spirit of God. In remembrance, I create works that honour our Lord through a contemporary lens.</p>
+      <p>Working with people has shifted how I approach the process of art-making. As a multidisciplinary artist, I have found that the most authentic way to go about it should be raw and uncut — and some of my personal favourite mediums to achieve this are charcoal and pastel, to name a few.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVITATION / CONTACT -->
+<section class="invite" id="invite" data-theme="dark">
+  <div class="wrap invite-grid">
+    <div>
+      <span class="kick">An invitation</span>
+      <h2>Become an anonymous collaborator.</h2>
+      <p class="l">Available for commissions, exhibitions and collaborations. Write to enquire about a work, or to begin a conversation.</p>
+      <ul class="clist">
+        <li><span class="lbl">Email</span><a href="mailto:oahengm6@gmail.com">oahengm6@gmail.com</a></li>
+        <li><span class="lbl">Call</span><a href="tel:+27653020118">+27 65 302 0118</a></li>
+        <li><span class="lbl">Studio</span><span>Johannesburg, Gauteng · South Africa</span></li>
+        <li><span class="lbl">Instagram</span><a href="https://instagram.com/_oahengm" target="_blank" rel="noopener">@_oahengm</a></li>
+      </ul>
+      <div class="cbtns">
+        <a class="btn fill" href="mailto:oahengm6@gmail.com?subject=Commission%20enquiry%20—%20Oaheng%20Motsitsi">Commission a piece</a>
+        <a class="btn" href="mailto:oahengm6@gmail.com?subject=Exhibition%20%2F%20collaboration%20—%20Oaheng%20Motsitsi">Exhibition / collab</a>
+      </div>
+    </div>
+    <div class="invite-card">
+      <div class="big">“My work lives between the drawn line and the made object.”</div>
+      <div class="sig">bonono ba hae</div>
+      <small>Original work · charcoal · pastel · photography · material</small>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fw">Oaheng Motsitsi</div>
+  <div>Visual Artist · Johannesburg, South Africa · <a href="mailto:oahengm6@gmail.com">oahengm6@gmail.com</a></div>
+  <div class="cr">© <span id="yr"></span> Oaheng Motsitsi. All artwork and images remain the property of the artist.</div>
+</footer>
+
+<div class="lb" id="lb">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+  <div class="lb-inner">
+    <div class="lb-img"><img id="lbImg" src="" alt=""></div>
+    <div class="lb-info">
+      <div class="series" id="lbSeries"></div>
+      <h3 id="lbTitle"></h3>
+      <div class="med" id="lbMed"></div>
+      <div class="spec"><div><small>Dimensions</small><b id="lbDim"></b></div><div><small>Year</small><b id="lbYear"></b></div></div>
+      <p class="desc" id="lbDesc"></p>
+      <a class="btn fill" id="lbEnquire" href="#">Enquire about this work</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const W = {
+ "oaheng-1":{t:"Oaheng pt.1",series:"Mosali wa Afrika",med:"Photography",dim:"420 × 594 mm",yr:"2024",d:"Lowered into the rubble yet lifted by it — a figure holding her ground where everyday life is broken and quietly rebuilt."},
+ "oaheng-2":{t:"Oaheng pt.2",series:"Mosali wa Afrika",med:"Photography",dim:"420 × 594 mm",yr:"2024",d:"The artist stands as her own subject — printed cloth against worn brick, claiming presence in a place the world is taught to look past."},
+ "holima-ntoa":{t:"Holim'a Ntoa",series:"Mosali wa Afrika",med:"Photography",dim:"700 × 580 mm",yr:"2024",d:"Drained of colour but not of weight: a body braced against ruin, carrying the still aftermath of struggle."},
+ "tse-putsoa":{t:"Tse Putsoa",series:"Mosali wa Afrika",med:"Photography",dim:"1500 × 1000 mm",yr:"2024",d:"Blue hour at the edge of a township home, where a seated elder and a standing daughter share the same unhurried frame."},
+ "mereting":{t:"Mereting",series:"Mosali wa Afrika",med:"Photography · triptych",dim:"100 × 290 mm (×3)",yr:"2025",d:"Three panels, one street — the salon, the dust and the in-between — read together like a sentence about belonging."},
+ "untitled-greens":{t:"Untitled I",series:"Mosali wa Afrika",med:"Photography",dim:"420 × 594 mm",yr:"2024",d:"Mother, child and the day's greens at a brick wall — the quiet labour that holds a household together."},
+ "untitled-market":{t:"Untitled II",series:"Mosali wa Afrika",med:"Photography",dim:"594 × 420 mm",yr:"2024",d:"A figure holds still inside the moving market: anonymous, deliberate, asking to be seen among the crowd."},
+ "past-the-surface":{t:"Past the Surface",series:"Mosali wa Afrika",med:"Photography",dim:"—",yr:"2024",d:"A portrait pressed against brick and shadow, searching for what sits beneath appearance."},
+ "tshotleho":{t:"Tshotleho",series:"Mosali wa Afrika",med:"Pastel & charcoal on Fabriano",dim:"594 × 841 mm",yr:"2024",d:"Patterned cloth in pastel and charcoal, the figure faceless so the garment — and the story it carries — speaks first."},
+ "mosali-thipa":{t:"Mosali o Tshwara Thipa ka Bohaleng",series:"Mosali wa Afrika",med:"Charcoal on Fabriano",dim:"420 × 594 mm",yr:"2024",d:"“A woman holds the knife by its blade.” Hands deep in the work of survival, drawn with unflinching tenderness."},
+ "ke-tswere-tshepo":{t:"Ke Tshwere Tshepo",series:"Mosali wa Afrika",med:"Charcoal on Fabriano",dim:"100 × 290 mm",yr:"2024",d:"“I am holding on to hope.” A column of resting bodies, repeated down the page like a quiet prayer."},
+ "se-fetileng-2":{t:"Se Fetileng",series:"Mosali wa Afrika",med:"Charcoal, colour pencil & ink",dim:"140 × 130 mm",yr:"2024",d:"“That which has passed.” Looping vignettes of labour and movement, bound in hand-drawn rings of memory."},
+ "a-glimpse":{t:"A Glimpse",series:"Mosali wa Afrika",med:"Charcoal & ink",dim:"—",yr:"2024",d:"Fragments of a single day caught in circles — small windows of pencil and ink gathering into one remembered scene."},
+ "orania":{t:"Orania: Die Verbode Vrugte",series:"Past, Present & Future",med:"Acrylic on glass",dim:"200 × 250 mm",yr:"2025",d:"“The forbidden fruit.” Hands break open a citrus over a name that still divides — sweetness and exclusion in one image."},
+ "aches-and-pains":{t:"Aches and Pains",series:"Past, Present & Future",med:"Ink & acrylic on canvas",dim:"300 × 425 mm",yr:"2025",d:"Two flags and a flood of handwritten voices — the noise of a nation arguing with its own history."},
+ "flag":{t:"Untitled (Flag)",series:"Past, Present & Future",med:"Acrylic on canvas",dim:"—",yr:"2025",d:"A flag remade and recombined — identity treated as something painted, contested and still being decided."},
+ "verbode-study":{t:"Verbode Vrugte (study)",series:"Past, Present & Future",med:"Acrylic",dim:"—",yr:"2025",d:"A study in red and citrus — hands, fruit and appetite, returning to the question of what is permitted, and to whom."},
+ "break-glass":{t:"Untitled (Break Glass)",series:"Past, Present & Future",med:"Mixed media on canvas",dim:"—",yr:"2025",d:"A raised fist behind glass — protest framed as a thing kept in reserve, an emergency waiting to be answered."},
+ "tshehetso":{t:"Tshehetso (Support)",series:"ContraJHB",med:"Acrylic-covered twine on wood & resin",dim:"600 × 970 mm",yr:"2025",d:"“Support.” Faces woven from twine and set in resin — the act of making itself becomes the subject."},
+ "pattern-relief":{t:"Untitled (Pattern Relief)",series:"ContraJHB",med:"Mixed media relief",dim:"—",yr:"—",d:"Geometric rhythm built into the surface — pattern as language, mark-making turned into object."},
+ "red-mask":{t:"Untitled (Mask)",series:"Monna ke Nku",med:"Acrylic",dim:"—",yr:"2025",d:"A face dissolving into ground and back again — presence half-hidden, half-revealed, from the Monna ke Nku collection."},
+ "red-01":{t:"Untitled (R1)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A pale figure lifts a small dark orb against deep red — supplication, or an offering held up to be seen."},
+ "red-02":{t:"Untitled (R2)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A mouth and reaching black limbs descend over a small witness below — the sacred made strange and overwhelming."},
+ "red-03":{t:"Untitled (R3)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"Beneath dark branching forms, a small figure reaches up from the red ground toward something unseen."},
+ "red-04":{t:"Untitled (R4)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A solitary figure and a bird, half-swallowed by earth and shadow."},
+ "red-05":{t:"Untitled (R5)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A profile turned to a pale crescent — caught between waking and prayer."},
+ "red-06":{t:"Untitled (R6)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"Faces merge around an open mouth and a sliver of moon — feeling rendered without restraint."},
+ "red-07":{t:"Untitled (R7)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A figure swings a censer from an open, crying mouth — devotion and grief in one gesture."},
+ "red-08":{t:"Untitled (R8)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A small pale animal set like an offering against the dark."},
+ "red-09":{t:"Untitled (R9)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A leaping animal caught inside an earthen ring of red."},
+ "red-10":{t:"Untitled (R10)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A figure raised on an altar of red and quiet inscription."},
+ "red-11":{t:"Untitled (R11)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A body on the altar steps, surrounded by handwritten voices."},
+ "red-12":{t:"Untitled (R12)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A small figure haloed in red — intimate and votive."},
+ "red-13":{t:"Untitled (R13)",series:"Monna ke Nku",med:"Mixed media",dim:"—",yr:"—",d:"A long-necked bird turns within a circle of red — the offering complete."},
+ "embrace":{t:"Untitled (Embrace)",series:"Studies",med:"Charcoal",dim:"—",yr:"—",d:"Two figures held close in charcoal — closeness studied as weight, warmth and line."},
+ "portrait-study":{t:"Untitled (Cry)",series:"Studies",med:"Charcoal",dim:"—",yr:"—",d:"A portrait caught mid-sound — the face opened up so feeling can leave it."},
+ "figure-study":{t:"Untitled (Figure)",series:"Studies",med:"Charcoal",dim:"—",yr:"—",d:"A figure study in soft graphite and charcoal, the body felt out one tone at a time."},
+ "early-portrait-1":{t:"Early Portrait",series:"Studies",med:"Charcoal",dim:"—",yr:"2019",d:"An early portrait — where the hand first learned the patience of shading."},
+ "early-portrait-2":{t:"Early Portrait II",series:"Studies",med:"Charcoal",dim:"—",yr:"2019",d:"From the same early body of work — likeness built slowly out of grey."},
+ "reclining":{t:"Reclining Figure",series:"Studies",med:"Charcoal study",dim:"—",yr:"—",d:"A loose, unhurried study of the reclining body and its quiet geometry."},
+ "anatomy":{t:"Anatomy Study",series:"Studies",med:"Charcoal",dim:"—",yr:"—",d:"Legs and weight worked out on paper — the discipline beneath the looser, freer work."},
+ "butterfly-1":{t:"Butterfly Study I",series:"Studies",med:"Ink on paper",dim:"—",yr:"—",d:"A single wing followed line by line — the delicate made deliberate."},
+ "butterfly-2":{t:"Butterfly Study II",series:"Studies",med:"Ink on paper",dim:"—",yr:"—",d:"Wing and shadow in warm sepia — softness rendered with a steady hand."},
+ "butterfly-3":{t:"Butterfly Study III",series:"Studies",med:"Ink & colour on paper",dim:"—",yr:"—",d:"The motif returns with touches of colour — pattern, symmetry and flight."},
+ "botanical":{t:"Botanical Study",series:"Studies",med:"Ink on paper",dim:"—",yr:"—",d:"Stem, bud and bloom studied in line — the natural world read closely."},
+ "fleeting":{t:"Fleeting",series:"Archive",med:"Mixed medium",dim:"1000 × 1000 mm",yr:"2024",d:"Legs caught mid-stride and mid-erasure — presence and disappearance sketched in the same breath."},
+ "sunset-scene":{t:"Sunset Scene",series:"Archive",med:"Pencil, graphite & colour",dim:"430 × 450 mm",yr:"2024",d:"A face warmed by colour at the day's end, studied and re-studied in the strips of lip and eye that frame it."},
+ "marshmellow":{t:"Marshmellow",series:"Archive",med:"Acrylic",dim:"300 × 415 mm",yr:"2024",d:"A glass-winged butterfly resting on shadow, softness rendered with a steady and deliberate hand."},
+ "butterfly-gold":{t:"Untitled (Monarch)",series:"Archive",med:"Acrylic",dim:"—",yr:"—",d:"A butterfly worked in gold and dark — the same motif carried into paint."},
+ "pop-portrait":{t:"Untitled (Portrait)",series:"Archive",med:"Acrylic",dim:"—",yr:"—",d:"A portrait in heightened colour — likeness pushed toward feeling."},
+ "figure-teal":{t:"Untitled (Figure in Blue)",series:"Archive",med:"Mixed medium",dim:"—",yr:"—",d:"A figure adrift in dotted blue — playful, dreamlike and a little uncanny."},
+ "red-faces":{t:"Untitled (Composition)",series:"Monna ke Nku",med:"Acrylic",dim:"—",yr:"2025",d:"Faces and forms gathered on red — a crowded, restless composition from the Monna ke Nku collection."}
+};
+
+// ---- lightbox ----
+const lb=document.getElementById('lb'); let order=[],pos=0;
+function openLB(fig){
+  const scope=fig.closest('section')||document;
+  order=[...scope.querySelectorAll('.art[data-slug]')];
+  pos=order.indexOf(fig); render(); lb.classList.add('open'); document.body.style.overflow='hidden';
+}
+function render(){
+  const slug=order[pos].dataset.slug, w=W[slug];
+  lbImg.src='images/'+slug+'.jpg'; lbImg.alt=w.t;
+  lbSeries.textContent=w.series; lbTitle.textContent=w.t; lbMed.textContent=w.med;
+  lbDim.textContent=w.dim; lbYear.textContent=w.yr; lbDesc.textContent=w.d;
+  lbEnquire.href='mailto:oahengm6@gmail.com?subject='+encodeURIComponent('Enquiry — “'+w.t+'”'+(w.yr&&w.yr!=='—'?' ('+w.yr+')':''))+'&body='+encodeURIComponent('Hi Oaheng,\n\nI would like to enquire about your work “'+w.t+'” ('+w.med+(w.yr&&w.yr!=='—'?', '+w.yr:'')+').\n\n');
+}
+function closeLB(){lb.classList.remove('open');document.body.style.overflow='';}
+function step(d){pos=(pos+d+order.length)%order.length;render();}
+document.querySelectorAll('.art[data-slug]').forEach(f=>f.querySelector('.ai').addEventListener('click',()=>openLB(f)));
+lbClose.onclick=closeLB; lbPrev.onclick=()=>step(-1); lbNext.onclick=()=>step(1);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);});
+
+// ---- statement toggle ----
+readBtn.onclick=function(){const f=fullStmt,o=f.style.display!=='none';f.style.display=o?'none':'block';this.textContent=o?'Read the full statement':'Close statement';};
+
+// ---- reveal ----
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.art,[data-stroke]').forEach(el=>io.observe(el));
+// charcoal stroke under titles
+document.querySelectorAll('[data-stroke]').forEach(s=>s.innerHTML='<svg viewBox="0 0 120 12" preserveAspectRatio="none" style="width:100%;height:100%"><path d="M2 7 C30 2,60 11,90 5 S118 6,118 6" fill="none" stroke="%23C0902C" stroke-width="3" stroke-linecap="round"/></svg>'.replace('%23','#'));
+
+// ---- parallax ----
+const pars=[...document.querySelectorAll('[data-par]')].map(el=>({el:el.querySelector('.ai'),sp:+el.dataset.par}));
+const heroFr=document.querySelector('[data-par-host]');
+let ticking=false;
+function onScroll(){
+  if(ticking)return; ticking=true;
+  requestAnimationFrame(()=>{
+    const vh=innerHeight, mid=vh/2;
+    pars.forEach(({el,sp})=>{if(!el)return;const r=el.getBoundingClientRect();const off=(mid-(r.top+r.height/2))/vh;el.style.setProperty('--py',(off*sp*1.2).toFixed(1)+'px');});
+    if(heroFr){const y=Math.min(scrollY*0.06,40);heroFr.style.transform=`translateY(${y}px) rotate(${-2+scrollY*0.004}deg)`;}
+    // progress
+    const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+    ticking=false;
+  });
+}
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+// ---- active chapter + theme-aware index ----
+const idx=document.getElementById('index'), links=[...idx.querySelectorAll('a')];
+const secObs=new IntersectionObserver(es=>es.forEach(en=>{
+  if(en.isIntersecting){
+    const id=en.target.id;
+    links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
+    idx.classList.toggle('on-dark',en.target.dataset.theme==='dark');
+  }
+}),{threshold:.5});
+document.querySelectorAll('section[data-theme]').forEach(s=>secObs.observe(s));
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
