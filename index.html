@@ -208,6 +208,29 @@ footer .cr{margin-top:12px;font-size:.74rem;color:#8A8A8A}
 .timeline .yr{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);font-weight:600}
 .timeline b{display:block;font-family:var(--display);font-weight:500;font-size:1.5rem;line-height:1.1;margin:.06em 0 .12em}
 .timeline .v{display:block;font-family:var(--serif);font-style:italic;color:var(--tx-soft);font-size:1.08rem}
+/* editorial 'the artist' — photo woven between text */
+.about{background:var(--cream);padding:clamp(70px,11vh,140px) 0}
+.about .kick{display:block;text-align:center}
+.about-h{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,5.5vw,3.8rem);color:var(--ink);text-align:center;line-height:1.05;margin:.12em 0 clamp(30px,5vw,54px)}
+.about-flow{font-family:var(--serif);font-size:clamp(1.2rem,1.7vw,1.45rem);line-height:1.62;color:var(--tx);max-width:64ch;margin:0 auto;overflow:hidden}
+.about-flow p{margin:0 0 1.05em}
+.about-flow .lead-p{font-size:1.18em;color:var(--ink)}
+.about-flow figure{margin:0}
+.ph-float{width:46%;margin:4px 0 16px}
+.ph-float.right{float:right;margin-left:32px}
+.ph-float.left{float:left;margin-right:32px}
+.ph-wide{clear:both;width:100%;margin:30px 0}
+.about-flow figure img{width:100%;display:block;filter:grayscale(.5) brightness(1.05) contrast(.96);transition:filter .7s}
+.about-flow figure:hover img{filter:none}
+.about-flow figcaption{font-family:var(--body);font-size:.76rem;letter-spacing:.05em;color:var(--tx-dim);margin-top:7px}
+.about-q{clear:both;font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.25;color:var(--clay);text-align:center;margin:clamp(30px,5vw,52px) auto;max-width:22ch}
+.commission-inline{clear:both;display:flex;flex-wrap:wrap;align-items:center;gap:18px;justify-content:center;margin-top:clamp(28px,5vw,48px);padding-top:26px;border-top:1px solid var(--line)}
+.commission-inline span{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--tx-soft)}
+.btn-pink{display:inline-flex;align-items:center;gap:.5em;font-family:var(--body);font-weight:500;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;background:var(--clay);color:var(--cream-2);padding:.95em 1.7em;border-radius:2px;transition:.3s;cursor:pointer}
+.btn-pink:hover{background:var(--wine);transform:translateY(-2px)}
+.commission-band{background:var(--ink);color:var(--on-dark);text-align:center;padding:clamp(48px,8vh,84px) 0}
+.commission-band p{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--cream-2);margin:0 0 22px;line-height:1.2}
+@media(max-width:680px){.ph-float{float:none!important;width:100%;margin:18px 0}}
 </style>
 </head>
 <body>
@@ -217,6 +240,7 @@ footer .cr{margin-top:12px;font-size:.74rem;color:#8A8A8A}
   <a href="#invite" class="enq">Enquire</a>
 </div>
 <nav class="index" id="index">
+  <a href="#about"><span class="lab">The Artist</span><span class="dot"></span></a>
   <a href="#origins"><span class="lab">Origins</span><span class="dot"></span></a>
   <a href="#raw"><span class="lab">Raw &amp; Uncut</span><span class="dot"></span></a>
   <a href="#mosali"><span class="lab">Mosali wa Afrika</span><span class="dot"></span></a>
@@ -246,14 +270,33 @@ footer .cr{margin-top:12px;font-size:.74rem;color:#8A8A8A}
   <div class="scrollcue">Enter the work<div class="bar"></div></div>
 </section>
 
+<!-- THE ARTIST (editorial · photo between text) -->
+<section class="about" id="about" data-theme="light">
+  <div class="wrap">
+    <span class="kick">The artist</span>
+    <h2 class="about-h">A creative journey</h2>
+    <div class="about-flow">
+      <figure class="ph-float right"><img src="images/portrait.jpg" loading="lazy" alt="Oaheng Motsitsi"><figcaption>Oaheng Motsitsi · Johannesburg</figcaption></figure>
+      <p class="lead-p">Oaheng Motsitsi draws the people the world is taught to overlook.</p>
+      <p>Born in Upington in 2001 to a family that never stopped moving, she grew up across South Africa before her teenage years settled in Pretoria. Somewhere between those places she found that a pencil could hold what words could not — and by fourteen, the decision was already made.</p>
+      <p>She works first in charcoal and pastel — raw, uncut, unafraid of feeling — before pulling the drawn line into photography, paint, glass and woven material. Her subjects are everyday: a woman at a basin, a figure in the rubble, a salon on a street the city forgets.</p>
+      <figure class="ph-wide"><img src="images/artist-2.jpg" loading="lazy" alt="Oaheng at the Monna ke Nku opening"><figcaption>At the Monna ke Nku opening · The Viewing Room Gallery, 2025</figcaption></figure>
+      <p>Every piece is an invitation to look closer. The viewer becomes an anonymous collaborator — asked to sit with a life that is not their own, and to find, in the overlooked, something worth keeping.</p>
+      <blockquote class="about-q">“My work lives between the drawn line and the made object.”</blockquote>
+      <p>Her practice is still becoming — moving between charcoal and craft, the sacred and the ordinary, the known and the next.</p>
+      <div class="commission-inline"><span>If a piece speaks to you, it can be yours.</span><a class="btn-pink" href="mailto:oahengm6@gmail.com?subject=Commission%20enquiry%20%E2%80%94%20Oaheng%20Motsitsi">Commission a work →</a></div>
+    </div>
+  </div>
+</section>
+
 <!-- I ORIGINS -->
 <section class="chapter" id="origins" data-theme="light">
   <div class="wrap">
     <div class="ch-head">
       <div class="numeral">I</div>
-      <span class="kick">Origins</span>
-      <h2>A childhood always on the move<span class="stroke" data-stroke></span></h2>
-      <p>Born in Upington, 2001, into a family that never stopped moving — the Northern Cape to Pretoria, place to place. Somewhere in the in-between, a child discovered that a pencil could hold what words could not. By fourteen, the decision was made.</p>
+      <span class="kick">Origins · the early hand</span>
+      <h2>Where the hand began<span class="stroke" data-stroke></span></h2>
+      <p>Before the series and the gallery walls — the first portraits and studies, drawn over and over until the line began to obey.</p>
     </div>
     <div class="stage">
       <figure class="art c4 tl" data-slug="early-portrait-1" data-par="5"><div class="ai"><div class="ph"><img src="images/early-portrait-1.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Early Portrait</b><span>Charcoal · 2019</span></figcaption></figure>
@@ -308,6 +351,14 @@ footer .cr{margin-top:12px;font-size:.74rem;color:#8A8A8A}
       <figure class="art c4 down" data-slug="untitled-greens" data-par="-6"><div class="ai"><div class="ph"><img src="images/untitled-greens.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled I</b><span>Photography · 2024</span></figcaption></figure>
       <figure class="art c4" data-slug="untitled-market" data-par="5"><div class="ai"><div class="ph"><img src="images/untitled-market.jpg" loading="lazy" alt=""><span class="plus">+</span></div></div><figcaption><b>Untitled II</b><span>Photography · 2024</span></figcaption></figure>
     </div>
+  </div>
+</section>
+
+<!-- commission interlude -->
+<section class="commission-band" data-theme="dark">
+  <div class="wrap">
+    <p>Every work is one of a kind, made by hand.</p>
+    <a class="btn-pink" href="mailto:oahengm6@gmail.com?subject=Commission%20enquiry%20%E2%80%94%20Oaheng%20Motsitsi">Commission a piece →</a>
   </div>
 </section>
 
