@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oaheng — Animated Elements Kit (demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vanilla:#F4ECE2; --vanilla2:#FBF6EE; --blush:#E3B7AE; --rose:#CC8E86; --mauve:#AC8190;
+  --lavender:#7E6C7B; --prune:#5C2E40; --navy:#29304E; --sand:#C9C4BD; --line:#E2D3CB;
+  --charcoal:#2A2622; --twine:#9C825A; --wood:#D9C5A3;
+  --tx:#2B2533; --tx-soft:#6E6473; --tx-dim:#9A8E97;
+  --display:'Playfair Display',serif; --serif:'Cormorant Garamond',serif; --ui:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--ui);background:var(--vanilla);color:var(--tx);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+header{padding:clamp(50px,9vw,90px) 0 30px;text-align:center;position:relative;overflow:hidden}
+.kick{font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);font-weight:600}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,6vw,4rem);color:var(--navy);line-height:1.04;margin:.12em 0 .2em}
+h1 em{font-style:italic;color:var(--rose)}
+.sub{font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.4rem);color:var(--tx-soft);max-width:46ch;margin:0 auto}
+.spec{display:grid;grid-template-columns:200px 1fr;gap:clamp(20px,4vw,54px);align-items:center;
+  padding:clamp(34px,5vw,54px) 0;border-top:1px solid var(--line)}
+.spec .meta h3{font-family:var(--display);font-weight:500;font-size:1.5rem;color:var(--navy);margin-bottom:6px}
+.spec .meta p{font-size:.92rem;color:var(--tx-soft)}
+.spec .meta .tag{display:inline-block;margin-top:12px;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  padding:.4em .9em;border-radius:30px;border:1px solid var(--line);color:var(--mauve)}
+.stage{min-height:160px;display:flex;align-items:center;justify-content:center;position:relative;
+  background:var(--vanilla2);border:1px solid var(--line);border-radius:4px;padding:24px;overflow:hidden}
+@media(max-width:680px){.spec{grid-template-columns:1fr;gap:18px}}
+
+/* motion */
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-13px) rotate(calc(var(--r,0deg) + 2.5deg))}}
+@keyframes sway{0%,100%{transform:rotate(-3.5deg)}50%{transform:rotate(3.5deg)}}
+@keyframes spin-slow{to{transform:rotate(360deg)}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.85)}50%{opacity:.9;transform:scale(1)}}
+.float{animation:floaty 7s ease-in-out infinite}
+.float.slow{animation-duration:10s}
+.float.slower{animation-duration:13s}
+.draw{stroke-dasharray:1;stroke-dashoffset:1}
+.draw.in{animation:draw 2s cubic-bezier(.6,.05,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.twine-el{transform-origin:left center;animation:sway 9s ease-in-out infinite}
+.twine-el.b{animation-duration:11s;animation-delay:-3s}
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
+.fade-up.in{opacity:1;transform:none}
+.dot-twk{animation:twinkle 4s ease-in-out infinite}
+
+/* in-context */
+.ctx{position:relative;background:var(--vanilla2);border:1px solid var(--line);border-radius:4px;
+  padding:clamp(40px,7vw,80px) clamp(28px,5vw,64px);margin:30px 0 80px;overflow:hidden}
+.ctx .ck{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--rose);font-weight:600}
+.ctx h2{font-family:var(--display);font-weight:400;font-size:clamp(2rem,5vw,3.2rem);color:var(--navy);margin:.1em 0 .1em}
+.ctx h2 em{font-style:italic;color:var(--mauve)}
+.ctx .lead{font-family:var(--serif);font-size:1.3rem;color:var(--tx-soft);max-width:40ch;margin-top:14px}
+.ctx .deco{position:absolute;pointer-events:none}
+footer{text-align:center;padding:40px 20px 70px;color:var(--tx-dim);font-size:.84rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="rough" x="-10%" y="-40%" width="120%" height="180%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.6" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5"/></filter>
+  <filter id="rough2" x="-10%" y="-60%" width="120%" height="220%"><feTurbulence type="fractalNoise" baseFrequency="0.02 0.5" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="4"/></filter>
+  <filter id="smudge" x="-50%" y="-50%" width="200%" height="200%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="26"/><feGaussianBlur stdDeviation="3.2"/></filter>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0"/><feComposite operator="in" in2="SourceGraphic"/></filter>
+</defs></svg>
+
+<header>
+  <div class="wrap">
+    <span class="kick">Demo · not the live site</span>
+    <h1>Animated <em>elements kit</em></h1>
+    <p class="sub">A starter set of tactile, hand-made marks for Oaheng's page — drawn, drifting, and built to move. Scroll slowly.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="spec">
+    <div class="meta"><h3>Charcoal divider</h3><p>A rough, hand-drawn stroke that draws itself on as it scrolls into view — for under headings and between sections.</p><span class="tag">SVG · draws on scroll</span></div>
+    <div class="stage">
+      <svg viewBox="0 0 560 40" style="width:100%;max-width:520px"><path class="draw" pathLength="1" d="M8 22 C120 10,250 32,360 18 S520 26,552 20" fill="none" stroke="var(--charcoal)" stroke-width="3.4" stroke-linecap="round" filter="url(#rough)"/></svg>
+    </div>
+  </div>
+
+  <div class="spec">
+    <div class="meta"><h3>Charcoal smudge</h3><p>Soft graphite cloud — ambient texture behind a corner, a number, or a quote. Sits low so it never competes.</p><span class="tag">SVG filter · ambient</span></div>
+    <div class="stage">
+      <svg viewBox="0 0 260 150" class="float slow" style="width:240px"><ellipse cx="130" cy="78" rx="92" ry="44" fill="var(--charcoal)" opacity=".3" filter="url(#smudge)"/><ellipse cx="150" cy="64" rx="40" ry="22" fill="var(--prune)" opacity=".22" filter="url(#smudge)"/></svg>
+    </div>
+  </div>
+
+  <div class="spec">
+    <div class="meta"><h3>Drifting twine</h3><p>Thin strands from her ContraJHB work, swaying slowly. One or two in a margin — never a tangle.</p><span class="tag">SVG · gentle sway</span></div>
+    <div class="stage">
+      <svg viewBox="0 0 300 180" class="twine-el" style="width:240px;position:absolute;left:18%;top:6%"><path d="M6 96 C60 14,120 176,182 86 S286 26,294 120" fill="none" stroke="var(--twine)" stroke-width="3" stroke-linecap="round" filter="url(#rough2)"/></svg>
+      <svg viewBox="0 0 300 180" class="twine-el b" style="width:200px;position:absolute;right:14%;top:30%"><path d="M294 40 C230 120,170 10,110 96 S20 150,8 70" fill="none" stroke="var(--mauve)" stroke-width="2.4" stroke-linecap="round" filter="url(#rough2)"/></svg>
+    </div>
+  </div>
+
+  <div class="spec">
+    <div class="meta"><h3>Graphite pencil</h3><p>A single tool of her trade, floating softly — a small blush eraser as the one pop of colour.</p><span class="tag">SVG · float</span></div>
+    <div class="stage">
+      <svg viewBox="0 0 260 48" class="float" style="--r:-8deg;width:230px">
+        <rect x="46" y="16" width="150" height="16" fill="#4A4A52"/>
+        <rect x="46" y="16" width="150" height="16" fill="var(--charcoal)" opacity=".25" filter="url(#grain)"/>
+        <polygon points="196,16 196,32 226,24" fill="var(--wood)"/>
+        <polygon points="226,24 210,20 210,28" fill="var(--charcoal)"/>
+        <rect x="30" y="16" width="16" height="16" fill="var(--rose)"/>
+        <rect x="24" y="16" width="8" height="16" fill="var(--prune)"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="spec">
+    <div class="meta"><h3>Mark-making</h3><p>Her brand notes' language — triangles, dots and a stitched X. Scattered as quiet accents in the margins.</p><span class="tag">SVG · fade + twinkle</span></div>
+    <div class="stage">
+      <svg viewBox="0 0 360 90" style="width:320px">
+        <g class="float slow" style="--r:0deg">
+          <path d="M24 64 L40 30 L56 64 Z" fill="none" stroke="var(--charcoal)" stroke-width="2.4" filter="url(#rough2)"/>
+          <path d="M52 64 L68 30 L84 64 Z" fill="none" stroke="var(--charcoal)" stroke-width="2.4" filter="url(#rough2)"/>
+        </g>
+        <g class="dot-twk"><circle cx="150" cy="34" r="5" fill="var(--rose)"/></g>
+        <g class="dot-twk" style="animation-delay:-1.5s"><circle cx="172" cy="56" r="3.5" fill="var(--mauve)"/></g>
+        <g class="dot-twk" style="animation-delay:-2.5s"><circle cx="138" cy="60" r="3" fill="var(--prune)"/></g>
+        <g class="float slower" style="--r:6deg">
+          <path d="M250 28 L286 62 M286 28 L250 62" stroke="var(--charcoal)" stroke-width="3" stroke-linecap="round" filter="url(#rough2)"/>
+        </g>
+        <path class="draw" pathLength="1" d="M312 36 q14 -8 28 0 q14 8 0 14" fill="none" stroke="var(--lavender)" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="spec">
+    <div class="meta"><h3>Stitch line</h3><p>A dashed seam with little cross-stitches — a fabric/thread nod for dividers in the craft sections.</p><span class="tag">SVG · draws on scroll</span></div>
+    <div class="stage">
+      <svg viewBox="0 0 520 30" style="width:100%;max-width:480px">
+        <path class="draw" pathLength="1" d="M8 15 H512" fill="none" stroke="var(--mauve)" stroke-width="2" stroke-dasharray="10 9" stroke-linecap="round"/>
+        <g stroke="var(--prune)" stroke-width="2" stroke-linecap="round">
+          <path class="draw" pathLength="1" d="M60 8 L72 22 M72 8 L60 22"/><path class="draw" pathLength="1" d="M250 8 L262 22 M262 8 L250 22"/><path class="draw" pathLength="1" d="M440 8 L452 22 M452 8 L440 22"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+<div class="wrap">
+  <div class="ctx fade-up">
+    <svg class="deco" style="top:-10px;right:30px;width:150px" viewBox="0 0 200 120" aria-hidden="true"><ellipse cx="100" cy="60" rx="78" ry="40" fill="var(--charcoal)" opacity=".16" filter="url(#smudge)"/></svg>
+    <svg class="deco twine-el" style="bottom:6%;left:-20px;width:170px" viewBox="0 0 300 180" aria-hidden="true"><path d="M6 96 C60 14,120 176,182 86 S286 26,294 120" fill="none" stroke="var(--twine)" stroke-width="2.6" stroke-linecap="round" opacity=".7" filter="url(#rough2)"/></svg>
+    <svg class="deco float slow" style="top:30%;right:8%;width:60px" viewBox="0 0 90 90" aria-hidden="true"><path d="M14 70 L30 34 L46 70 Z" fill="none" stroke="var(--charcoal)" stroke-width="2.2" filter="url(#rough2)"/><circle cx="64" cy="40" r="4" fill="var(--rose)"/></svg>
+    <span class="ck">In context · how restrained it feels</span>
+    <h2>Mosali wa <em>Afrika</em></h2>
+    <svg viewBox="0 0 460 30" style="width:100%;max-width:300px;margin:8px 0 0" aria-hidden="true"><path class="draw" pathLength="1" d="M6 18 C100 8,210 26,300 15 S440 20,454 17" fill="none" stroke="var(--charcoal)" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/></svg>
+    <p class="lead">She places the body in the dust, the salon, the rubble — turning the street's overlooked corners into portraits that refuse to look away.</p>
+  </div>
+</div>
+
+<footer>Animated elements kit — demo only. Tell me what to keep, replace, or dial back.</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.3});
+document.querySelectorAll('.draw,.fade-up').forEach(el=>io.observe(el));
+// light parallax on the in-context decorations
+const par=[...document.querySelectorAll('.ctx .deco')];
+addEventListener('scroll',()=>{const y=scrollY;par.forEach((el,i)=>{el.style.translate='0 '+((y*0.03)*(i%2?-1:1)).toFixed(1)+'px';});},{passive:true});
+</script>
+</body>
+</html>
