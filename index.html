@@ -111,8 +111,11 @@ a{color:inherit;text-decoration:none}
 .flr-divider svg{width:min(300px,56vw);height:auto;animation:sway 8s ease-in-out infinite}
 .flr-divider path{stroke:var(--mauve)}
 .series.navy .flr-divider path,.flr-on-pink path{stroke:var(--prune)}
-.flr-pencil{margin:18px auto 0}
-.flr-pencil svg{width:148px;height:auto;animation:floatY 5.5s ease-in-out infinite}
+.head-ul{display:inline-block}
+.flr-pencil{margin:10px auto 2px;width:100%}
+.flr-pencil svg{width:100%;height:auto;filter:drop-shadow(0 4px 6px rgba(41,48,78,.14))}
+.about-h .flr-pencil{transform:none;clip-path:inset(0 100% 0 0);transition:clip-path 1.15s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
+.about-h .flr-pencil.in{clip-path:inset(0 0 0 0)}
 .flr-stitch{margin:22px auto 0;width:100%}
 .flr-stitch svg{width:min(300px,70%);height:auto;margin:0 auto;animation:floatY 6.5s ease-in-out infinite}
 .flr-twine{margin:6px 0 22px}
@@ -254,7 +257,8 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
   .rv{transition:none}
   .cover-name.back,.cover-name.front,.cover-meta{animation:none}
   .cover-figure{animation:figFade .01s both}
-  .flr-divider svg,.flr-pencil svg,.flr-stitch svg,.flr-twine svg,.flr-mark svg,.scrollcue .bar::after{animation:none}
+  .flr-divider svg,.flr-stitch svg,.flr-twine svg,.flr-mark svg,.scrollcue .bar::after{animation:none}
+  .about-h .flr-pencil{transition:none;clip-path:inset(0 0 0 0)}
 }
 </style>
 </head>
@@ -294,8 +298,10 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
 <!-- THE ARTIST -->
 <section class="about" id="about">
   <div class="wrap">
-    <div class="about-h"><span class="kick">The artist</span><h2>A creative journey</h2>
-      <div class="flourish flr-pencil" aria-hidden="true"><svg viewBox="0 0 230 44" fill="none"><rect x="44" y="15" width="146" height="16" fill="#4A4A52"/><polygon points="190,15 190,31 220,23" fill="#D9C5A3"/><polygon points="220,23 205,19 205,27" fill="#2A2622"/><rect x="28" y="15" width="16" height="16" fill="#CC8E86"/><rect x="22" y="15" width="8" height="16" fill="#5C2E40"/></svg></div>
+    <div class="about-h"><span class="kick">The artist</span>
+      <span class="head-ul"><h2>A creative journey</h2>
+        <div class="flourish flr-pencil rv" aria-hidden="true"><svg viewBox="0 0 640 22" fill="none" preserveAspectRatio="xMidYMid meet"><rect x="6" y="7" width="7" height="8" rx="1" fill="#5C2E40"/><rect x="13" y="7" width="22" height="8" fill="#CC8E86"/><rect x="35" y="7" width="560" height="8" fill="#4A4A52"/><polygon points="595,6 595,16 629,11" fill="#D9C5A3"/><polygon points="629,11 607,8 607,14" fill="#2A2622"/></svg></div>
+      </span>
     </div>
     <div class="flow">
       <figure class="ph-float right"><div class="art-img"><img src="images/portrait.jpg" loading="lazy" alt="Oaheng Motsitsi"></div><figcaption>Oaheng Motsitsi · Johannesburg</figcaption></figure>
