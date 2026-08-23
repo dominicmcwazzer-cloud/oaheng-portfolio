@@ -439,8 +439,11 @@ footer.bg-12-footer{padding-top:calc(40px + 64px)}
   .deco-note,.deco-note.in{transform:rotate(var(--r,0deg))}
   .deco-note:not(.in){transform:translateY(20px) rotate(var(--r,0deg))}
   /* the dried posy is the one piece whose footprint still reached the heading;
-     its placement is an inline style, so the phone override has to outrank it */
-  .about .m-posy{left:-11%!important;top:-10px!important}
+     its placement is an inline style, so the phone override has to outrank it.
+     Raised so the flowers sit in the scroll-cue band — its lower fifth is an
+     empty stem tail, so the visible mass clears "A creative journey" (which
+     wraps to two lines at 390 and one at 440) while staying behind the type. */
+  .about .m-posy{left:-11%!important;top:-80px!important}
   /* and the berry sprig, so more than a sliver of it stays on the page */
   .about .m-sprig{left:78%!important}
   /* the sway keyframes animate a bare transform, which re-introduces the
