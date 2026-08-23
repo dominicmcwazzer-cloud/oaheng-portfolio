@@ -1,0 +1,254 @@
+{
+ "02-artist": {
+  "file": "02-artist.webp",
+  "w": 1100,
+  "h": 1474,
+  "kb": 20,
+  "bottom": [
+   241,
+   236,
+   230
+  ],
+  "top": [
+   237,
+   232,
+   226
+  ]
+ },
+ "03-series01": {
+  "file": "03-series01.webp",
+  "w": 1100,
+  "h": 1694,
+  "kb": 12,
+  "bottom": [
+   230,
+   212,
+   166
+  ]
+ },
+ "04-commission": {
+  "file": "04-commission.webp",
+  "w": 1100,
+  "h": 425,
+  "kb": 6,
+  "bottom": [
+   214,
+   172,
+   159
+  ]
+ },
+ "05-series02": {
+  "file": "05-series02.webp",
+  "w": 1100,
+  "h": 1455,
+  "kb": 11,
+  "bottom": [
+   195,
+   139,
+   132
+  ]
+ },
+ "06-series03": {
+  "file": "06-series03.webp",
+  "w": 1100,
+  "h": 1301,
+  "kb": 20,
+  "bottom": [
+   238,
+   230,
+   219
+  ]
+ },
+ "07-series04": {
+  "file": "07-series04.webp",
+  "w": 1100,
+  "h": 2119,
+  "kb": 23,
+  "bottom": [
+   208,
+   184,
+   149
+  ]
+ },
+ "08-series05": {
+  "file": "08-series05.webp",
+  "w": 1100,
+  "h": 2422,
+  "kb": 52,
+  "bottom": [
+   238,
+   232,
+   220
+  ]
+ },
+ "09-journey": {
+  "file": "09-journey.webp",
+  "w": 1100,
+  "h": 2010,
+  "kb": 23,
+  "bottom": [
+   220,
+   201,
+   171
+  ]
+ },
+ "10-statement": {
+  "file": "10-statement.webp",
+  "w": 1100,
+  "h": 495,
+  "kb": 5,
+  "bottom": [
+   48,
+   21,
+   27
+  ]
+ },
+ "11-contact": {
+  "file": "11-contact.webp",
+  "w": 1100,
+  "h": 755,
+  "kb": 10,
+  "bottom": [
+   219,
+   176,
+   167
+  ]
+ },
+ "12-footer": {
+  "file": "12-footer.webp",
+  "w": 1100,
+  "h": 182,
+  "kb": 2,
+  "bottom": [
+   90,
+   45,
+   62
+  ]
+ },
+ "M02-artist": {
+  "file": "M02-artist.webp",
+  "w": 390,
+  "h": 2300,
+  "kb": 8,
+  "bottom": [
+   245,
+   240,
+   234
+  ],
+  "top": [
+   243,
+   238,
+   232
+  ]
+ },
+ "M03-series01": {
+  "file": "M03-series01.webp",
+  "w": 390,
+  "h": 6344,
+  "kb": 14,
+  "bottom": [
+   231,
+   214,
+   170
+  ]
+ },
+ "M04-commission": {
+  "file": "M04-commission.webp",
+  "w": 390,
+  "h": 440,
+  "kb": 3,
+  "bottom": [
+   214,
+   172,
+   159
+  ]
+ },
+ "M05-series02": {
+  "file": "M05-series02.webp",
+  "w": 390,
+  "h": 4473,
+  "kb": 12,
+  "bottom": [
+   199,
+   142,
+   135
+  ]
+ },
+ "M06-series03": {
+  "file": "M06-series03.webp",
+  "w": 390,
+  "h": 2395,
+  "kb": 9,
+  "bottom": [
+   240,
+   231,
+   221
+  ]
+ },
+ "M07-series04": {
+  "file": "M07-series04.webp",
+  "w": 390,
+  "h": 7665,
+  "kb": 22,
+  "bottom": [
+   211,
+   188,
+   154
+  ]
+ },
+ "M08-series05": {
+  "file": "M08-series05.webp",
+  "w": 390,
+  "h": 9136,
+  "kb": 36,
+  "bottom": [
+   239,
+   233,
+   221
+  ]
+ },
+ "M09-journey": {
+  "file": "M09-journey.webp",
+  "w": 390,
+  "h": 5342,
+  "kb": 18,
+  "bottom": [
+   221,
+   204,
+   174
+  ]
+ },
+ "M10-statement": {
+  "file": "M10-statement.webp",
+  "w": 390,
+  "h": 554,
+  "kb": 2,
+  "bottom": [
+   48,
+   21,
+   28
+  ]
+ },
+ "M11-contact": {
+  "file": "M11-contact.webp",
+  "w": 390,
+  "h": 1272,
+  "kb": 9,
+  "bottom": [
+   218,
+   175,
+   167
+  ]
+ },
+ "M12-footer": {
+  "file": "M12-footer.webp",
+  "w": 390,
+  "h": 246,
+  "kb": 1,
+  "bottom": [
+   89,
+   45,
+   62
+  ]
+ }
+}
