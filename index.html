@@ -90,14 +90,22 @@ a{color:inherit;text-decoration:none}
   .cover-m .credit-m{left:0;right:0;top:34px;text-align:center;font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--prune)}
   .cover-m .wd-m b{position:absolute;display:inline-block;line-height:1.02;padding:3px 5px;font-weight:600;font-size:30px;color:var(--ink);border:2.5px solid rgba(255,253,248,.92);filter:drop-shadow(0 2px 3px rgba(35,31,28,.3));font-family:var(--display);font-style:normal}
   .cover-m .wd-m .lH,.cover-m .wd-m .lN{font-family:var(--serif);font-weight:700}
-  .cover-m .meta-card{left:45px;top:400px;width:300px;height:128px;z-index:5}
-  .cover-m .meta-card .paper{position:absolute;inset:0;background:url(images/scrap/scrap-white-crumpled.webp) center/100% 100% no-repeat;opacity:.95;transform:rotate(-1.4deg)}
-  .cover-m .meta-card p{position:absolute;left:20px;top:13px;width:260px;font-family:var(--serif);font-style:italic;font-size:13px;line-height:1.32;color:var(--navy)}
+  /* the taped note, per the mobile hero in Figma: stacked buttons and corner tapes */
+  .cover-m .meta-card{left:42px;top:396px;width:306px;height:132px;z-index:6}
+  .cover-m .meta-card .paper{position:absolute;inset:0;background:url(images/scrap/scrap-white-crumpled.webp) center/100% 100% no-repeat;opacity:1;transform:rotate(-1.1deg)}
+  .cover-m .meta-card .mc-tape{position:absolute;width:66px;height:auto;z-index:2;opacity:.78}
+  .cover-m .meta-card .t1{left:8px;top:-4px;transform:rotate(-11.6deg)}
+  .cover-m .meta-card .t2{right:8px;top:-6px;transform:rotate(13.5deg)}
+  /* the torn sheet is only fully opaque from ~19px down to ~117px, so the copy
+     and the buttons live inside that band rather than on the ragged edge */
+  .cover-m .meta-card p{position:absolute;left:22px;top:23px;width:262px;font-family:var(--serif);font-style:italic;font-size:11.8px;line-height:1.38;color:var(--navy);z-index:3}
   .cover-m .meta-card p b{color:var(--prune);font-weight:600}
-  .cover-m .meta-card .row{position:absolute;left:0;right:0;bottom:11px;display:flex;gap:6px;justify-content:center}
-  .cover-m .meta-card .row a{display:inline-block;white-space:nowrap;font:500 8px/1 var(--ui);letter-spacing:.07em;text-transform:uppercase;padding:8px 10px;border-radius:2px}
+  .cover-m .meta-card .row{position:absolute;left:0;right:0;bottom:15px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .cover-m .meta-card .row a{text-align:center;white-space:nowrap;font:600 9px/1 var(--ui);letter-spacing:.09em;text-transform:uppercase;padding:8px 14px;border-radius:3px}
   .cover-m .meta-card .b1{background:var(--prune);color:var(--vanilla-2);border:1px solid var(--prune)}
-  .cover-m .meta-card .b2{border:1px solid var(--navy);color:var(--navy)}
+  .cover-m .meta-card .b2{border:1px solid var(--navy);color:var(--navy);background:rgba(252,248,241,.5)}
+  /* two keepsakes sat underneath the widened card — retire them on phones */
+  .cover-m .m-hide{display:none}
 
   .cover .tear-b{height:18px}
   .cover .tear-b::before,.cover .tear-b::after{-webkit-mask-size:450px 100%;mask-size:450px 100%}
@@ -418,8 +426,26 @@ footer.bg-12-footer{padding-top:calc(40px + 64px)}
 @media(max-width:1100px){.deco[data-drop="1"]{display:none}}
 @media(max-width:820px){
   .deco[data-drop="2"],.deco-note[data-drop="2"]{display:none}
+  /* phones: clear the band the scroll cue and "A creative journey" share */
+  .deco[data-drop="m"]{display:none}
   .deco{--sc:.55}
   .deco-note{font-size:1.02rem}
+  /* .rv.in{transform:none} outranks .deco and was wiping --sc and --r, so every
+     cutout rendered at full desktop size and untilted on phones. Restore both,
+     about each piece's own centre so the tuned placement holds — and state the
+     same transform before the reveal, or each piece jumps as it fades in. */
+  .deco,.deco.in{transform:rotate(var(--r,0deg)) scale(var(--sc,1))}
+  .deco:not(.in){transform:translateY(26px) rotate(calc(var(--r,0deg) + 6deg)) scale(var(--sc,1))}
+  .deco-note,.deco-note.in{transform:rotate(var(--r,0deg))}
+  .deco-note:not(.in){transform:translateY(20px) rotate(var(--r,0deg))}
+  /* the dried posy is the one piece whose footprint still reached the heading;
+     its placement is an inline style, so the phone override has to outrank it */
+  .about .m-posy{left:-11%!important;top:-10px!important}
+  /* and the berry sprig, so more than a sliver of it stays on the page */
+  .about .m-sprig{left:78%!important}
+  /* the sway keyframes animate a bare transform, which re-introduces the
+     unscaled size; hold this section's pieces still on phones */
+  .about .sec-deco .deco{animation:none}
 }
 @media(prefers-reduced-motion:reduce){
   .d-sway,.d-float{animation:none}
@@ -477,7 +503,9 @@ footer.bg-12-footer{padding-top:calc(40px + 64px)}
 @media(max-width:820px){
   .scrolltip{top:56px}
   .scrolltip span{font-size:31px}
-  .scrollarrows{top:116px;width:96px;height:70px}
+  /* stacked, the arrows ran straight through "The artist" and the h2 —
+     on phones they sit beside the tip instead, leaving the heading band clear */
+  .scrollarrows{top:60px;left:auto;right:34px;margin:0;width:62px;height:46px}
 }
 @media(prefers-reduced-motion:no-preference){
   .scrollarrows{animation:nudge 3.4s ease-in-out infinite}
@@ -577,11 +605,13 @@ footer.bg-12-footer{padding-top:calc(40px + 64px)}
     <img style="left:335px;top:325px;width:37px;transform:rotate(-14deg);opacity:.95;z-index:5" src="images/scrap/doodle-star-berry.webp" alt="">
     <div class="meta-card">
       <div class="paper"></div>
+      <img class="mc-tape t1" src="images/scrap/tape-washi-teal.webp" alt="" aria-hidden="true">
+      <img class="mc-tape t2" src="images/scrap/tape-fabric-berry.webp" alt="" aria-hidden="true">
       <p>Drawing identity, memory and material out of everyday South African life. <b>Raw, and uncut.</b></p>
       <div class="row"><a class="b1" href="#work">View the work</a><a class="b2" href="#contact">Commission a piece</a></div>
     </div>
-    <img style="left:25px;top:460px;width:45px;transform:rotate(12deg);opacity:.9" src="images/scrap/doodle-star-gold.webp" alt="">
-    <img style="left:28px;top:498px;width:81px;transform:rotate(-18deg);opacity:.85" src="images/scrap/ribbon-zigzag.webp" alt="">
+    <img class="m-hide" style="left:25px;top:460px;width:45px;transform:rotate(12deg);opacity:.9" src="images/scrap/doodle-star-gold.webp" alt="">
+    <img class="m-hide" style="left:28px;top:498px;width:81px;transform:rotate(-18deg);opacity:.85" src="images/scrap/ribbon-zigzag.webp" alt="">
     <img style="left:308px;top:450px;width:74px;transform:rotate(32.1deg)" src="images/scrap/flower-rose-taped.webp" alt="">
   </div>
     <div class="cover-tear" aria-hidden="true"></div>
@@ -592,15 +622,15 @@ footer.bg-12-footer{padding-top:calc(40px + 64px)}
   <div class="sec-deco" aria-hidden="true">
     <div class="scrolltip rv" aria-hidden="true"><span>scroll down</span></div>
     <svg class="scrollarrows" viewBox="0 0 132 96" aria-hidden="true"><path d="M40 4 C36 26 43 44 39 66"/><path d="M28 52 C33 62 37 70 39 78 C43 68 49 60 55 52"/><path class="a2" d="M92 14 C89 32 95 48 91 68"/><path class="a2" d="M81 56 C85 65 89 72 91 79 C95 70 100 63 105 56"/></svg>
-    <img class="deco rv" src="images/scrap/cut-flowers-dried.webp" alt="" aria-hidden="true" style="left:4%;top:14px;width:168px;--r:-8deg;--o:0.92">
-    <img class="deco rv an-sway" src="images/scrap/cut-sprig-berry.webp" alt="" aria-hidden="true" style="left:87%;top:-30px;width:104px;--r:11deg;--o:0.9">
-    <img class="deco rv" src="images/scrap/scrap-circle-torn.webp" alt="" aria-hidden="true" style="left:57%;top:38px;width:132px;--r:-6deg;--o:0.6">
-    <img class="deco rv" src="images/scrap/cut-bow-cream.webp" alt="" aria-hidden="true" style="left:30%;top:92px;width:112px;--r:14deg;--o:0.9">
-    <img class="deco rv" src="images/scrap/cut-triangle-mustard.webp" alt="" aria-hidden="true" style="left:67%;top:186px;width:118px;--r:-15deg;--o:0.85">
-    <img class="deco rv" src="images/scrap/doodle-heart-berry.webp" alt="" aria-hidden="true" style="left:24%;top:34px;width:62px;--r:-11deg;--o:0.85">
-    <img class="deco rv an-sway" src="images/scrap/doodle-star-gold.webp" alt="" aria-hidden="true" style="left:40%;top:196px;width:74px;--r:16deg;--o:0.85">
+    <img class="deco rv m-posy" src="images/scrap/cut-flowers-dried.webp" alt="" aria-hidden="true" style="left:4%;top:14px;width:168px;--r:-8deg;--o:0.92">
+    <img class="deco rv an-sway m-sprig" src="images/scrap/cut-sprig-berry.webp" alt="" aria-hidden="true" style="left:87%;top:-30px;width:104px;--r:11deg;--o:0.9">
+    <img class="deco rv" src="images/scrap/scrap-circle-torn.webp" data-drop="m" alt="" aria-hidden="true" style="left:57%;top:38px;width:132px;--r:-6deg;--o:0.6">
+    <img class="deco rv" src="images/scrap/cut-bow-cream.webp" data-drop="m" alt="" aria-hidden="true" style="left:30%;top:92px;width:112px;--r:14deg;--o:0.9">
+    <img class="deco rv" src="images/scrap/cut-triangle-mustard.webp" data-drop="m" alt="" aria-hidden="true" style="left:67%;top:186px;width:118px;--r:-15deg;--o:0.85">
+    <img class="deco rv" src="images/scrap/doodle-heart-berry.webp" data-drop="m" alt="" aria-hidden="true" style="left:24%;top:34px;width:62px;--r:-11deg;--o:0.85">
+    <img class="deco rv an-sway" src="images/scrap/doodle-star-gold.webp" data-drop="m" alt="" aria-hidden="true" style="left:40%;top:196px;width:74px;--r:16deg;--o:0.85">
     <svg class="sec-rays rv" aria-hidden="true" viewBox="0 0 1000 1000" style="left:50%;top:13%;width:620px;height:620px;--o:0.22;--ray:#5C2E40"><use href="#raysym"/></svg>
-    <img class="deco d-float rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/creature-bee.webp" style="left:98%;top:9%;width:120px;--r:9deg;--o:0.95">
+    <img class="deco d-float rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/creature-bee.webp" data-drop="m" style="left:98%;top:9%;width:120px;--r:9deg;--o:0.95">
     <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-scallop-teal.webp" style="left:-5%;top:53%;width:280px;--r:-8deg;--o:0.5">
     <img data-drop="2" class="deco d-sway rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-star-gold.webp" style="left:92%;top:62%;width:86px;--r:-16deg;--o:0.85">
     <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-ribbon-curl.webp" style="left:9%;top:80%;width:232px;--r:12deg;--o:0.6">
