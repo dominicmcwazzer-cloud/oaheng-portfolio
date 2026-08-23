@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --vanilla:#F4ECE2; --vanilla-2:#FBF6EF; --paper-warm:#EFE3D7;
@@ -17,6 +17,9 @@
   --tx:#2C2533; --tx-soft:#6E6473; --tx-dim:#9A8E97;
   --on-navy:#F1E7DC; --on-navy-soft:#C7B4BB; --on-navy-dim:#8E8090;
   --display:'Playfair Display',Georgia,serif; --serif:'Cormorant Garamond',Georgia,serif; --ui:'Inter',system-ui,sans-serif;
+  --berry:#A23B5C; --teal:#2F7E76; --mustard:#E0A93E; --cream:#F4ECDA; --pinkb:#ECBFC9; --ink:#231F1C;
+  --hand:'Caveat','Comic Sans MS',cursive;
+  --tm-a:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='30' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H900 V13 L862 21 L820 11 L780 23 L742 9 L705 19 L660 12 L622 25 L580 11 L540 20 L505 9 L468 22 L430 13 L392 24 L350 10 L315 21 L272 11 L235 23 L198 12 L160 19 L118 9 L80 22 L45 12 L18 23 L0 13 Z' fill='black'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -41,37 +44,64 @@ a{color:inherit;text-decoration:none}
 .nav-links .cta:hover{background:var(--rose);color:var(--vanilla-2)}
 .nav-toggle{display:none;background:none;border:0;font-family:var(--ui);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);font-weight:500;cursor:pointer;padding:6px 2px}
 
-/* cover */
+/* cover — scrapbook hero (layout mirrored from Dominic's Figma) */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.cover{position:relative;min-height:100vh;background:#D9A59D;overflow:hidden}
-.cover-hero{position:static}
-.cover-name{position:absolute;left:0;right:0;text-align:center;font-family:var(--display);font-weight:500;line-height:.82;letter-spacing:-.012em;pointer-events:none;white-space:nowrap}
-.cover-name.back{top:8vh;color:var(--navy);font-size:clamp(5rem,23vw,20rem);z-index:1}
-.cover-name.front{top:36vh;color:var(--vanilla-2);font-style:italic;font-weight:500;font-size:clamp(4.4rem,20vw,17rem);padding-left:22%;z-index:3}
-.cover-figure{position:absolute;left:52%;bottom:0;transform:translateX(-50%);height:94vh;width:auto;z-index:2;pointer-events:none;filter:drop-shadow(0 24px 55px rgba(41,48,78,.22))}
-.cover-meta{position:absolute;left:clamp(22px,5vw,72px);top:49%;z-index:4;max-width:31ch}
-.cover-eye{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.cover-eye .ln{width:46px;height:1px;background:var(--prune);flex:none}
-.cover-eye span{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--prune);white-space:nowrap}
-.cover .lead{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.5vw,1.32rem);color:var(--navy);max-width:34ch;line-height:1.42;margin:0}
-.cover .lead b{color:var(--prune);font-weight:600}
-.cover-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
-.cover .btn.fill{background:var(--prune);color:var(--vanilla-2);border-color:var(--prune)}
-.cover .btn{border:1px solid var(--navy);color:var(--navy)}
-.scrollcue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--tx-dim);text-align:center;z-index:3}
-.scrollcue .bar{width:1px;height:40px;background:linear-gradient(var(--rose),transparent);margin:10px auto 0}
+.cover{position:relative;background:#D9A59D;overflow:hidden;height:calc(900px * var(--s,1))}
+.stage{position:absolute;top:0;left:calc((100% - 1440px * var(--s,1)) / 2);width:1440px;height:900px;transform:scale(var(--s,1));transform-origin:0 0}
+.stage>*{position:absolute}
+.stage .rays{left:410px;top:-100px;width:700px;height:700px;opacity:.5;z-index:1}
+.stage .pal{left:168px;top:88px;width:502px;z-index:2;filter:drop-shadow(0 18px 34px rgba(41,48,78,.2))}
+.stage .bfly-b{left:970px;top:447px;width:153px;transform:rotate(12deg);z-index:2;opacity:.9}
+.stage .fig{left:556px;bottom:0;height:736px;z-index:3;filter:drop-shadow(-14px 12px 30px rgba(41,48,78,.3))}
+.stage .figsh{left:570px;bottom:-4px;width:400px;height:26px;background:radial-gradient(ellipse at center,rgba(41,48,78,.3),transparent 70%);z-index:2}
+.wd{position:absolute;inset:0;z-index:4;pointer-events:none}
+.wd b{position:absolute;display:inline-block;line-height:1.02;padding:.09em .13em;font-weight:600;font-size:106px;color:var(--ink);border:5px solid rgba(255,253,248,.92);filter:drop-shadow(0 6px 9px rgba(35,31,28,.3));font-family:var(--display);font-style:normal}
+.wd .lH,.wd .lN{font-family:var(--serif);font-weight:700}
+.wd .lA{background:var(--teal);clip-path:polygon(3% 6%,97% 0,100% 94%,52% 100%,0 96%)}
+.wd .lH{background:var(--berry);clip-path:polygon(0 4%,55% 0,100% 8%,96% 100%,4% 94%)}
+.wd .lE{background:var(--cream);clip-path:polygon(4% 0,100% 4%,94% 92%,50% 100%,0 90%)}
+.wd .lN{background:var(--mustard);clip-path:polygon(3% 6%,97% 0,100% 94%,52% 100%,0 96%)}
+.wd .lG{background:var(--pinkb);clip-path:polygon(0 4%,55% 0,100% 8%,96% 100%,4% 94%)}
+.wd .lM{background:var(--teal);clip-path:polygon(4% 0,100% 4%,94% 92%,50% 100%,0 90%)}
+.wd .dot{position:absolute;width:24px;height:24px;border-radius:50%;background:var(--ink)}
+.stage .hand-note{font-family:var(--hand);font-weight:600;color:var(--prune);z-index:3}
+.stage .credit{left:990px;top:826px;font-family:var(--serif);font-style:italic;font-size:21px;color:var(--prune);z-index:4}
+.stage .meta-lead{left:134px;top:218px;width:294px;font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.34;color:var(--navy);z-index:4}
+.stage .meta-lead b{color:var(--prune);font-weight:600}
+.stage .btn-fill,.stage .btn-line{display:inline-block;white-space:nowrap;font:500 10.5px/1 var(--ui);letter-spacing:.1em;text-transform:uppercase;border-radius:2px;z-index:4;pointer-events:auto}
+.stage .btn-fill{left:134px;top:319px;padding:13px 18px;background:var(--prune);color:var(--vanilla-2);border:1px solid var(--prune)}
+.stage .btn-line{left:134px;top:363px;padding:12px 18px;border:1px solid var(--navy);color:var(--navy)}
+.cover .tear-b{position:absolute;left:0;right:0;bottom:0;height:34px;z-index:7;pointer-events:none}
+.cover .tear-b::before,.cover .tear-b::after{content:"";position:absolute;inset:0;-webkit-mask:var(--tm-a) repeat-x;-webkit-mask-size:900px 100%;mask:var(--tm-a) repeat-x;mask-size:900px 100%}
+.cover .tear-b::before{background:var(--cream);transform:scaleY(-1) translateY(3px)}
+.cover .tear-b::after{background:var(--vanilla-2);transform:scaleY(-1)}
+
+.cover-m{display:none}
+.scrollcue{position:absolute;left:56px;top:816px;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:#54324099;text-align:center;z-index:3}
+.scrollcue .bar{width:1.5px;height:38px;background:linear-gradient(var(--prune),transparent);margin:9px auto 0}
 @media(max-width:820px){
-  .cover{display:flex;flex-direction:column;min-height:0;overflow:hidden}
-  .cover-hero{position:relative;width:100%;height:500px;overflow:hidden}
-  .cover-name{padding:0;letter-spacing:-.02em}
-  .cover-name.back{top:90px;font-size:26vw}
-  .cover-name.front{top:232px;font-size:27vw;padding-left:0}
-  .cover-figure{left:50%;height:430px;min-height:0;bottom:0;filter:none}
-  .cover-meta{position:static;width:100%;max-width:none;padding:24px clamp(22px,6vw,34px) 46px;display:flex;flex-direction:column;align-items:center;text-align:center;border-top:1px solid rgba(41,48,78,.28)}
-  .cover-eye{justify-content:center;margin-bottom:14px}
-  .cover .lead{max-width:36ch;text-align:center;font-size:1.05rem}
-  .cover-cta{flex-direction:column;align-items:center;width:100%;max-width:270px;margin-top:22px}
-  .cover .btn{justify-content:center;width:100%}
+  .cover{height:calc(600px * var(--sm,1))}
+  .stage{display:none}
+  .cover-m{display:block;position:absolute;top:0;left:calc((100% - 390px * var(--sm,1)) / 2);width:390px;height:600px;transform:scale(var(--sm,1));transform-origin:0 0}
+  .cover-m>*{position:absolute}
+  .cover-m .rays{left:15px;top:43px;width:360px;height:360px;opacity:.45}
+  .cover-m .pal{left:9px;top:182px;width:151px;filter:drop-shadow(0 8px 14px rgba(41,48,78,.2))}
+  .cover-m .fig{left:92px;top:162px;height:436px;filter:drop-shadow(-7px 7px 14px rgba(41,48,78,.3))}
+  .cover-m .credit-m{left:0;right:0;top:34px;text-align:center;font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--prune)}
+  .cover-m .wd-m b{position:absolute;display:inline-block;line-height:1.02;padding:3px 5px;font-weight:600;font-size:30px;color:var(--ink);border:2.5px solid rgba(255,253,248,.92);filter:drop-shadow(0 2px 3px rgba(35,31,28,.3));font-family:var(--display);font-style:normal}
+  .cover-m .wd-m .lH,.cover-m .wd-m .lN{font-family:var(--serif);font-weight:700}
+  .cover-m .meta-card{left:45px;top:400px;width:300px;height:128px;z-index:5}
+  .cover-m .meta-card .paper{position:absolute;inset:0;background:url(images/scrap/scrap-white-crumpled.webp) center/100% 100% no-repeat;opacity:.95;transform:rotate(-1.4deg)}
+  .cover-m .meta-card p{position:absolute;left:20px;top:13px;width:260px;font-family:var(--serif);font-style:italic;font-size:13px;line-height:1.32;color:var(--navy)}
+  .cover-m .meta-card p b{color:var(--prune);font-weight:600}
+  .cover-m .meta-card .row{position:absolute;left:0;right:0;bottom:11px;display:flex;gap:6px;justify-content:center}
+  .cover-m .meta-card .row a{display:inline-block;white-space:nowrap;font:500 8px/1 var(--ui);letter-spacing:.07em;text-transform:uppercase;padding:8px 10px;border-radius:2px}
+  .cover-m .meta-card .b1{background:var(--prune);color:var(--vanilla-2);border:1px solid var(--prune)}
+  .cover-m .meta-card .b2{border:1px solid var(--navy);color:var(--navy)}
+
+  .cover .tear-b{height:18px}
+  .cover .tear-b::before,.cover .tear-b::after{-webkit-mask-size:450px 100%;mask-size:450px 100%}
+  
   .scrollcue{display:none}
   .nav-toggle{display:block}
   .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-end;gap:16px;background:rgba(217,165,157,.97);padding:20px clamp(18px,5vw,28px);display:none;border-bottom:1px solid rgba(41,48,78,.14)}
@@ -82,7 +112,7 @@ a{color:inherit;text-decoration:none}
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--ui);font-weight:500;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.95em 1.7em;border-radius:2px;transition:.3s;cursor:pointer;border:1px solid var(--navy);color:var(--navy)}
 .btn:hover{background:var(--navy);color:var(--vanilla)}
-.btn.fill{background:var(--rose);border-color:var(--rose);color:var(--vanilla-2)}
+.btn.fill{background:var(--berry);border-color:var(--berry);color:var(--cream)}
 .btn.fill:hover{background:var(--prune);border-color:var(--prune)}
 .btn.ghost-light{border-color:var(--on-navy-soft);color:var(--on-navy)}
 .btn.ghost-light:hover{background:var(--on-navy);color:var(--navy)}
@@ -97,39 +127,61 @@ a{color:inherit;text-decoration:none}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes sway{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
 @keyframes cueRun{0%{transform:translateY(-110%)}55%{opacity:1}100%{transform:translateY(150%);opacity:0}}
-.cover-name.back{animation:riseIn 1.1s .05s both cubic-bezier(.2,.7,.2,1)}
-.cover-figure{animation:figFade 1.3s .16s both cubic-bezier(.2,.7,.2,1)}
-.cover-name.front{animation:riseIn 1.1s .34s both cubic-bezier(.2,.7,.2,1)}
-.cover-meta{animation:riseIn 1s .52s both ease}
 .scrollcue .bar{position:relative;overflow:hidden}
 .scrollcue .bar::after{content:"";position:absolute;left:0;width:100%;height:46%;top:0;background:linear-gradient(var(--prune),transparent);animation:cueRun 2.3s ease-in-out infinite}
 
-/* decorative elements (charcoal kit) */
+/* scrapbook kit */
+section{position:relative}
+.tear{position:absolute;left:0;right:0;top:0;height:26px;z-index:6;pointer-events:none}
+.tear::before,.tear::after{content:"";position:absolute;inset:0;-webkit-mask:var(--tm-a) repeat-x;-webkit-mask-size:900px 100%;mask:var(--tm-a) repeat-x;mask-size:900px 100%}
+.tear::before{background:var(--cream);transform:translateY(3px)}
+.tear::after{background:var(--tear-c,var(--vanilla))}
+.tape{position:absolute;width:110px;height:28px;z-index:4;mix-blend-mode:multiply;
+  background:repeating-linear-gradient(90deg,transparent 0 9px,rgba(255,255,255,.15) 9px 11px),var(--tc,rgba(236,191,201,.72));
+  clip-path:polygon(2% 0,98% 5%,100% 32%,97% 100%,2% 95%,0 65%);
+  box-shadow:0 1px 3px rgba(35,31,28,.18);transform:rotate(var(--tr,-5deg))}
+.stitched{outline:2px dashed var(--teal);outline-offset:-10px}
 .flourish{display:flex;justify-content:center;align-items:center;pointer-events:none}
 .flourish svg{display:block;overflow:visible}
-.flr-divider{padding:clamp(26px,5vw,52px) 0}
-.flr-divider svg{width:min(300px,56vw);height:auto;animation:sway 8s ease-in-out infinite}
-.flr-divider path{stroke:var(--mauve)}
-.series.navy .flr-divider path,.flr-on-pink path{stroke:var(--prune)}
+.flr-divider{display:none}
 .head-ul{display:inline-block}
 .flr-pencil{margin:10px auto 2px;width:100%}
-.flr-pencil svg{width:100%;height:auto;filter:drop-shadow(0 4px 6px rgba(41,48,78,.14))}
+.flr-pencil svg{width:100%;height:auto}
 .about-h .flr-pencil{transform:none;clip-path:inset(0 100% 0 0);transition:clip-path 1.15s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
 .about-h .flr-pencil.in{clip-path:inset(0 0 0 0)}
 .flr-stitch{margin:22px auto 0;width:100%}
-.flr-stitch svg{width:min(300px,70%);height:auto;margin:0 auto;animation:floatY 6.5s ease-in-out infinite}
+.flr-stitch svg{width:min(300px,70%);height:auto;margin:0 auto}
+.flr-stitch line{stroke:var(--teal)}
+.flr-stitch path{stroke:var(--berry)}
 .flr-twine{margin:6px 0 22px}
 .flr-twine svg{width:124px;height:auto;animation:sway 9s ease-in-out infinite;transform-origin:50% 0}
 .flr-mark{justify-content:flex-start;margin:0 0 6px}
 .flr-mark svg{width:128px;height:auto;animation:floatY 6s ease-in-out infinite}
-.flr-smudge{position:absolute;inset:0;justify-content:center;align-items:center;opacity:.5;z-index:0}
-.flr-smudge svg{width:min(560px,86%);height:auto}
+.flr-mark path{stroke:var(--teal)}
+.flr-mark circle{fill:var(--berry)}
+.flr-smudge{display:none}
 .statement .wrap{position:relative;z-index:1}
-
+.cutword{display:inline-flex;gap:.07em;align-items:baseline;vertical-align:-.04em;font-style:normal}
+.cutword b{display:inline-block;line-height:1.04;padding:.1em .15em;font-weight:600;font-size:.88em;filter:drop-shadow(0 2px 3px rgba(35,31,28,.3));transition:transform .5s cubic-bezier(.3,1.4,.4,1),opacity .4s;font-style:normal}
+.cutword b:nth-child(5n+1){background:var(--berry);color:var(--cream)}
+.cutword b:nth-child(5n+2){background:var(--teal);color:var(--cream)}
+.cutword b:nth-child(5n+3){background:var(--mustard);color:var(--ink)}
+.cutword b:nth-child(5n+4){background:var(--cream);color:var(--ink)}
+.cutword b:nth-child(5n+5){background:var(--pinkb);color:var(--berry)}
+.cutword b:nth-child(4n+1){font-family:var(--display);font-style:italic}
+.cutword b:nth-child(4n+2){font-family:var(--serif)}
+.cutword b:nth-child(4n+3){font-family:var(--ui);text-transform:uppercase;font-size:.7em;font-weight:600;padding:.24em .18em}
+.cutword b:nth-child(4n+4){font-family:var(--hand)}
+.cutword b:nth-child(3n+1){clip-path:polygon(3% 6%,97% 0,100% 94%,52% 100%,0 96%)}
+.cutword b:nth-child(3n+2){clip-path:polygon(0 4%,55% 0,100% 8%,96% 100%,4% 94%)}
+.cutword b:nth-child(3n){clip-path:polygon(4% 0,100% 4%,94% 92%,50% 100%,0 90%)}
+.cutword b:nth-child(odd){transform:rotate(-2.4deg)}
+.cutword b:nth-child(even){transform:rotate(1.8deg) translateY(.05em)}
+.rv:not(.in) .cutword b{opacity:0;transform:translateY(-16px) rotate(6deg)}
 /* section heads */
 .s-head{max-width:60ch}
 .s-head h2{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.04;color:var(--navy);letter-spacing:-.01em;margin:.14em 0 .35em}
-.s-head h2 em{font-style:italic;color:var(--rose)}
+.s-head h2 em,.about-h h2 em{font-style:italic;color:var(--rose)}
 .s-head p{font-family:var(--serif);font-size:clamp(1.18rem,2vw,1.5rem);line-height:1.55;color:var(--tx-soft);max-width:54ch}
 
 /* the artist — photo between text */
@@ -148,19 +200,25 @@ a{color:inherit;text-decoration:none}
 .flow figcaption{font-family:var(--ui);font-size:.74rem;letter-spacing:.05em;color:var(--tx-dim);margin-top:8px}
 .about-q{clear:both;font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.25;color:var(--prune);text-align:center;margin:clamp(34px,5vw,56px) auto;max-width:22ch}
 
-/* image treatment (washed -> colour on hover) */
-.art-img{position:relative;overflow:hidden;background:var(--sand);border:1px solid var(--line)}
-.art-img img{width:100%;height:auto;display:block;filter:grayscale(.62) brightness(1.06) contrast(.97);transition:filter .7s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
-.art-img::after{content:"";position:absolute;inset:0;background:var(--blush);mix-blend-mode:soft-light;opacity:.4;transition:opacity .6s;pointer-events:none}
+/* image treatment — scrapbook mounts */
+.art-img{position:relative;background:var(--cream);padding:9px 9px 11px;box-shadow:0 1px 1px rgba(35,31,28,.20),0 3px 5px rgba(58,32,40,.17),0 12px 26px rgba(58,32,40,.20);transform:rotate(calc((var(--i,2.5) - 2.5) * .55deg));transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease}
+.art-img img{width:100%;height:auto;display:block}
 .work .ai{cursor:pointer;display:block}
-.work .ai:hover .art-img img{filter:none;transform:scale(1.02)}
-.work .ai:hover .art-img::after{opacity:0}
-.enlarge{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(41,48,78,.82);color:#fff;display:grid;place-items:center;font-size:1.05rem;opacity:0;transition:.3s;z-index:2}
+.work[data-nolb] .ai{cursor:default}
+.work .ai:hover .art-img{transform:rotate(0deg) translateY(-4px);box-shadow:0 2px 4px rgba(35,31,28,.16),0 14px 30px rgba(92,46,64,.22)}
+.feat .art-img::before,.feat .art-img::after{content:"";position:absolute;top:-13px;width:84px;height:22px;z-index:3;mix-blend-mode:multiply;clip-path:polygon(2% 0,98% 5%,100% 32%,97% 100%,2% 95%,0 65%);box-shadow:0 1px 3px rgba(35,31,28,.18)}
+.feat .art-img::before{left:-22px;background:rgba(162,59,92,.5);transform:rotate(-42deg)}
+.feat .art-img::after{right:-22px;background:rgba(47,126,118,.5);transform:rotate(42deg)}
+.series.navy .feat .art-img::before{background:rgba(244,236,218,.6)}
+.enlarge{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:var(--berry);color:var(--cream);display:grid;place-items:center;font-size:1.05rem;opacity:0;transition:.3s;z-index:2}
 .work .ai:hover .enlarge{opacity:1}
 .work figcaption{margin-top:13px}
-.work figcaption b{display:block;font-family:var(--display);font-weight:500;font-size:1.1rem;line-height:1.2;color:var(--navy)}
-.work figcaption span{font-family:var(--serif);font-style:italic;color:var(--tx-soft);font-size:1rem}
-
+.work figcaption b{display:inline-block;font-family:var(--hand);font-weight:600;font-size:1.22rem;line-height:1.15;color:var(--ink);transform:rotate(-.8deg)}
+.work figcaption span{display:block;font-family:var(--serif);font-style:italic;color:var(--tx-soft);font-size:1rem}
+.an-sway{animation:sway 7s ease-in-out infinite}
+.an-drift{animation:floatY 8s ease-in-out infinite}
+.rv:not(.in) .art-img{opacity:0;transform:translateY(-26px) rotate(-4deg)}
+.rv.in .art-img{opacity:1}
 /* series spread */
 .series{padding:clamp(64px,9vw,128px) 0}
 .series.navy{background:linear-gradient(176deg,#DBA79F,#CD938B);color:var(--navy)}
@@ -184,24 +242,28 @@ a{color:inherit;text-decoration:none}
 
 /* commission band */
 .cband{background:var(--blush);text-align:center;padding:clamp(56px,9vh,96px) 0}
+.cpanel{position:relative;max-width:640px;margin:0 auto;background:var(--cream);outline:2px dashed var(--teal);outline-offset:-11px;padding:34px 44px;box-shadow:0 2px 6px rgba(35,31,28,.12);transform:rotate(-.5deg)}
+.cpanel::before{content:"";position:absolute;inset:0;background:var(--cream);transform:rotate(1.3deg) translate(7px,8px);box-shadow:0 10px 24px rgba(92,46,64,.12);z-index:-1}
+.cpanel .tape{left:-46px;top:-20px;width:120px;--tc:rgba(224,169,62,.6);--tr:-38deg}
 .cband p{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1.7rem,3.4vw,2.6rem);color:var(--prune);line-height:1.2;margin:0 auto 24px;max-width:24ch}
 
 /* journey */
 .journey{padding:clamp(64px,9vw,128px) 0;background:var(--paper-warm)}
-.timeline{list-style:none;max-width:760px;margin:clamp(30px,4vw,50px) 0 clamp(46px,6vw,72px);border-left:1px solid var(--rose)}
+.timeline{list-style:none;max-width:760px;margin:clamp(30px,4vw,50px) 0 clamp(46px,6vw,72px);border-left:2px dashed var(--teal)}
 .timeline li{position:relative;padding:0 0 26px 28px}
 .timeline li:last-child{padding-bottom:0}
-.timeline li::before{content:"";position:absolute;left:-5px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--rose)}
-.timeline .yr{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);font-weight:600}
+.timeline li::before{content:"";position:absolute;left:-6px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--berry)}
+.timeline .yr{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--berry);font-weight:600}
 .timeline b{display:block;font-family:var(--display);font-weight:500;font-size:1.4rem;color:var(--navy);line-height:1.1;margin:.06em 0 .1em}
 .timeline .v{display:block;font-family:var(--serif);font-style:italic;color:var(--tx-soft);font-size:1.08rem}
 .jgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:clamp(16px,2vw,26px)}
-.jgrid figcaption{margin-top:9px;font-family:var(--ui);font-size:.72rem;letter-spacing:.04em;color:var(--tx-dim)}
+.jgrid figcaption{margin-top:9px;font-family:var(--hand);font-weight:600;font-size:1.05rem;color:var(--ink);transform:rotate(-.8deg)}
 
 /* statement */
 .statement{position:relative;overflow:hidden;background:var(--prune);color:#F2DCDE;text-align:center;padding:clamp(90px,16vh,180px) 0}
-.statement blockquote{font-family:var(--display);font-weight:400;font-style:italic;font-size:clamp(2rem,5vw,3.6rem);line-height:1.24;max-width:20ch;margin:.4em auto}
-.statement .sig{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--blush);margin-top:10px}
+.statement .wrap::before{content:"";position:absolute;left:50%;top:-40px;transform:translateX(-50%) rotate(-.9deg);width:min(820px,96%);height:360px;background:url(images/scrap/scrap-torn-square.webp) center/100% 100% no-repeat;z-index:-1}
+.statement blockquote{font-family:var(--display);font-weight:400;font-style:italic;font-size:clamp(1.8rem,4.4vw,3.1rem);line-height:1.24;max-width:22ch;margin:.4em auto;color:var(--prune)}
+.statement .sig{font-family:var(--hand);font-weight:600;font-size:1.5rem;color:var(--berry);margin-top:10px}
 .statement .full{display:none;max-width:62ch;margin:30px auto 0;text-align:left;font-family:var(--serif);font-size:1.2rem;line-height:1.62;color:#EFD6D9}
 .statement .full p{margin-bottom:14px}
 .statement .read{margin-top:28px;display:inline-block;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(242,220,222,.5);padding:.85em 1.6em;border-radius:30px;cursor:pointer;transition:.3s}
@@ -221,10 +283,10 @@ a{color:inherit;text-decoration:none}
 .cbtns{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
 .contact .btn.ghost-light{border-color:var(--navy);color:var(--navy)}
 .contact .btn.ghost-light:hover{background:var(--navy);color:var(--blush)}
-.contact-card{border:1px solid rgba(92,46,64,.3);border-radius:3px;padding:46px;text-align:center;background:var(--prune)}
-.contact-card .big{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1.9rem,4vw,2.7rem);color:var(--vanilla-2);line-height:1.16}
-.contact-card .sig{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--blush);margin-top:18px}
-.contact-card small{display:block;color:rgba(242,220,222,.72);font-size:.84rem;margin-top:10px;letter-spacing:.03em}
+.contact-card{border:0;border-radius:0;padding:46px;text-align:center;background:var(--cream);outline:2px dashed var(--teal);outline-offset:-11px;box-shadow:0 12px 26px rgba(92,46,64,.18);transform:rotate(1.2deg)}
+.contact-card .big{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1.7rem,3.4vw,2.3rem);color:var(--prune);line-height:1.2}
+.contact-card .sig{font-family:var(--hand);font-weight:600;font-size:1.5rem;color:var(--berry);margin-top:18px}
+.contact-card small{display:block;color:#6E6473;font-size:.84rem;margin-top:10px;letter-spacing:.03em}
 
 footer{background:var(--prune);color:rgba(242,220,222,.72);text-align:center;padding:40px 20px;font-size:.82rem}
 footer .fw{font-family:var(--display);font-size:1.4rem;color:var(--vanilla-2);margin-bottom:6px}
@@ -232,13 +294,14 @@ footer a{color:var(--blush)} footer a:hover{color:var(--vanilla-2)}
 footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
 
 /* lightbox */
-.lb{position:fixed;inset:0;z-index:200;background:rgba(48,24,33,.96);backdrop-filter:blur(7px);display:none;opacity:0;transition:.3s}
+.lb{position:fixed;inset:0;z-index:200;background:rgba(35,31,28,.94);backdrop-filter:blur(7px);display:none;opacity:0;transition:.3s}
 .lb.open{display:flex;opacity:1}
-.lb-inner{margin:auto;max-width:1080px;width:92%;display:grid;grid-template-columns:1.35fr .65fr;background:var(--vanilla-2);max-height:90vh}
-.lb-img{background:#3A2230;display:flex;align-items:center;justify-content:center;padding:18px;overflow:hidden}
+.lb-inner{margin:auto;max-width:1080px;width:92%;display:grid;grid-template-columns:1.35fr .65fr;background:var(--cream);max-height:90vh}
+.lb-img{background:#2B2724;display:flex;align-items:center;justify-content:center;padding:18px;overflow:hidden}
 .lb-img img{max-height:84vh;max-width:100%;width:auto;object-fit:contain}
-.lb-info{padding:42px 38px;overflow:auto}
-.lb-info .series{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);font-weight:600}
+.lb-info{position:relative;padding:42px 38px;overflow:auto}
+.lb-info::before{content:"";position:absolute;top:-10px;left:44px;width:110px;height:26px;background:rgba(47,126,118,.5);mix-blend-mode:multiply;clip-path:polygon(2% 0,98% 5%,100% 32%,97% 100%,2% 95%,0 65%);transform:rotate(-4deg)}
+.lb-info .series{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--berry);font-weight:600}
 .lb-info h3{font-family:var(--display);font-weight:500;font-size:2rem;color:var(--navy);margin:.3em 0 .12em}
 .lb-info .med{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--tx-soft)}
 .lb-info .spec{display:flex;gap:26px;margin:22px 0;flex-wrap:wrap}
@@ -251,22 +314,193 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
 .lb-nav:hover{background:var(--blush);color:var(--prune);border-color:var(--blush)}
 .lb-prev{left:22px}.lb-next{right:22px}
 
-@media(max-width:860px){.contact-grid{grid-template-columns:1fr;gap:40px}.lb-inner{grid-template-columns:1fr;max-height:94vh;overflow:auto}.lb-img img{max-height:52vh}.lb-nav{display:none}}
+@media(max-width:860px){.statement .wrap::before{height:440px}.contact-grid{grid-template-columns:1fr;gap:40px}.lb-inner{grid-template-columns:1fr;max-height:94vh;overflow:auto}.lb-img img{max-height:52vh}.lb-nav{display:none}}
 @media(max-width:760px){.spread{grid-template-columns:1fr;gap:30px}.spread.flip .feat{order:0}.ph-float{float:none!important;width:100%;margin:18px 0}}
 @media(prefers-reduced-motion:reduce){
+  .an-sway,.an-drift{animation:none}
+  .rv:not(.in) .art-img{opacity:1;transform:rotate(calc((var(--i,2.5) - 2.5) * .55deg))}
+  .rv:not(.in) .cutword b{opacity:1;transform:none}
+  .cutword b{transition:none}
   .rv{transition:none}
-  .cover-name.back,.cover-name.front,.cover-meta{animation:none}
-  .cover-figure{animation:figFade .01s both}
-  .flr-divider svg,.flr-stitch svg,.flr-twine svg,.flr-mark svg,.scrollcue .bar::after{animation:none}
+  .cover-name.back,.cover-name.front,    .flr-divider svg,.flr-stitch svg,.flr-twine svg,.flr-mark svg,.scrollcue .bar::after{animation:none}
   .about-h .flr-pencil{transition:none;clip-path:inset(0 0 0 0)}
 }
+
+/* ---- torn-paper section grounds (composed offline; the join between
+   two sections is exact because each image's first row is generated from
+   the last row of the one above it) ---- */
+.bgs{background-repeat:no-repeat;background-size:100% 100%;background-position:0 0}
+section.bgs.bg-02-artist,footer.bgs.bg-02-artist{background-color:rgb(241,236,230);background-image:url(images/bg/02-artist.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+section.bgs.bg-03-series01,footer.bgs.bg-03-series01{background-color:rgb(230,212,166);background-image:url(images/bg/03-series01.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+section.bgs.bg-04-commission,footer.bgs.bg-04-commission{background-color:rgb(214,172,159);background-image:url(images/bg/04-commission.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+section.bgs.bg-05-series02,footer.bgs.bg-05-series02{background-color:rgb(195,139,132);background-image:url(images/bg/05-series02.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+section.bgs.bg-06-series03,footer.bgs.bg-06-series03{background-color:rgb(238,230,219);background-image:url(images/bg/06-series03.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+section.bgs.bg-07-series04,footer.bgs.bg-07-series04{background-color:rgb(208,184,149);background-image:url(images/bg/07-series04.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+section.bgs.bg-08-series05,footer.bgs.bg-08-series05{background-color:rgb(238,232,220);background-image:url(images/bg/08-series05.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+section.bgs.bg-09-journey,footer.bgs.bg-09-journey{background-color:rgb(220,201,171);background-image:url(images/bg/09-journey.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+section.bgs.bg-10-statement,footer.bgs.bg-10-statement{background-color:rgb(48,21,27);background-image:url(images/bg/10-statement.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+section.bgs.bg-11-contact,footer.bgs.bg-11-contact{background-color:rgb(219,176,167);background-image:url(images/bg/11-contact.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+section.bgs.bg-12-footer,footer.bgs.bg-12-footer{background-color:rgb(90,45,62);background-image:url(images/bg/12-footer.webp);background-size:100% 100%;background-repeat:no-repeat;background-position:0 0}
+.about.bg-02-artist{padding-top:calc(clamp(80px,12vh,150px) + 200px)}
+.series.bg-03-series01{padding-top:calc(clamp(64px,9vw,128px) + 104px)}
+.cband.bg-04-commission{padding-top:calc(clamp(56px,9vh,96px) + 112px)}
+.series.bg-05-series02{padding-top:calc(clamp(64px,9vw,128px) + 104px)}
+.series.bg-06-series03{padding-top:calc(clamp(64px,9vw,128px) + 104px)}
+.series.bg-07-series04{padding-top:calc(clamp(64px,9vw,128px) + 104px)}
+.series.bg-08-series05{padding-top:calc(clamp(64px,9vw,128px) + 104px)}
+.journey.bg-09-journey{padding-top:calc(clamp(64px,9vw,128px) + 96px)}
+.statement.bg-10-statement{padding-top:calc(clamp(90px,16vh,180px) + 64px)}
+.contact.bg-11-contact{padding-top:calc(clamp(80px,13vh,150px) + 72px)}
+footer.bg-12-footer{padding-top:calc(40px + 64px)}
+@media(max-width:820px){
+  section.bgs.bg-02-artist,  footer.bgs.bg-02-artist{background-image:url(images/bg/M02-artist.webp)}
+  section.bgs.bg-03-series01,  footer.bgs.bg-03-series01{background-image:url(images/bg/M03-series01.webp)}
+  section.bgs.bg-04-commission,  footer.bgs.bg-04-commission{background-image:url(images/bg/M04-commission.webp)}
+  section.bgs.bg-05-series02,  footer.bgs.bg-05-series02{background-image:url(images/bg/M05-series02.webp)}
+  section.bgs.bg-06-series03,  footer.bgs.bg-06-series03{background-image:url(images/bg/M06-series03.webp)}
+  section.bgs.bg-07-series04,  footer.bgs.bg-07-series04{background-image:url(images/bg/M07-series04.webp)}
+  section.bgs.bg-08-series05,  footer.bgs.bg-08-series05{background-image:url(images/bg/M08-series05.webp)}
+  section.bgs.bg-09-journey,  footer.bgs.bg-09-journey{background-image:url(images/bg/M09-journey.webp)}
+  section.bgs.bg-10-statement,  footer.bgs.bg-10-statement{background-image:url(images/bg/M10-statement.webp)}
+  section.bgs.bg-11-contact,  footer.bgs.bg-11-contact{background-image:url(images/bg/M11-contact.webp)}
+  section.bgs.bg-12-footer,  footer.bgs.bg-12-footer{background-image:url(images/bg/M12-footer.webp)}
+  .about.bg-02-artist{padding-top:calc(clamp(80px,12vh,150px) + 48px)}
+  .series.bg-03-series01{padding-top:calc(clamp(64px,9vw,128px) + 52px)}
+  .cband.bg-04-commission{padding-top:calc(clamp(56px,9vh,96px) + 56px)}
+  .series.bg-05-series02{padding-top:calc(clamp(64px,9vw,128px) + 52px)}
+  .series.bg-06-series03{padding-top:calc(clamp(64px,9vw,128px) + 52px)}
+  .series.bg-07-series04{padding-top:calc(clamp(64px,9vw,128px) + 52px)}
+  .series.bg-08-series05{padding-top:calc(clamp(64px,9vw,128px) + 52px)}
+  .journey.bg-09-journey{padding-top:calc(clamp(64px,9vw,128px) + 48px)}
+  .statement.bg-10-statement{padding-top:calc(clamp(90px,16vh,180px) + 32px)}
+  .contact.bg-11-contact{padding-top:calc(clamp(80px,13vh,150px) + 36px)}
+  footer.bg-12-footer{padding-top:calc(40px + 32px)}
+}
+@media(prefers-reduced-motion:no-preference){.bgs{background-attachment:scroll}}
+
+/* ---- collage layer: every section gets its own cutout vocabulary ----
+   Pieces are decorative only (aria-hidden, never focusable, never hit-tested).
+   Each carries its tilt in --r so the ambient keyframes can compose with it
+   instead of overwriting the transform. */
+.sec-deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.bgs{position:relative}
+.bgs>.wrap,.bgs>.wrap-full{position:relative;z-index:1}
+.deco{position:absolute;display:block;pointer-events:none;user-select:none;
+  transform:translate(-50%,-50%) rotate(var(--r,0deg)) scale(var(--sc,1));
+  opacity:0;transition:opacity .9s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.deco.in{opacity:var(--o,1)}
+.sec-deco .deco{will-change:transform}
+/* cutouts lift off the page: the shadow follows each piece's own alpha edge */
+.deco{filter:drop-shadow(2px 5px 5px rgba(58,32,40,.26)) drop-shadow(0 1px 1px rgba(58,32,40,.18))}
+.deco-note{filter:drop-shadow(1px 3px 3px rgba(58,32,40,.22))}
+.scrolltip span{filter:drop-shadow(1px 2px 2px rgba(58,32,40,.16))}
+/* the hero keepsakes sit closer to the page than the section pieces */
+.stage img:not(.pal):not(.fig),.cover-m img:not(.pal):not(.fig){filter:drop-shadow(2px 4px 4px rgba(58,32,40,.28))}
+.wd b,.wd-m b{filter:drop-shadow(0 6px 9px rgba(35,31,28,.34)) drop-shadow(0 1px 1px rgba(35,31,28,.22))}
+
+/* drift in from a touch further out, like a piece settling onto the page */
+.deco:not(.in){transform:translate(-50%,calc(-50% + 26px)) rotate(calc(var(--r,0deg) + 6deg)) scale(var(--sc,1))}
+.d-sway{animation:decoSway 9s ease-in-out infinite}
+.d-float{animation:decoFloat 11s ease-in-out infinite}
+@keyframes decoSway{
+  0%,100%{transform:translate(-50%,-50%) rotate(calc(var(--r,0deg) - 1.6deg)) scale(var(--sc,1))}
+  50%{transform:translate(-50%,-50%) rotate(calc(var(--r,0deg) + 1.6deg)) scale(var(--sc,1))}}
+@keyframes decoFloat{
+  0%,100%{transform:translate(-50%,-50%) rotate(var(--r,0deg)) scale(var(--sc,1))}
+  50%{transform:translate(-50%,calc(-50% - 12px)) rotate(var(--r,0deg)) scale(var(--sc,1))}}
+/* handwritten margin notes */
+.deco-note{position:absolute;font-family:var(--hand);font-weight:600;color:var(--prune);
+  font-size:1.28rem;line-height:1.25;pointer-events:none;z-index:1;
+  transform:translate(-50%,-50%) rotate(var(--r,0deg));opacity:0;transition:opacity .9s ease}
+.deco-note.in{opacity:.92}
+.deco-note.ink{color:var(--ink)}
+.deco-note.teal{color:var(--teal)}
+@media(max-width:1100px){.deco[data-drop="1"]{display:none}}
+@media(max-width:820px){
+  .deco[data-drop="2"],.deco-note[data-drop="2"]{display:none}
+  .deco{--sc:.55}
+  .deco-note{font-size:1.02rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .d-sway,.d-float{animation:none}
+  .deco,.deco:not(.in){transition:none;transform:translate(-50%,-50%) rotate(var(--r,0deg)) scale(var(--sc,1))}
+}
+
+.fw-logo{display:block;margin:0 auto 14px;width:270px;height:auto;opacity:.96}
+@media(max-width:820px){.fw-logo{width:210px}}
+
+/* the hero's radiating stitch, echoed behind every section heading so the
+   sections carry the same signature weight as the cover */
+.sec-rays{position:absolute;pointer-events:none;transform:translate(-50%,-50%) rotate(var(--r,0deg));
+  stroke:var(--ray,#5C2E40);stroke-width:2.6;stroke-dasharray:13 12;opacity:0;
+  transition:opacity 1.2s ease,transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.sec-rays.in{opacity:var(--o,.22)}
+.sec-rays:not(.in){transform:translate(-50%,-50%) rotate(calc(var(--r,0deg) - 8deg)) scale(.9)}
+@media(max-width:820px){.sec-rays{display:none}}
+@media(prefers-reduced-motion:reduce){.sec-rays,.sec-rays:not(.in){transition:none;transform:translate(-50%,-50%) rotate(var(--r,0deg))}}
+/* pin the grid works down like the feature mounts already are */
+.series-grid .art-img::after{content:"";position:absolute;top:-11px;left:50%;width:76px;height:20px;
+  margin-left:-38px;z-index:3;mix-blend-mode:multiply;box-shadow:0 1px 3px rgba(35,31,28,.16);
+  clip-path:polygon(2% 0,98% 5%,100% 32%,97% 100%,2% 95%,0 65%);
+  background:rgba(47,126,118,.42);transform:rotate(-3deg)}
+.series-grid figure:nth-child(3n+2) .art-img::after{background:rgba(162,59,92,.4);transform:rotate(4deg)}
+.series-grid figure:nth-child(3n+3) .art-img::after{background:rgba(224,169,62,.42);transform:rotate(-6deg)}
+.series.navy .series-grid .art-img::after{background:rgba(244,236,218,.55)}
+/* journey snapshots get real photo corners */
+.jgrid .art-img::before,.jgrid .art-img::after{content:"";position:absolute;width:26px;height:26px;z-index:3;
+  background:linear-gradient(135deg,rgba(35,31,28,.42),rgba(35,31,28,.14))}
+.jgrid .art-img::before{top:-2px;left:-2px;clip-path:polygon(0 0,100% 0,0 100%)}
+.jgrid .art-img::after{bottom:-2px;right:-2px;clip-path:polygon(100% 0,100% 100%,0 100%)}
+
+/* The next sheet is torn over the hero, so Oaheng runs UNDER the paper instead
+   of being cut off flat at the section edge. Its bottom row is the artist
+   ground's first row, so the two meet with no step. */
+.cover-tear{position:absolute;left:0;right:0;bottom:-1px;aspect-ratio:1440/118;z-index:6;pointer-events:none;
+  background:url(images/bg/hero-tear.webp) 50% 100%/100% 100% no-repeat}
+.cover .credit,.cover .scrollcue{z-index:7}
+.stage .fig{bottom:-30px}
+@media(max-width:820px){
+  .cover-tear{aspect-ratio:390/70;background-image:url(images/bg/hero-tear-m.webp)}
+  .cover-m .fig{top:auto;bottom:-18px}
+}
+
+/* the band under the hero tear: a hand-written cue into the story */
+.scrolltip{position:absolute;left:0;right:0;top:82px;text-align:center;z-index:3;pointer-events:none}
+/* the slant lives on the inner span: .rv.in{transform:none} wipes any transform
+   on the outer element, which is what was dragging the tip off-centre */
+.scrolltip span{display:inline-block;transform:rotate(-6.5deg);font-family:var(--hand);font-weight:700;
+  font-size:44px;color:var(--ink);opacity:.85;white-space:nowrap}
+.scrollarrows{position:absolute;left:0;right:0;margin:0 auto;top:158px;width:132px;height:96px;z-index:3;
+  opacity:.78;pointer-events:none;overflow:visible}
+.scrollarrows path{fill:none;stroke:var(--ink);stroke-width:3.1;stroke-linecap:round;stroke-linejoin:round}
+.scrollarrows .a2{opacity:.55;stroke-width:2.6}
+@media(max-width:820px){
+  .scrolltip{top:56px}
+  .scrolltip span{font-size:31px}
+  .scrollarrows{top:116px;width:96px;height:70px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .scrollarrows{animation:nudge 3.4s ease-in-out infinite}
+}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+/* the contact rose: he wants it low in the blank band above the footer tear on
+   phones; desktop's shorter section needs it higher or the footer slices it */
+.rose-cta{left:-3%;top:77%;width:200px}
+@media(max-width:820px){.rose-cta{top:84.5%}}
+
+.ai:focus-visible{outline:3px solid var(--berry);outline-offset:4px;border-radius:2px}
+
+.work .ai:hover .art-img{box-shadow:0 2px 3px rgba(35,31,28,.22),0 6px 10px rgba(58,32,40,.20),0 22px 44px rgba(58,32,40,.26)}
+@media(prefers-reduced-motion:reduce){.work .ai:hover .art-img{transition:none}}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="duo" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues="0.161 0.890"/><feFuncG type="table" tableValues="0.188 0.718"/><feFuncB type="table" tableValues="0.306 0.682"/></feComponentTransfer></filter></svg>
 
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><symbol id="raysym" viewBox="0 0 1000 1000"><g fill="none" stroke-linecap="round"><line x1="500" y1="500" x2="980" y2="500"/><line x1="500" y1="500" x2="964" y2="624"/><line x1="500" y1="500" x2="916" y2="740"/><line x1="500" y1="500" x2="839" y2="839"/><line x1="500" y1="500" x2="740" y2="916"/><line x1="500" y1="500" x2="624" y2="964"/><line x1="500" y1="500" x2="500" y2="980"/><line x1="500" y1="500" x2="376" y2="964"/><line x1="500" y1="500" x2="260" y2="916"/><line x1="500" y1="500" x2="161" y2="839"/><line x1="500" y1="500" x2="84" y2="740"/><line x1="500" y1="500" x2="36" y2="624"/><line x1="500" y1="500" x2="20" y2="500"/><line x1="500" y1="500" x2="36" y2="376"/><line x1="500" y1="500" x2="84" y2="260"/><line x1="500" y1="500" x2="161" y2="161"/><line x1="500" y1="500" x2="260" y2="84"/><line x1="500" y1="500" x2="376" y2="36"/><line x1="500" y1="500" x2="500" y2="20"/><line x1="500" y1="500" x2="624" y2="36"/><line x1="500" y1="500" x2="740" y2="84"/><line x1="500" y1="500" x2="839" y2="161"/><line x1="500" y1="500" x2="916" y2="260"/><line x1="500" y1="500" x2="964" y2="376"/></g></symbol></svg>
 <nav class="nav" id="nav">
-  <a href="#top" class="wm">Oaheng<span>.</span></a>
+  <a href="#top" class="wm" style="font:600 11px/1 var(--ui);letter-spacing:.24em;text-transform:uppercase;color:#543240">OAHENG.M<span class="sr-only"> — home</span></a>
   <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">Menu</button>
   <div class="nav-links" id="navLinks" onclick="document.getElementById('nav').classList.remove('open')">
     <a href="#about">The artist</a>
@@ -276,39 +510,114 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
   </div>
 </nav>
 
-<!-- COVER -->
+<!-- COVER — scrapbook hero, layout from Dominic's Figma -->
 <section class="cover" id="top">
-  <div class="cover-hero">
-    <div class="cover-name back" aria-hidden="true">Oaheng</div>
-    <img class="cover-figure" src="images/oaheng-cutout.png" alt="Oaheng Motsitsi" fetchpriority="high">
-    <div class="cover-name front" aria-hidden="true">Motsitsi</div>
-  </div>
-  <h1 class="sr-only">Oaheng Motsitsi</h1>
-  <div class="cover-meta">
-    <div class="cover-eye"><span class="ln"></span><span>Visual artist · Johannesburg</span></div>
-    <p class="lead">Drawing identity, memory and material out of everyday South African life. <b>Raw, and uncut.</b></p>
-    <div class="cover-cta">
-      <a class="btn fill" href="#work">View the work</a>
-      <a class="btn" href="#contact">Commission a piece</a>
+  <h1 class="sr-only">Oaheng Motsitsi — OAHENG.M</h1>
+  <div class="stage" aria-hidden="false">
+    <svg class="rays" viewBox="0 0 1000 1000" aria-hidden="true">
+      <g stroke="#5C2E40" stroke-width="2.9" stroke-dasharray="14 13" stroke-linecap="round"><line x1="500" y1="500" x2="500" y2="20"/><line x1="500" y1="500" x2="686" y2="55"/><line x1="500" y1="500" x2="840" y2="160"/><line x1="500" y1="500" x2="945" y2="316"/><line x1="500" y1="500" x2="980" y2="500"/><line x1="500" y1="500" x2="945" y2="684"/><line x1="500" y1="500" x2="840" y2="840"/><line x1="500" y1="500" x2="686" y2="945"/><line x1="500" y1="500" x2="500" y2="980"/><line x1="500" y1="500" x2="314" y2="945"/><line x1="500" y1="500" x2="160" y2="840"/><line x1="500" y1="500" x2="55" y2="684"/><line x1="500" y1="500" x2="20" y2="500"/><line x1="500" y1="500" x2="55" y2="316"/><line x1="500" y1="500" x2="160" y2="160"/><line x1="500" y1="500" x2="314" y2="55"/></g>
+      <g stroke="#2F7E76" stroke-width="3.3" stroke-dasharray="13 12" stroke-linecap="round"><line x1="500" y1="500" x2="593" y2="30"/><line x1="500" y1="500" x2="900" y2="235"/><line x1="500" y1="500" x2="970" y2="593"/><line x1="500" y1="500" x2="768" y2="900"/><line x1="500" y1="500" x2="407" y2="970"/><line x1="500" y1="500" x2="100" y2="768"/><line x1="500" y1="500" x2="30" y2="407"/><line x1="500" y1="500" x2="235" y2="100"/></g>
+    </svg>
+    <img class="pal" src="images/scrap/palette-official.webp" alt="">
+    <img class="bfly-b an-drift" src="images/scrap/doodle-butterfly-half.webp" alt="">
+    <img class="fig" src="images/oaheng-cutout.webp" alt="Oaheng Motsitsi" fetchpriority="high">
+    <div class="figsh"></div>
+    <div class="wd" role="img" aria-label="OAHENG.M">
+      <b class="lA" style="left:475px;top:630px;transform:rotate(-2.2deg)">A</b>
+      <b class="lH" style="left:587px;top:636px;transform:rotate(1.6deg)">H</b>
+      <b class="lE" style="left:699px;top:626px;transform:rotate(-1.4deg)">E</b>
+      <b class="lN" style="left:805px;top:638px;transform:rotate(1.9deg)">N</b>
+      <b class="lG" style="left:917px;top:628px;transform:rotate(-1.8deg)">G</b>
+      <span class="dot" style="left:1035px;top:730px"></span>
+      <b class="lM" style="left:1075px;top:632px;transform:rotate(1.5deg)">M</b>
     </div>
+    <img style="left:84px;top:157px;width:391px;height:291px;opacity:.94;transform:rotate(-1.6deg);z-index:4" src="images/scrap/scrap-white-crumpled.webp" alt="">
+    <img style="left:71px;top:171px;width:140px;transform:rotate(11.6deg);opacity:.7;z-index:4" src="images/scrap/tape-washi-teal.webp" alt="">
+    <img style="left:358px;top:159px;width:118px;transform:rotate(-13.5deg);opacity:.7;z-index:4" src="images/scrap/tape-fabric-berry.webp" alt="">
+    <p class="meta-lead">Drawing identity, memory and material out of everyday South African life. <b>Raw, and uncut.</b></p>
+    <a class="btn-fill" href="#work">View the work</a>
+    <a class="btn-line" href="#contact">Commission a piece</a>
+    <img class="an-sway" style="left:242px;top:65px;width:124px;transform:rotate(-10deg);z-index:3;opacity:.95" src="images/scrap/creature-bee.webp" alt="">
+    <img class="an-sway" style="left:1132px;top:75px;width:186px;transform:rotate(-14deg);z-index:3;opacity:.97" src="images/scrap/doodle-butterfly-news.webp" alt="">
+    <img style="left:1171px;top:388px;width:172px;transform:rotate(25.1deg);z-index:3" src="images/scrap/flower-rose-taped.webp" alt="">
+    <img style="left:80px;top:468px;width:97px;transform:rotate(22deg);z-index:3;opacity:.92" src="images/scrap/doodle-star-gold.webp" alt="">
+    <img style="left:176px;top:547px;width:118px;transform:rotate(-18deg);z-index:3;opacity:.85" src="images/scrap/ribbon-zigzag.webp" alt="">
+    <img style="left:1163px;top:580px;width:84px;transform:rotate(-14deg);z-index:5;opacity:.95" src="images/scrap/doodle-star-berry.webp" alt="">
+    <svg style="left:238px;top:771px;z-index:3;transform:rotate(-8deg)" width="69" height="53" viewBox="0 0 64 52" aria-hidden="true"><path d="M14 30 C10 18 22 8 33 12 C46 6 58 16 54 28 C60 40 46 50 34 45 C20 52 8 44 14 30 Z" fill="#2F7E76"/></svg>
+    <svg style="left:323px;top:803px;z-index:3;transform:rotate(12deg)" width="48" height="37" viewBox="0 0 64 52" aria-hidden="true"><path d="M14 30 C10 18 22 8 33 12 C46 6 58 16 54 28 C60 40 46 50 34 45 C20 52 8 44 14 30 Z" fill="#A23B5C"/></svg>
+    <div style="left:75px;top:658px;width:180px;z-index:4;transform:rotate(-2.2deg)">
+      <img src="images/scrap/scrap-lined-torn.webp" alt="" style="width:180px;display:block">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--hand);font-weight:600;font-size:20px;color:var(--ink)">the work is the diary</div>
+    </div>
+    <div class="hand-note" style="left:1138px;top:275px;font-size:24px;transform:rotate(-3deg)">ah aha, bonono ba hae ✳</div>
+    <div class="credit">Oaheng Motsitsi — visual artist · Johannesburg</div>
+    <div class="scrollcue">Begin<div class="bar"></div></div>
   </div>
-  <div class="scrollcue">Begin<div class="bar"></div></div>
+  <div class="cover-m">
+    <div class="credit-m">Oaheng Motsitsi — visual artist · Johannesburg</div>
+    <svg class="rays" viewBox="0 0 1000 1000" aria-hidden="true">
+      <g stroke="#5C2E40" stroke-width="4.5" stroke-dasharray="16 15" stroke-linecap="round"><line x1="500" y1="500" x2="500" y2="20"/><line x1="500" y1="500" x2="686" y2="55"/><line x1="500" y1="500" x2="840" y2="160"/><line x1="500" y1="500" x2="945" y2="316"/><line x1="500" y1="500" x2="980" y2="500"/><line x1="500" y1="500" x2="945" y2="684"/><line x1="500" y1="500" x2="840" y2="840"/><line x1="500" y1="500" x2="686" y2="945"/><line x1="500" y1="500" x2="500" y2="980"/><line x1="500" y1="500" x2="314" y2="945"/><line x1="500" y1="500" x2="160" y2="840"/><line x1="500" y1="500" x2="55" y2="684"/><line x1="500" y1="500" x2="20" y2="500"/><line x1="500" y1="500" x2="55" y2="316"/><line x1="500" y1="500" x2="160" y2="160"/><line x1="500" y1="500" x2="314" y2="55"/></g>
+      <g stroke="#2F7E76" stroke-width="5" stroke-dasharray="15 14" stroke-linecap="round"><line x1="500" y1="500" x2="593" y2="30"/><line x1="500" y1="500" x2="900" y2="235"/><line x1="500" y1="500" x2="970" y2="593"/><line x1="500" y1="500" x2="768" y2="900"/><line x1="500" y1="500" x2="407" y2="970"/><line x1="500" y1="500" x2="100" y2="768"/><line x1="500" y1="500" x2="30" y2="407"/><line x1="500" y1="500" x2="235" y2="100"/></g>
+    </svg>
+    <img class="pal" src="images/scrap/palette-official.webp" alt="">
+    <img class="fig" src="images/oaheng-cutout.webp" alt="Oaheng Motsitsi">
+    <img style="left:43px;top:79px;width:88px;transform:rotate(-10deg);opacity:.95" src="images/scrap/creature-bee.webp" alt="">
+    <img style="left:237px;top:116px;width:90px;transform:rotate(57.7deg);opacity:.9" src="images/scrap/doodle-butterfly-half.webp" alt="">
+    <img style="left:305px;top:209px;width:95px;transform:rotate(-30deg);opacity:.97" src="images/scrap/doodle-butterfly-news.webp" alt="">
+    <div style="left:253px;top:159px;font-family:var(--hand);font-weight:600;font-size:14px;color:var(--prune);transform:rotate(-3deg)">ah aha, bonono ba hae ✳</div>
+    <div class="wd-m" role="img" aria-label="OAHENG.M" style="left:0;top:0;right:0;bottom:0;pointer-events:none">
+      <b class="lA" style="left:87px;top:350px;background:var(--teal);clip-path:polygon(3% 6%,97% 0,100% 94%,52% 100%,0 96%);transform:rotate(-2deg)">A</b>
+      <b class="lH" style="left:129px;top:352px;background:var(--berry);clip-path:polygon(0 4%,55% 0,100% 8%,96% 100%,4% 94%);transform:rotate(1.6deg)">H</b>
+      <b class="lE" style="left:170px;top:349px;background:var(--cream);clip-path:polygon(4% 0,100% 4%,94% 92%,50% 100%,0 90%);transform:rotate(-1.4deg)">E</b>
+      <b class="lN" style="left:210px;top:352px;background:var(--mustard);clip-path:polygon(3% 6%,97% 0,100% 94%,52% 100%,0 96%);transform:rotate(1.8deg)">N</b>
+      <b class="lG" style="left:252px;top:349px;background:var(--pinkb);clip-path:polygon(0 4%,55% 0,100% 8%,96% 100%,4% 94%);transform:rotate(-1.8deg)">G</b>
+      <span style="position:absolute;left:298px;top:384px;width:9px;height:9px;border-radius:50%;background:var(--ink);border:3px solid var(--cream);box-sizing:content-box"></span>
+      <b class="lM" style="left:313px;top:351px;background:var(--teal);clip-path:polygon(4% 0,100% 4%,94% 92%,50% 100%,0 90%);transform:rotate(1.4deg)">M</b>
+    </div>
+    <img style="left:335px;top:325px;width:37px;transform:rotate(-14deg);opacity:.95;z-index:5" src="images/scrap/doodle-star-berry.webp" alt="">
+    <div class="meta-card">
+      <div class="paper"></div>
+      <p>Drawing identity, memory and material out of everyday South African life. <b>Raw, and uncut.</b></p>
+      <div class="row"><a class="b1" href="#work">View the work</a><a class="b2" href="#contact">Commission a piece</a></div>
+    </div>
+    <img style="left:25px;top:460px;width:45px;transform:rotate(12deg);opacity:.9" src="images/scrap/doodle-star-gold.webp" alt="">
+    <img style="left:28px;top:498px;width:81px;transform:rotate(-18deg);opacity:.85" src="images/scrap/ribbon-zigzag.webp" alt="">
+    <img style="left:308px;top:450px;width:74px;transform:rotate(32.1deg)" src="images/scrap/flower-rose-taped.webp" alt="">
+  </div>
+    <div class="cover-tear" aria-hidden="true"></div>
 </section>
 
 <!-- THE ARTIST -->
-<section class="about" id="about">
+<section class="bgs bg-02-artist about" id="about" data-bg="02-artist">
+  <div class="sec-deco" aria-hidden="true">
+    <div class="scrolltip rv" aria-hidden="true"><span>scroll down</span></div>
+    <svg class="scrollarrows" viewBox="0 0 132 96" aria-hidden="true"><path d="M40 4 C36 26 43 44 39 66"/><path d="M28 52 C33 62 37 70 39 78 C43 68 49 60 55 52"/><path class="a2" d="M92 14 C89 32 95 48 91 68"/><path class="a2" d="M81 56 C85 65 89 72 91 79 C95 70 100 63 105 56"/></svg>
+    <img class="deco rv" src="images/scrap/cut-flowers-dried.webp" alt="" aria-hidden="true" style="left:4%;top:14px;width:168px;--r:-8deg;--o:0.92">
+    <img class="deco rv an-sway" src="images/scrap/cut-sprig-berry.webp" alt="" aria-hidden="true" style="left:87%;top:-30px;width:104px;--r:11deg;--o:0.9">
+    <img class="deco rv" src="images/scrap/scrap-circle-torn.webp" alt="" aria-hidden="true" style="left:57%;top:38px;width:132px;--r:-6deg;--o:0.6">
+    <img class="deco rv" src="images/scrap/cut-bow-cream.webp" alt="" aria-hidden="true" style="left:30%;top:92px;width:112px;--r:14deg;--o:0.9">
+    <img class="deco rv" src="images/scrap/cut-triangle-mustard.webp" alt="" aria-hidden="true" style="left:67%;top:186px;width:118px;--r:-15deg;--o:0.85">
+    <img class="deco rv" src="images/scrap/doodle-heart-berry.webp" alt="" aria-hidden="true" style="left:24%;top:34px;width:62px;--r:-11deg;--o:0.85">
+    <img class="deco rv an-sway" src="images/scrap/doodle-star-gold.webp" alt="" aria-hidden="true" style="left:40%;top:196px;width:74px;--r:16deg;--o:0.85">
+    <svg class="sec-rays rv" aria-hidden="true" viewBox="0 0 1000 1000" style="left:50%;top:13%;width:620px;height:620px;--o:0.22;--ray:#5C2E40"><use href="#raysym"/></svg>
+    <img class="deco d-float rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/creature-bee.webp" style="left:98%;top:9%;width:120px;--r:9deg;--o:0.95">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-scallop-teal.webp" style="left:-5%;top:53%;width:280px;--r:-8deg;--o:0.5">
+    <img data-drop="2" class="deco d-sway rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-star-gold.webp" style="left:92%;top:62%;width:86px;--r:-16deg;--o:0.85">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-ribbon-curl.webp" style="left:9%;top:80%;width:232px;--r:12deg;--o:0.6">
+    <span data-drop="2" class="deco-note rv" aria-hidden="true" style="left:12%;top:70%;--r:-3deg">the diary years →</span>
+  </div>
   <div class="wrap">
     <div class="about-h"><span class="kick">The artist</span>
-      <span class="head-ul"><h2>A creative journey</h2>
-        <div class="flourish flr-pencil rv" aria-hidden="true"><svg viewBox="0 0 640 22" fill="none" preserveAspectRatio="xMidYMid meet"><rect x="6" y="7" width="7" height="8" rx="1" fill="#5C2E40"/><rect x="13" y="7" width="22" height="8" fill="#CC8E86"/><rect x="35" y="7" width="560" height="8" fill="#4A4A52"/><polygon points="595,6 595,16 629,11" fill="#D9C5A3"/><polygon points="629,11 607,8 607,14" fill="#2A2622"/></svg></div>
+      <span class="head-ul"><h2>A creative <em class="cutword">journey</em></h2>
+        <div class="flourish flr-pencil rv" aria-hidden="true"><svg viewBox="0 0 640 22" fill="none" preserveAspectRatio="xMidYMid meet"><line x1="8" y1="11" x2="632" y2="11" stroke="#2F7E76" stroke-width="3" stroke-dasharray="12 10" stroke-linecap="round"/><path d="M150 4 L164 18 M164 4 L150 18" stroke="#A23B5C" stroke-width="2.6" stroke-linecap="round"/><path d="M476 4 L490 18 M490 4 L476 18" stroke="#A23B5C" stroke-width="2.6" stroke-linecap="round"/></svg></div>
       </span>
     </div>
     <div class="flow">
-      <figure class="ph-float right"><div class="art-img"><img src="images/portrait.jpg" loading="lazy" alt="Oaheng Motsitsi"></div><figcaption>Oaheng Motsitsi · Johannesburg</figcaption></figure>
+      <figure class="ph-float right"><div class="art-img"><img src="images/thumb/portrait.webp" loading="lazy" alt="Oaheng Motsitsi" width="620" height="774"></div><figcaption>Oaheng Motsitsi · Johannesburg</figcaption></figure>
       <p class="lead-p">Oaheng Motsitsi draws the people the world is taught to overlook.</p>
       <p>Born in Upington in 2001 to a family that never stopped moving, she grew up across South Africa before her teenage years settled in Pretoria. Somewhere between those places she found that a pencil could hold what words could not — and by fourteen, the decision was already made.</p>
       <p>She works first in charcoal and pastel — raw, uncut, unafraid of feeling — before pulling the drawn line into photography, paint, glass and woven material. Her subjects are everyday: a woman at a basin, a figure in the rubble, a salon on a street the city forgets.</p>
-      <figure class="ph-float left"><div class="art-img"><img src="images/about-talk.jpg" loading="lazy" alt="Oaheng presenting her work at an exhibition"></div><figcaption>Walking a room through the work · 2025</figcaption></figure>
+      <figure class="ph-float left"><div class="art-img"><img src="images/thumb/about-talk.webp" loading="lazy" alt="Oaheng presenting her work at an exhibition" width="620" height="827"></div><figcaption>Walking a room through the work · 2025</figcaption></figure>
       <p>Every piece is an invitation to look closer. The viewer becomes an anonymous collaborator — asked to sit with a life that is not their own, and to find, in the overlooked, something worth keeping.</p>
       <blockquote class="about-q">“My work lives between the drawn line and the made object.”</blockquote>
       <p>Her practice is still becoming — moving between charcoal and craft, the sacred and the ordinary, the known and the next.</p>
@@ -320,10 +629,20 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
 <a id="work"></a>
 
 <!-- I · MOSALI WA AFRIKA -->
-<section class="series">
+<section class="bgs bg-03-series01 series" data-bg="03-series01">
+  <div class="sec-deco" aria-hidden="true">
+    <img class="deco rv" src="images/scrap/tape-polka-rust.webp" alt="" aria-hidden="true" style="left:92%;top:52px;width:150px;--r:13deg;--o:0.8">
+    <img class="deco rv" src="images/scrap/cut-rose-botanical.webp" alt="" aria-hidden="true" style="left:-3%;top:76%;width:210px;--r:-14deg;--o:0.9">
+    <svg class="sec-rays rv" aria-hidden="true" viewBox="0 0 1000 1000" style="left:76%;top:19%;width:560px;height:560px;--o:0.2;--ray:#5C2E40"><use href="#raysym"/></svg>
+    <img class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-corner-mustard.webp" style="left:98%;top:6%;width:430px;--r:182deg;--o:0.9">
+    <img class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-strips-green.webp" style="left:-7%;top:93%;width:330px;--r:-6deg;--o:0.55">
+    <img data-drop="2" class="deco d-sway rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-star-gold.webp" style="left:8%;top:13%;width:92px;--r:-20deg;--o:0.9">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/ribbon-zigzag.webp" style="left:95%;top:44%;width:120px;--r:14deg;--o:0.75">
+    <span data-drop="2" class="deco-note rv ink" aria-hidden="true" style="left:88%;top:15%;--r:4deg">raw, and uncut</span>
+  </div>
   <div class="wrap">
     <div class="spread rv">
-      <figure class="feat work" data-slug="mosali-thipa"><div class="ai"><div class="art-img"><img src="images/mosali-thipa.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Mosali o Tshwara Thipa ka Bohaleng</b><span>Charcoal on Fabriano · 2024</span></figcaption></figure>
+      <figure class="feat work" data-slug="mosali-thipa"><div class="ai"><div class="art-img"><img src="images/thumb/mosali-thipa.webp" loading="lazy" alt="" width="620" height="458"><span class="enlarge">+</span></div></div><figcaption><b>Mosali o Tshwara Thipa ka Bohaleng</b><span>Charcoal on Fabriano · 2024</span></figcaption></figure>
       <div class="spread-text">
         <div class="flourish flr-mark" aria-hidden="true"><svg viewBox="0 0 230 80" fill="none"><path d="M22 62 L38 30 L54 62 Z" stroke="#2A2622" stroke-width="2.4"/><path d="M50 62 L66 30 L82 62 Z" stroke="#2A2622" stroke-width="2.4"/><circle cx="126" cy="36" r="5" fill="#CC8E86"/><circle cx="146" cy="54" r="3.5" fill="#AC8190"/><path d="M190 30 L216 60 M216 30 L190 60" stroke="#2A2622" stroke-width="3" stroke-linecap="round"/></svg></div>
         <span class="kick">Series 01 · Woman of Africa</span>
@@ -333,29 +652,46 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
       </div>
     </div>
     <div class="series-grid">
-      <figure class="work rv" data-slug="oaheng-1"><div class="ai"><div class="art-img"><img src="images/oaheng-1.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Oaheng pt.1</b><span>Photography · 2024</span></figcaption></figure>
-      <figure class="work rv" data-slug="oaheng-2"><div class="ai"><div class="art-img"><img src="images/oaheng-2.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Oaheng pt.2</b><span>Photography · 2024</span></figcaption></figure>
-      <figure class="work rv" data-slug="untitled-pt1"><div class="ai"><div class="art-img"><img src="images/untitled-pt1.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled pt.1</b><span>Photography · 2024</span></figcaption></figure>
-      <figure class="work rv" data-slug="untitled-pt2"><div class="ai"><div class="art-img"><img src="images/untitled-pt2.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled pt.2</b><span>Photography · 2024</span></figcaption></figure>      <figure class="work rv" data-slug="holima-ntoa"><div class="ai"><div class="art-img"><img src="images/holima-ntoa.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Holim'a Ntoa</b><span>Photography · 2024</span></figcaption></figure>
-      <figure class="work rv" data-slug="tse-putsoa"><div class="ai"><div class="art-img"><img src="images/tse-putsoa.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Tse Putsoa</b><span>Photography · 2024</span></figcaption></figure>      <figure class="work rv" data-slug="untitled-market"><div class="ai"><div class="art-img"><img src="images/untitled-market.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled II</b><span>Photography · 2024</span></figcaption></figure>
-      <figure class="work rv" data-slug="mereting"><div class="ai"><div class="art-img"><img src="images/mereting.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Mereting</b><span>Photography · triptych · 2025</span></figcaption></figure>
-      <figure class="work rv" data-slug="past-the-surface"><div class="ai"><div class="art-img"><img src="images/past-the-surface.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Past the Surface</b><span>Photography · 2024</span></figcaption></figure>
-      <figure class="work rv" data-slug="tshotleho"><div class="ai"><div class="art-img"><img src="images/tshotleho.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Tshotleho</b><span>Pastel &amp; charcoal · 2024</span></figcaption></figure>
-      <figure class="work rv" data-slug="ke-tswere-tshepo"><div class="ai"><div class="art-img"><img src="images/ke-tswere-tshepo.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Ke Tshwere Tshepo</b><span>Charcoal · 2024</span></figcaption></figure>
-      <figure class="work rv" data-slug="se-fetileng-2"><div class="ai"><div class="art-img"><img src="images/se-fetileng-2.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Se Fetileng</b><span>Charcoal, pencil &amp; ink · 2024</span></figcaption></figure>    </div>
+      <figure class="work rv" data-slug="oaheng-1"><div class="ai"><div class="art-img"><img src="images/thumb/oaheng-1.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Oaheng pt.1</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="work rv" data-slug="oaheng-2"><div class="ai"><div class="art-img"><img src="images/thumb/oaheng-2.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Oaheng pt.2</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="work rv" data-slug="untitled-pt1"><div class="ai"><div class="art-img"><img src="images/thumb/untitled-pt1.webp" loading="lazy" alt="" width="620" height="465"><span class="enlarge">+</span></div></div><figcaption><b>Untitled pt.1</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="work rv" data-slug="untitled-pt2"><div class="ai"><div class="art-img"><img src="images/thumb/untitled-pt2.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Untitled pt.2</b><span>Photography · 2024</span></figcaption></figure>      <figure class="work rv" data-slug="holima-ntoa"><div class="ai"><div class="art-img"><img src="images/thumb/holima-ntoa.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Holim'a Ntoa</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="work rv" data-slug="tse-putsoa"><div class="ai"><div class="art-img"><img src="images/thumb/tse-putsoa.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Tse Putsoa</b><span>Photography · 2024</span></figcaption></figure>      <figure class="work rv" data-slug="untitled-market"><div class="ai"><div class="art-img"><img src="images/thumb/untitled-market.webp" loading="lazy" alt="" width="620" height="465"><span class="enlarge">+</span></div></div><figcaption><b>Untitled II</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="work rv" data-slug="mereting"><div class="ai"><div class="art-img"><img src="images/thumb/mereting.webp" loading="lazy" alt="" width="620" height="460"><span class="enlarge">+</span></div></div><figcaption><b>Mereting</b><span>Photography · triptych · 2025</span></figcaption></figure>
+      <figure class="work rv" data-slug="past-the-surface"><div class="ai"><div class="art-img"><img src="images/thumb/past-the-surface.webp" loading="lazy" alt="" width="620" height="790"><span class="enlarge">+</span></div></div><figcaption><b>Past the Surface</b><span>Photography · 2024</span></figcaption></figure>
+      <figure class="work rv" data-slug="tshotleho"><div class="ai"><div class="art-img"><img src="images/thumb/tshotleho.webp" loading="lazy" alt="" width="620" height="877"><span class="enlarge">+</span></div></div><figcaption><b>Tshotleho</b><span>Pastel &amp; charcoal · 2024</span></figcaption></figure>
+      <figure class="work rv" data-slug="ke-tswere-tshepo"><div class="ai"><div class="art-img"><img src="images/thumb/ke-tswere-tshepo.webp" loading="lazy" alt="" width="620" height="280"><span class="enlarge">+</span></div></div><figcaption><b>Ke Tshwere Tshepo</b><span>Charcoal · 2024</span></figcaption></figure>
+      <figure class="work rv" data-slug="se-fetileng-2"><div class="ai"><div class="art-img"><img src="images/thumb/se-fetileng-2.webp" loading="lazy" alt="" width="620" height="465"><span class="enlarge">+</span></div></div><figcaption><b>Se Fetileng</b><span>Charcoal, pencil &amp; ink · 2024</span></figcaption></figure>    </div>
   </div>
 </section>
 
 <!-- commission band -->
-<section class="cband rv"><div class="wrap"><p>Every work is one of a kind, made by hand.</p><a class="btn fill" href="#contact">Commission a piece</a>
-  <div class="flourish flr-stitch" aria-hidden="true"><svg viewBox="0 0 320 24" fill="none"><line x1="6" y1="12" x2="314" y2="12" stroke="#AC8190" stroke-width="2" stroke-dasharray="10 9" stroke-linecap="round"/><path d="M60 5 L72 19 M72 5 L60 19" stroke="#5C2E40" stroke-width="2" stroke-linecap="round"/><path d="M210 5 L222 19 M222 5 L210 19" stroke="#5C2E40" stroke-width="2" stroke-linecap="round"/></svg></div>
-</div></section>
+<section class="bgs bg-04-commission cband" data-bg="04-commission">
+  <div class="sec-deco" aria-hidden="true">
+    <img data-drop="2" class="deco d-sway rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-heart-berry.webp" style="left:13%;top:36%;width:70px;--r:-12deg;--o:0.85">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-starburst.webp" style="left:88%;top:60%;width:232px;--r:8deg;--o:0.6">
+  </div>
+  <div class="wrap"><div class="cpanel rv">
+    <span class="tape"></span>
+    <p>Every work is one of a kind, made by hand.</p>
+    <a class="btn fill" href="#contact">Commission a piece</a>
+    <div class="flourish flr-stitch" aria-hidden="true"><svg viewBox="0 0 320 24" fill="none"><line x1="6" y1="12" x2="314" y2="12" stroke="#AC8190" stroke-width="2" stroke-dasharray="10 9" stroke-linecap="round"/><path d="M60 5 L72 19 M72 5 L60 19" stroke="#5C2E40" stroke-width="2" stroke-linecap="round"/><path d="M210 5 L222 19 M222 5 L210 19" stroke="#5C2E40" stroke-width="2" stroke-linecap="round"/></svg></div>
+  </div></div>
+</section>
 
 <!-- II · MONNA KE NKU -->
-<section class="series navy" id="monna">
+<section class="bgs bg-05-series02 series navy" id="monna" data-bg="05-series02">
+  <div class="sec-deco" aria-hidden="true">
+    <img class="deco rv" src="images/scrap/creature-rooster.webp" alt="" aria-hidden="true" style="left:97%;top:71%;width:120px;--r:8deg;--o:0.9">
+    <svg class="sec-rays rv" aria-hidden="true" viewBox="0 0 1000 1000" style="left:24%;top:19%;width:560px;height:560px;--o:0.2;--ray:#5C2E40"><use href="#raysym"/></svg>
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-blob-teal.webp" style="left:-7%;top:36%;width:260px;--r:-12deg;--o:0.4">
+    <img class="deco d-float rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-butterfly-half.webp" style="left:98%;top:12%;width:232px;--r:-9deg;--o:0.9">
+    <img data-drop="2" class="deco d-sway rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-heart-berry.webp" style="left:12%;top:72%;width:66px;--r:10deg;--o:0.9">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-starburst.webp" style="left:93%;top:80%;width:130px;--r:-14deg;--o:0.55">
+  </div>
   <div class="wrap">
     <div class="spread flip rv">
-      <figure class="feat work" data-slug="red-02"><div class="ai"><div class="art-img"><img src="images/red-02.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media · Monna ke Nku</span></figcaption></figure>
+      <figure class="feat work" data-slug="red-02"><div class="ai"><div class="art-img"><img src="images/thumb/red-02.webp" loading="lazy" alt="" width="620" height="731"><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media · Monna ke Nku</span></figcaption></figure>
       <div class="spread-text">
         <span class="kick">Series 02 · The Viewing Room, 2025</span>
         <div class="s-head"><h2>Monna ke <em>Nku</em></h2></div>
@@ -363,20 +699,28 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
         <a class="commission-link" href="#contact">Commission from this series →</a>
       </div>
     </div>
-    <div class="series-grid">      <figure class="work rv" data-slug="red-faces"><div class="ai"><div class="art-img"><img src="images/red-faces.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Composition)</b><span>Acrylic · 2025</span></figcaption></figure>
-      <figure class="work rv" data-slug="red-03"><div class="ai"><div class="art-img"><img src="images/red-03.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media</span></figcaption></figure>
-      <figure class="work rv" data-slug="red-04"><div class="ai"><div class="art-img"><img src="images/red-04.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media</span></figcaption></figure>      <figure class="work rv" data-slug="red-11"><div class="ai"><div class="art-img"><img src="images/red-11.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media</span></figcaption></figure>
-      <figure class="work rv" data-slug="red-13"><div class="ai"><div class="art-img"><img src="images/red-13.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media</span></figcaption></figure>
-      <figure class="work rv" data-slug="red-01"><div class="ai"><div class="art-img"><img src="images/red-01.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media · 2025</span></figcaption></figure>
-      <figure class="work rv" data-slug="red-14"><div class="ai"><div class="art-img"><img src="images/red-14.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media · 2025</span></figcaption></figure>    </div>
+    <div class="series-grid">      <figure class="work rv" data-slug="red-faces"><div class="ai"><div class="art-img"><img src="images/thumb/red-faces.webp" loading="lazy" alt="" width="620" height="476"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Composition)</b><span>Mixed media · 2025</span></figcaption></figure>
+      <figure class="work rv" data-slug="red-03"><div class="ai"><div class="art-img"><img src="images/thumb/red-03.webp" loading="lazy" alt="" width="620" height="757"><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media</span></figcaption></figure>
+      <figure class="work rv" data-slug="red-04"><div class="ai"><div class="art-img"><img src="images/thumb/red-04.webp" loading="lazy" alt="" width="620" height="786"><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media</span></figcaption></figure>      <figure class="work rv" data-slug="red-11"><div class="ai"><div class="art-img"><img src="images/thumb/red-11.webp" loading="lazy" alt="" width="620" height="848"><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media</span></figcaption></figure>
+      <figure class="work rv" data-slug="red-13"><div class="ai"><div class="art-img"><img src="images/thumb/red-13.webp" loading="lazy" alt="" width="620" height="1102"><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media</span></figcaption></figure>
+      <figure class="work rv" data-slug="red-01"><div class="ai"><div class="art-img"><img src="images/thumb/red-01.webp" loading="lazy" alt="" width="620" height="796"><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media · 2025</span></figcaption></figure>
+      <figure class="work rv" data-slug="red-14"><div class="ai"><div class="art-img"><img src="images/thumb/red-14.webp" loading="lazy" alt="" width="620" height="443"><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media · 2025</span></figcaption></figure>    </div>
   </div>
 </section>
 
 <!-- III · PAST, PRESENT & FUTURE -->
-<section class="series">
+<section class="bgs bg-06-series03 series" data-bg="06-series03">
+  <div class="sec-deco" aria-hidden="true">
+    <img class="deco rv" src="images/scrap/cut-flowers-taped.webp" alt="" aria-hidden="true" style="left:-2%;top:68%;width:168px;--r:-9deg;--o:0.9">
+    <svg class="sec-rays rv" aria-hidden="true" viewBox="0 0 1000 1000" style="left:76%;top:17%;width:540px;height:540px;--o:0.2;--ray:#5C2E40"><use href="#raysym"/></svg>
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-strips-green.webp" style="left:99%;top:70%;width:360px;--r:10deg;--o:0.5">
+    <img data-drop="2" class="deco d-sway rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-sun-mustard.webp" style="left:7%;top:16%;width:108px;--r:-8deg;--o:0.9">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-ribbon-curl.webp" style="left:92%;top:76%;width:217px;--r:-16deg;--o:0.6">
+    <span class="deco-note rv" aria-hidden="true" style="left:2%;top:90%;--r:-2deg">the differences are the point</span>
+  </div>
   <div class="wrap">
     <div class="spread rv">
-      <figure class="feat work" data-slug="aches-and-pains"><div class="ai"><div class="art-img"><img src="images/aches-and-pains.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Aches and Pains</b><span>Ink &amp; acrylic · 2025</span></figcaption></figure>
+      <figure class="feat work" data-slug="aches-and-pains"><div class="ai"><div class="art-img"><img src="images/thumb/aches-and-pains.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Aches and Pains</b><span>Ink &amp; acrylic · 2025</span></figcaption></figure>
       <div class="spread-text">
         <span class="kick">Series 03 · Weedlovers Market, 2025</span>
         <div class="s-head"><h2>Past, Present &amp; <em>Future</em></h2></div>
@@ -385,17 +729,26 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
       </div>
     </div>
     <div class="series-grid">
-      <figure class="work rv" data-slug="orania"><div class="ai"><div class="art-img"><img src="images/orania.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Orania: Die Verbode Vrugte</b><span>Acrylic on glass · 2025</span></figcaption></figure>
-      <figure class="work rv" data-slug="flag"><div class="ai"><div class="art-img"><img src="images/flag.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Flag)</b><span>Acrylic on canvas · 2025</span></figcaption></figure>      <figure class="work rv" data-slug="break-glass"><div class="ai"><div class="art-img"><img src="images/break-glass.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Break Glass)</b><span>Mixed media · 2025</span></figcaption></figure>
+      <figure class="work rv" data-slug="orania"><div class="ai"><div class="art-img"><img src="images/thumb/orania.webp" loading="lazy" alt="" width="620" height="465"><span class="enlarge">+</span></div></div><figcaption><b>Orania: Die Verbode Vrugte</b><span>Acrylic on glass · 2025</span></figcaption></figure>
+      <figure class="work rv" data-slug="flag"><div class="ai"><div class="art-img"><img src="images/thumb/flag.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Flag)</b><span>Acrylic on canvas · 2025</span></figcaption></figure>      <figure class="work rv" data-slug="break-glass"><div class="ai"><div class="art-img"><img src="images/thumb/break-glass.webp" loading="lazy" alt="" width="620" height="610"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Break Glass)</b><span>Mixed media · 2025</span></figcaption></figure>
     </div>
   </div>
 </section>
 
 <!-- IV · MADE BY HAND -->
-<section class="series navy">
+<section class="bgs bg-07-series04 series navy" data-bg="07-series04">
+  <div class="sec-deco" aria-hidden="true">
+    <img class="deco rv" src="images/scrap/creature-parrot.webp" alt="" aria-hidden="true" style="left:91%;top:22%;width:140px;--r:-10deg;--o:0.92">
+    <svg class="sec-rays rv" aria-hidden="true" viewBox="0 0 1000 1000" style="left:24%;top:16%;width:560px;height:560px;--o:0.2;--ray:#5C2E40"><use href="#raysym"/></svg>
+    <img class="deco d-float rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-swan.webp" style="left:98%;top:84%;width:356px;--r:-6deg;--o:0.9">
+    <img class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-strips-green.webp" style="left:2%;top:9%;width:430px;--r:-9deg;--o:0.5">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/ribbon-zigzag.webp" style="left:9%;top:56%;width:130px;--r:16deg;--o:0.7">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-scallop-teal.webp" style="left:99%;top:23%;width:270px;--r:12deg;--o:0.45">
+    <span data-drop="2" class="deco-note rv teal" aria-hidden="true" style="left:15%;top:13%;--r:3deg">made by hand ✳</span>
+  </div>
   <div class="wrap">
     <div class="spread flip rv">
-      <figure class="feat work" data-slug="twine-4"><div class="ai"><div class="art-img"><img src="images/twine-4.jpg" loading="lazy" alt="Tshehetso — a face woven from twine"><span class="enlarge">+</span></div></div><figcaption><b>Tshehetso (Support)</b><span>Twine work · 2025</span></figcaption></figure>
+      <figure class="feat work" data-slug="twine-4"><div class="ai"><div class="art-img"><img src="images/thumb/twine-4.webp" loading="lazy" alt="Tlhohonolofatso — a face woven from twine" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Tshehetso (Support)</b><span>Acrylic-covered twine on wooden canvas &amp; resin · 2025</span></figcaption></figure>
       <div class="spread-text">
         <div class="flourish flr-twine" aria-hidden="true"><svg viewBox="0 0 240 150" fill="none"><path d="M6 86 C50 14,104 150,158 76 S232 22,236 104" stroke="#9C825A" stroke-width="3" stroke-linecap="round"/></svg></div>
         <span class="kick">Series 04 · ContraJHB</span>
@@ -405,22 +758,35 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
       </div>
     </div>
     <div class="series-grid">
-      <figure class="work rv" data-slug="pattern-relief"><div class="ai"><div class="art-img"><img src="images/pattern-relief.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Pattern Relief)</b><span>Twine work</span></figcaption></figure>
-      <figure class="work rv" data-slug="twine-5"><div class="ai"><div class="art-img"><img src="images/twine-5.jpg" loading="lazy" alt="a face woven from twine"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Woven Mask)</b><span>Twine work · 2025</span></figcaption></figure>
-      <figure class="work rv" data-slug="twine-6" data-nolb><div class="ai"><div class="art-img"><img src="images/twine-6.jpg" loading="lazy" alt="woven mask detail"></div></div><figcaption><b>Woven Mask</b><span>detail · the weave</span></figcaption></figure>
-      <figure class="work rv" data-slug="twine-3" data-nolb><div class="ai"><div class="art-img"><img src="images/twine-3.jpg" loading="lazy" alt="twine form detail"></div></div><figcaption><b>Tshehetso</b><span>detail · twine form</span></figcaption></figure>
-      <figure class="work rv" data-slug="twine-1" data-nolb><div class="ai"><div class="art-img"><img src="images/twine-1.jpg" loading="lazy" alt="woven relief"></div></div><figcaption><b>ContraJHB</b><span>woven relief</span></figcaption></figure>
-      <figure class="work rv" data-slug="study-torso"><div class="ai"><div class="art-img"><img src="images/study-torso.jpg" loading="lazy" alt="a form woven from twine"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Woven Form)</b><span>Twine work</span></figcaption></figure>
-      <figure class="work rv" data-slug="red-15"><div class="ai"><div class="art-img"><img src="images/red-15.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media &amp; twine · 2025</span></figcaption></figure>
+      <figure class="work rv" data-slug="pattern-relief"><div class="ai"><div class="art-img"><img src="images/thumb/pattern-relief.webp" loading="lazy" alt="" width="620" height="1225"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Pattern Relief)</b><span>Twine work</span></figcaption></figure>
+      <figure class="work rv" data-slug="tshehetso-triptych"><div class="ai"><div class="art-img"><img src="images/thumb/tshehetso-triptych.webp" loading="lazy" alt="Tshehetso (Support) — the complete triptych" width="620" height="346"><span class="enlarge">+</span></div></div><figcaption><b>Tshehetso (Support)</b><span>the triptych · 2025</span></figcaption></figure>
+      <figure class="work rv" data-slug="twine-5"><div class="ai"><div class="art-img"><img src="images/thumb/twine-5.webp" loading="lazy" alt="Molefi — the first panel of Tshehetso" width="620" height="857"><span class="enlarge">+</span></div></div><figcaption><b>Molefi</b><span>Tshehetso · panel i · 2025</span></figcaption></figure>
+      <figure class="work rv" data-slug="twine-3"><div class="ai"><div class="art-img"><img src="images/thumb/twine-3.webp" loading="lazy" alt="Katlego — the second panel of Tshehetso" width="620" height="818"><span class="enlarge">+</span></div></div><figcaption><b>Katlego</b><span>Tshehetso · panel ii · 2025</span></figcaption></figure>
+      <figure class="work rv" data-slug="tlhohonolofatso"><div class="ai"><div class="art-img"><img src="images/thumb/tlhohonolofatso.webp" loading="lazy" alt="Tlhohonolofatso — the third panel of Tshehetso" width="347" height="672"><span class="enlarge">+</span></div></div><figcaption><b>Tlhohonolofatso</b><span>Tshehetso · panel iii · 2025</span></figcaption></figure>
+      <figure class="work rv" data-slug="twine-1" data-nolb><div class="ai"><div class="art-img"><img src="images/thumb/twine-1.webp" loading="lazy" alt="woven relief" width="620" height="1161"></div></div><figcaption><b>ContraJHB</b><span>woven relief</span></figcaption></figure>
+      <figure class="work rv" data-slug="twine-pink"><div class="ai"><div class="art-img"><img src="images/thumb/twine-pink.webp" loading="lazy" alt="A pink and red twine relief" width="620" height="1102"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Pink Relief)</b><span>Twine &amp; thread on woven ground · 2026</span></figcaption></figure>
+      <figure class="work rv" data-slug="mpho"><div class="ai"><div class="art-img"><img src="images/thumb/mpho.webp" loading="lazy" alt="Mpho" width="436" height="900"><span class="enlarge">+</span></div></div><figcaption><b>Mpho</b><span>Acrylic-covered twine on wood · 2026</span></figcaption></figure>
+      <figure class="work rv" data-slug="red-15"><div class="ai"><div class="art-img"><img src="images/thumb/red-15.webp" loading="lazy" alt="" width="620" height="502"><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Mixed media &amp; twine · 2025</span></figcaption></figure>
     </div>
   </div>
 </section>
 
 <!-- V · STUDIES & BECOMING -->
-<section class="series">
+<section class="bgs bg-08-series05 series" data-bg="08-series05">
+  <div class="sec-deco" aria-hidden="true">
+    <img class="deco rv" src="images/scrap/creature-rabbit.webp" alt="" aria-hidden="true" style="left:-2%;top:24%;width:140px;--r:7deg;--o:0.9">
+    <img class="deco rv" src="images/scrap/cut-sprig-berry.webp" alt="" aria-hidden="true" style="left:98%;top:58%;width:116px;--r:-13deg;--o:0.85">
+    <svg class="sec-rays rv" aria-hidden="true" viewBox="0 0 1000 1000" style="left:76%;top:13%;width:540px;height:540px;--o:0.22;--ray:#5C2E40"><use href="#raysym"/></svg>
+    <img class="deco d-float rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-butterfly-news.webp" style="left:98%;top:4%;width:271px;--r:-11deg;--o:0.95">
+    <img data-drop="2" class="deco d-sway rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-butterfly-half.webp" style="left:8%;top:30%;width:217px;--r:13deg;--o:0.85">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/flower-rose-taped.webp" style="left:93%;top:56%;width:248px;--r:22deg;--o:1">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-sun-mustard.webp" style="left:7%;top:76%;width:112px;--r:-14deg;--o:0.9">
+    <img class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-bouquet.webp" style="left:98%;top:88%;width:232px;--r:-8deg;--o:0.75">
+    <span data-drop="2" class="deco-note rv ink" aria-hidden="true" style="left:16%;top:20%;--r:-3deg">still becoming</span>
+  </div>
   <div class="wrap">
     <div class="spread rv">
-      <figure class="feat work" data-slug="fleeting"><div class="ai"><div class="art-img"><img src="images/fleeting.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Fleeting</b><span>Mixed medium · 2024</span></figcaption></figure>
+      <figure class="feat work" data-slug="fleeting"><div class="ai"><div class="art-img"><img src="images/thumb/fleeting.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Fleeting</b><span>Mixed medium · 2024</span></figcaption></figure>
       <div class="spread-text">
         <span class="kick">Series 05 · Studies &amp; archive</span>
         <div class="s-head"><h2>Becoming</h2></div>
@@ -429,21 +795,21 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
       </div>
     </div>
     <div class="series-grid">
-      <figure class="work rv" data-slug="sunset-scene"><div class="ai"><div class="art-img"><img src="images/sunset-scene.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Sunset Scene</b><span>Pencil, graphite &amp; colour · 2024</span></figcaption></figure>
-      <figure class="work rv" data-slug="marshmellow"><div class="ai"><div class="art-img"><img src="images/marshmellow.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Marshmellow</b><span>Acrylic · 2024</span></figcaption></figure>
-      <figure class="work rv" data-slug="early-portrait-1"><div class="ai"><div class="art-img"><img src="images/early-portrait-1.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Early Portrait</b><span>Charcoal · 2019</span></figcaption></figure>
-      <figure class="work rv" data-slug="figure-study"><div class="ai"><div class="art-img"><img src="images/figure-study.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Figure)</b><span>Charcoal study</span></figcaption></figure>
-      <figure class="work rv" data-slug="anatomy"><div class="ai"><div class="art-img"><img src="images/anatomy.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Anatomy Study</b><span>Charcoal</span></figcaption></figure>
-      <figure class="work rv" data-slug="butterfly-1"><div class="ai"><div class="art-img"><img src="images/butterfly-1.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Butterfly Study I</b><span>Ink on paper</span></figcaption></figure>
-      <figure class="work rv" data-slug="butterfly-2"><div class="ai"><div class="art-img"><img src="images/butterfly-2.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Butterfly Study II</b><span>Ink on paper</span></figcaption></figure>
-      <figure class="work rv" data-slug="butterfly-3"><div class="ai"><div class="art-img"><img src="images/butterfly-3.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Butterfly Study III</b><span>Ink &amp; colour</span></figcaption></figure>
-      <figure class="work rv" data-slug="botanical"><div class="ai"><div class="art-img"><img src="images/botanical.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Botanical Study</b><span>Ink on paper</span></figcaption></figure>
-      <figure class="work rv" data-slug="butterfly-gold"><div class="ai"><div class="art-img"><img src="images/butterfly-gold.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Monarch)</b><span>Acrylic</span></figcaption></figure>
-      <figure class="work rv" data-slug="pop-portrait"><div class="ai"><div class="art-img"><img src="images/pop-portrait.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Portrait)</b><span>Acrylic</span></figcaption></figure>
-      <figure class="work rv" data-slug="figure-teal"><div class="ai"><div class="art-img"><img src="images/figure-teal.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Figure in Blue)</b><span>Mixed medium</span></figcaption></figure>
-      <figure class="work rv" data-slug="tshehetso"><div class="ai"><div class="art-img"><img src="images/tshehetso.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Studies)</b><span>Ink &amp; wash on paper</span></figcaption></figure>
-      <figure class="work rv" data-slug="study-face"><div class="ai"><div class="art-img"><img src="images/study-face.jpg" loading="lazy" alt=""><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Charcoal &amp; ink</span></figcaption></figure>
-      <figure class="work rv" data-slug="twine-eye"><div class="ai"><div class="art-img"><img src="images/twine-eye.jpg" loading="lazy" alt="figure study"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Figure Study)</b><span>Charcoal &amp; wash</span></figcaption></figure>
+      <figure class="work rv" data-slug="sunset-scene"><div class="ai"><div class="art-img"><img src="images/thumb/sunset-scene.webp" loading="lazy" alt="" width="620" height="775"><span class="enlarge">+</span></div></div><figcaption><b>Sunset Scene</b><span>Pencil, graphite &amp; colour · 2024</span></figcaption></figure>
+      <figure class="work rv" data-slug="marshmellow"><div class="ai"><div class="art-img"><img src="images/thumb/marshmellow.webp" loading="lazy" alt="" width="620" height="775"><span class="enlarge">+</span></div></div><figcaption><b>Marshmellow</b><span>Acrylic · 2024</span></figcaption></figure>
+      <figure class="work rv" data-slug="early-portrait-1"><div class="ai"><div class="art-img"><img src="images/thumb/early-portrait-1.webp" loading="lazy" alt="" width="620" height="1063"><span class="enlarge">+</span></div></div><figcaption><b>Early Portrait</b><span>Charcoal · 2019</span></figcaption></figure>
+      <figure class="work rv" data-slug="figure-study"><div class="ai"><div class="art-img"><img src="images/thumb/figure-study.webp" loading="lazy" alt="" width="620" height="794"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Figure)</b><span>Charcoal study</span></figcaption></figure>
+      <figure class="work rv" data-slug="anatomy"><div class="ai"><div class="art-img"><img src="images/thumb/anatomy.webp" loading="lazy" alt="" width="620" height="465"><span class="enlarge">+</span></div></div><figcaption><b>Anatomy Study</b><span>Charcoal</span></figcaption></figure>
+      <figure class="work rv" data-slug="butterfly-1"><div class="ai"><div class="art-img"><img src="images/thumb/butterfly-1.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Butterfly Study I</b><span>Ink on paper</span></figcaption></figure>
+      <figure class="work rv" data-slug="butterfly-2"><div class="ai"><div class="art-img"><img src="images/thumb/butterfly-2.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Butterfly Study II</b><span>Ink on paper</span></figcaption></figure>
+      <figure class="work rv" data-slug="butterfly-3"><div class="ai"><div class="art-img"><img src="images/thumb/butterfly-3.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Butterfly Study III</b><span>Ink &amp; colour</span></figcaption></figure>
+      <figure class="work rv" data-slug="botanical"><div class="ai"><div class="art-img"><img src="images/thumb/botanical.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Botanical Study</b><span>Ink on paper</span></figcaption></figure>
+      <figure class="work rv" data-slug="butterfly-gold"><div class="ai"><div class="art-img"><img src="images/thumb/butterfly-gold.webp" loading="lazy" alt="" width="620" height="775"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Monarch)</b><span>Acrylic</span></figcaption></figure>
+      <figure class="work rv" data-slug="pop-portrait"><div class="ai"><div class="art-img"><img src="images/thumb/pop-portrait.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Portrait)</b><span>Acrylic</span></figcaption></figure>
+      <figure class="work rv" data-slug="figure-teal"><div class="ai"><div class="art-img"><img src="images/thumb/figure-teal.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Figure in Blue)</b><span>Mixed medium</span></figcaption></figure>
+      <figure class="work rv" data-slug="tshehetso"><div class="ai"><div class="art-img"><img src="images/thumb/tshehetso.webp" loading="lazy" alt="" width="620" height="1102"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Studies)</b><span>Ink &amp; wash on paper</span></figcaption></figure>
+      <figure class="work rv" data-slug="study-face"><div class="ai"><div class="art-img"><img src="images/thumb/study-face.webp" loading="lazy" alt="" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Untitled</b><span>Charcoal &amp; ink</span></figcaption></figure>
+      <figure class="work rv" data-slug="twine-eye"><div class="ai"><div class="art-img"><img src="images/thumb/twine-eye.webp" loading="lazy" alt="figure study" width="620" height="827"><span class="enlarge">+</span></div></div><figcaption><b>Untitled (Figure Study)</b><span>Charcoal &amp; wash</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -451,35 +817,53 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
 <div class="flourish flr-divider rv" aria-hidden="true"><svg viewBox="0 0 320 28" fill="none"><path d="M8 17 C80 8,160 25,230 14 S305 20,314 16" stroke-width="3.2" stroke-linecap="round"/></svg></div>
 
 <!-- JOURNEY -->
-<section class="journey" id="journey">
+<section class="bgs bg-09-journey journey" id="journey" data-bg="09-journey">
+  <div class="sec-deco" aria-hidden="true">
+    <img class="deco rv" src="images/scrap/cut-flowers-dried.webp" alt="" aria-hidden="true" style="left:94%;top:12%;width:150px;--r:12deg;--o:0.85">
+    <svg class="sec-rays rv" aria-hidden="true" viewBox="0 0 1000 1000" style="left:50%;top:11%;width:600px;height:600px;--o:0.2;--ray:#5C2E40"><use href="#raysym"/></svg>
+    <img class="deco d-sway rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-star-gold.webp" style="left:98%;top:12%;width:88px;--r:18deg;--o:0.9">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-ribbon-curl.webp" style="left:-1%;top:56%;width:206px;--r:-14deg;--o:0.55">
+    <img class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-starburst.webp" style="left:99%;top:95.5%;width:158px;--r:10deg;--o:0.6">
+    <span data-drop="2" class="deco-note rv teal" aria-hidden="true" style="left:80%;top:46%;--r:-4deg">new chapter ✳</span>
+  </div>
   <div class="wrap">
-    <div class="s-head rv"><span class="kick">On the wall · 2024–2025</span><h2>The exhibition <em>journey</em></h2><p>From sketchbook to gallery wall. In barely a year, Oaheng's work has moved through group shows and auctions across Gauteng — meeting the public it was always made for.</p></div>
+    <div class="s-head rv"><span class="kick">On the wall · 2024–2026</span><h2>The exhibition <em>journey</em></h2><p>From sketchbook to gallery wall. Since 2024, Oaheng's work has moved through group shows and auctions across Gauteng — meeting the public it was always made for.</p></div>
     <ol class="timeline rv">
       <li><span class="yr">2024</span><b>The Garden Gallery</b><span class="v">A sensory group exhibition</span></li>
       <li><span class="yr">Apr – May 2025</span><b>Monna ke Nku…</b><span class="v">Group exhibition · The Viewing Room Gallery, Pretoria</span></li>
       <li><span class="yr">June 2025</span><b>Past, Present &amp; Future</b><span class="v">Group exhibition · Weedlovers Market, Johannesburg</span></li>
       <li><span class="yr">2025</span><b>ContraJHB</b><span class="v">Group exhibition · Johannesburg</span></li>
       <li><span class="yr">Sept 2025</span><b>ExpressOn Art Auction</b><span class="v">Springs Art Gallery · a Heritage Month celebration</span></li>
+      <li><span class="yr" style="color:var(--teal)">2026</span><b>Gospel Brunch · Curated Art Exhibition</b><span class="v">Glen Lewis' Birthday Experience — twine works on the art walk</span></li>
+      <li><span class="yr" style="color:var(--teal)">Aug 2026</span><b>After Hours II: Locale · 27 Boxes, Melville</b><span class="v">Art, design, live music, media, performance</span></li>
     </ol>
     <div class="jgrid rv">
-      <figure><div class="art-img"><img src="images/artist-1.jpg" loading="lazy" alt="Oaheng at her opening"></div><figcaption>Opening night · the artist in the space</figcaption></figure>
-      <figure><div class="art-img"><img src="images/install-wall.jpg" loading="lazy" alt="Installation view"></div><figcaption>Installation · The Viewing Room, 2025</figcaption></figure>
-      <figure><div class="art-img"><img src="images/ex-monna.jpg" loading="lazy" alt="Monna ke Nku poster"></div><figcaption>Monna ke Nku… · exhibition poster</figcaption></figure>
-      <figure><div class="art-img"><img src="images/install-group.jpg" loading="lazy" alt="Works in the gallery"></div><figcaption>Works on view</figcaption></figure>
-      <figure><div class="art-img"><img src="images/artist-3.jpg" loading="lazy" alt="Oaheng"></div><figcaption>At the opening · 2025</figcaption></figure>
-      <figure><div class="art-img"><img src="images/ex-expresson2.jpg" loading="lazy" alt="ExpressOn Art Auction poster"></div><figcaption>ExpressOn Art Auction · Springs, 2025</figcaption></figure>
-      <figure><div class="art-img"><img src="images/ex-wall-2.jpg" loading="lazy" alt="Works on a gallery wall"></div><figcaption>On the wall · group exhibition</figcaption></figure>
-      <figure><div class="art-img"><img src="images/ex-install-2.jpg" loading="lazy" alt="Gallery installation view"></div><figcaption>Installation · gallery view</figcaption></figure>
-      <figure><div class="art-img"><img src="images/ex-studio-wall.jpg" loading="lazy" alt="Studio wall of works"></div><figcaption>The studio wall · the body of work</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/artist-1.webp" loading="lazy" alt="Oaheng at her opening" width="620" height="930"></div><figcaption>Opening night · the artist in the space</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/install-wall.webp" loading="lazy" alt="Installation view" width="620" height="827"></div><figcaption>Installation · The Viewing Room, 2025</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/ex-monna.webp" loading="lazy" alt="Monna ke Nku poster" width="620" height="620"></div><figcaption>Monna ke Nku… · exhibition poster</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/install-group.webp" loading="lazy" alt="Works in the gallery" width="620" height="561"></div><figcaption>Works on view</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/ex-expresson2.webp" loading="lazy" alt="ExpressOn Art Auction poster" width="620" height="827"></div><figcaption>ExpressOn Art Auction · Springs, 2025</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/ex-wall-2.webp" loading="lazy" alt="Works on a gallery wall" width="620" height="349"></div><figcaption>On the wall · group exhibition</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/ex-install-2.webp" loading="lazy" alt="Gallery installation view" width="620" height="827"></div><figcaption>Installation · gallery view</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/ex-studio-wall.webp" loading="lazy" alt="Studio wall of works" width="620" height="465"></div><figcaption>The studio wall · the body of work</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/ex-afterhours-install.webp" loading="lazy" alt="Three woven masks hung at After Hours II" width="620" height="1016"></div><figcaption>After Hours II · the woven masks on the wall</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/ex-gospel-group.webp" loading="lazy" alt="The artists at the Gospel Brunch curated exhibition" width="620" height="349"></div><figcaption>Gospel Brunch · the curated art walk, 2026</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/ex-talk-2026.webp" loading="lazy" alt="Oaheng talking through her work" width="620" height="349"></div><figcaption>Walking the room through the work · 2026</figcaption></figure>
+      <figure><div class="art-img"><img src="images/thumb/ex-afterhours-card.webp" loading="lazy" alt="Oaheng Motsitsi, artist and sculptor — After Hours II" width="620" height="826"></div><figcaption>Artist &amp; sculptor · After Hours II</figcaption></figure>
     </div>
   </div>
 </section>
 
 <!-- STATEMENT -->
-<section class="statement">
+<section class="bgs bg-10-statement statement" data-bg="10-statement">
+  <div class="sec-deco" aria-hidden="true">
+    <svg class="sec-rays rv" aria-hidden="true" viewBox="0 0 1000 1000" style="left:50%;top:44%;width:640px;height:640px;--o:0.3;--ray:#E8A0B4"><use href="#raysym"/></svg>
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/scrap-parchment.webp" style="left:5%;top:11%;width:220px;--r:-10deg;--o:0.35">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/scrap-parchment.webp" style="left:100%;top:44%;width:190px;--r:12deg;--o:0.32">
+  </div>
   <div class="flourish flr-smudge" aria-hidden="true"><svg viewBox="0 0 240 140"><defs><filter id="smudgeS" x="-50%" y="-50%" width="200%" height="200%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="26"/><feGaussianBlur stdDeviation="3.2"/></filter></defs><ellipse cx="120" cy="74" rx="86" ry="42" fill="#7E3050" opacity="0.55" filter="url(#smudgeS)"/><ellipse cx="142" cy="58" rx="40" ry="20" fill="#34141F" opacity="0.45" filter="url(#smudgeS)"/></svg></div>
   <div class="wrap">
-    <span class="kick" style="color:var(--blush)">Artist statement</span>
+    <span class="kick" style="color:var(--berry)">Artist statement</span>
     <blockquote>“I reframe identity through local voices.”</blockquote>
     <p class="sig">Just like Oaheng — ah aha, bonono ba hae.</p>
     <span class="read" id="readBtn">Read the full statement</span>
@@ -492,7 +876,17 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
 </section>
 
 <!-- CONTACT / COMMISSION -->
-<section class="contact" id="contact">
+<section class="bgs bg-11-contact contact" id="contact" data-bg="11-contact">
+  <div class="sec-deco" aria-hidden="true">
+    <img class="deco rv" src="images/scrap/cut-rose-botanical.webp" alt="" aria-hidden="true" style="left:88%;top:58%;width:185px;--r:15deg;--o:0.9">
+    <img class="deco rv" src="images/scrap/cut-bow-cream.webp" alt="" aria-hidden="true" style="left:1%;top:12%;width:92px;--r:-12deg;--o:0.9">
+    <svg class="sec-rays rv" aria-hidden="true" viewBox="0 0 1000 1000" style="left:28%;top:25%;width:560px;height:560px;--o:0.22;--ray:#5C2E40"><use href="#raysym"/></svg>
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/tape-washi-teal.webp" style="left:8%;top:16%;width:130px;--r:-11deg;--o:0.75">
+    <img data-drop="2" class="deco d-sway rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/doodle-heart-berry.webp" style="left:92%;top:24%;width:74px;--r:12deg;--o:0.9">
+    <img class="deco rv rose-cta" aria-hidden="true" alt="" loading="lazy" src="images/scrap/flower-rose-taped.webp" style="--r:-18deg;--o:0.95">
+    <img data-drop="2" class="deco rv" aria-hidden="true" alt="" loading="lazy" src="images/scrap/cut-bouquet.webp" style="left:93%;top:66%;width:217px;--r:9deg;--o:0.8">
+    <span data-drop="2" class="deco-note rv" aria-hidden="true" style="left:24%;top:92%;--r:-3deg">write to her →</span>
+  </div>
   <div class="wrap contact-grid">
     <div class="rv">
       <span class="kick" style="color:var(--prune)">An invitation</span>
@@ -517,8 +911,9 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
   </div>
 </section>
 
-<footer>
-  <div class="fw">Oaheng Motsitsi</div>
+<footer class="bgs bg-12-footer">
+  <img class="fw-logo" src="images/scrap/logo-official-full.webp" alt="OAHENG.M" width="270" height="146">
+  <div class="fw sr-only">Oaheng Motsitsi</div>
   <div>Visual artist · Johannesburg, South Africa · <a href="mailto:oahengm6@gmail.com">oahengm6@gmail.com</a></div>
   <div class="cr">© <span id="yr"></span> Oaheng Motsitsi. All artwork and images remain the property of the artist.</div>
 </footer>
@@ -528,7 +923,7 @@ footer .cr{margin-top:12px;font-size:.74rem;color:rgba(242,220,222,.5)}
   <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
   <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
   <div class="lb-inner">
-    <div class="lb-img"><img id="lbImg" src="" alt=""></div>
+    <div class="lb-img"><img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></div>
     <div class="lb-info">
       <div class="series" id="lbSeries"></div>
       <h3 id="lbTitle"></h3>
@@ -576,11 +971,14 @@ const W = {
  "verbode-study":{t:"Verbode Vrugte (study)",series:"Past, Present & Future",med:"Acrylic",dim:"—",yr:"2025",d:"A study in red and citrus — hands, fruit and appetite, returning to the question of what is permitted, and to whom."},
  "break-glass":{t:"Untitled (Break Glass)",series:"Past, Present & Future",med:"Mixed media on canvas",dim:"—",yr:"2025",d:"A raised fist behind glass — protest framed as a thing kept in reserve, an emergency waiting to be answered."},
  "tshehetso":{t:"Untitled (Studies)",series:"Studies",med:"Ink & wash on paper",dim:"—",yr:"—",d:"A cluster of studies from the studio — butterfly wings in sepia ink and a stippled drawing, caught mid-process."},
- "twine-4":{t:"Tshehetso (Support)",series:"Made by Hand",med:"Twine work",dim:"600 × 970 mm",yr:"2025",d:"“Support.” A face woven from twine and set in resin — the drawn line pulled into the physical, the act of making itself becoming the subject."},
- "twine-5":{t:"Untitled (Woven Mask)",series:"Made by Hand",med:"Twine work",dim:"—",yr:"2025",d:"A face woven entirely from twine — hollow eyes and mouth threaded through with colour, the drawn line pulled into three dimensions."},
+"tlhohonolofatso":{t:"Tlhohonolofatso",series:"Made by Hand",med:"Acrylic-covered twine on wooden canvas and resin",dim:"600 × 970 mm",yr:"2025",d:"The third panel of Tshehetso. A face in green and sage twine, answering the first across the triptych."},
+"twine-pink":{t:"Untitled (Pink Relief)",series:"Made by Hand",med:"Twine and thread on a woven ground",dim:"—",yr:"2026",d:"Cords of pink, red and violet bound into a raised bloom, stitched through with red — the drawn line pulled all the way into cloth."},
+"mpho":{t:"Mpho",series:"Made by Hand",med:"Acrylic-covered twine on wooden canvas",dim:"600 × 300 mm",yr:"2026",d:"Mpho — a gift. Twine wound, knotted and set, holding its shape like a kept promise."},
+"tshehetso-triptych":{t:"Tshehetso (Support)",series:"Made by Hand",med:"Acrylic-covered twine on wooden canvas and resin",dim:"600 × 970 mm",yr:"2025",d:"“Support.” Three woven panels — Molefi, Katlego and Tlhohonolofatso — read left to right as one work: a face, a burst, and a face answering it. Twine drawn over wooden canvas and set in resin, the act of making itself becoming the subject."},
+"twine-3":{t:"Katlego",series:"Made by Hand",med:"Acrylic-covered twine on wooden canvas and resin",dim:"600 × 970 mm",yr:"2025",d:"The second panel of Tshehetso. The face gives way to a woven dome and a burst of radiating cord — support as something that reaches outward."},
+"twine-5":{t:"Molefi",series:"Made by Hand",med:"Acrylic-covered twine on wooden canvas and resin",dim:"600 × 970 mm",yr:"2025",d:"The first panel of Tshehetso. A face wound entirely in brown twine, its eyes and mouth cut open through the weave."},
  "twine-eye":{t:"Untitled (Figure Study)",series:"Studies",med:"Charcoal & wash on paper",dim:"—",yr:"—",d:"A torso studied in warm charcoal and wash — the body rendered soft, close and unguarded."},
  "study-face":{t:"Untitled",series:"Studies",med:"Charcoal & ink on paper",dim:"—",yr:"—",d:"A face caught mid-cry, built up dot by dot in stippled charcoal — anguish rendered with patient, deliberate marks."},
- "study-torso":{t:"Untitled (Woven Form)",series:"Made by Hand",med:"Twine work",dim:"—",yr:"2025",d:"A form drawn out of woven twine — the line pulled off the page and into knotted, tactile relief."},
  "pattern-relief":{t:"Untitled (Pattern Relief)",series:"ContraJHB",med:"Twine work",dim:"—",yr:"—",d:"Geometric rhythm built into the surface — twine and pattern as language, mark-making turned into object."},
  "fleeting":{t:"Fleeting",series:"Archive",med:"Mixed medium",dim:"1000 × 1000 mm",yr:"2024",d:"Legs caught mid-stride and mid-erasure — presence and disappearance sketched in the same breath."},
  "sunset-scene":{t:"Sunset Scene",series:"Archive",med:"Pencil, graphite & colour",dim:"430 × 450 mm",yr:"2024",d:"A face warmed by colour at the day's end, studied and re-studied in the strips of lip and eye that frame it."},
@@ -612,27 +1010,33 @@ function render(){
 }
 function closeLB(){lb.classList.remove('open');document.body.style.overflow='';}
 function step(d){pos=(pos+d+order.length)%order.length;render();}
-document.querySelectorAll('.work[data-slug]:not([data-nolb])').forEach(f=>f.querySelector('.ai').addEventListener('click',()=>openLB(f)));
+document.querySelectorAll('.work[data-slug]:not([data-nolb])').forEach(f=>{
+  const a=f.querySelector('.ai'); if(!a) return;
+  const cap=f.querySelector('figcaption b');
+  a.setAttribute('role','button'); a.setAttribute('tabindex','0');
+  a.setAttribute('aria-label','View '+((cap&&cap.textContent.trim())||'artwork')+' larger');
+  a.addEventListener('click',()=>openLB(f));
+  a.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openLB(f); } });
+});
 lbClose.onclick=closeLB;lbPrev.onclick=()=>step(-1);lbNext.onclick=()=>step(1);
 lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
 document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);});
 
-readBtn.onclick=function(){const f=fullStmt,o=f.style.display!=='none';f.style.display=o?'none':'block';this.textContent=o?'Read the full statement':'Close statement';};
+readBtn.onclick=function(){const f=fullStmt,o=getComputedStyle(f).display!=='none';f.style.display=o?'none':'block';this.textContent=o?'Read the full statement':'Close statement'};
 
+document.querySelectorAll('.s-head h2 em, .contact h2 em, .about-h h2 em').forEach(em=>{
+  const w=em.textContent;
+  em.classList.add('cutword');em.setAttribute('role','img');em.setAttribute('aria-label',w);
+  em.textContent='';
+  [...w].forEach((c,i)=>{const b=document.createElement('b');b.textContent=c;b.style.transitionDelay=(i*70)+'ms';em.appendChild(b)});
+});
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.08,rootMargin:'0px 0px -5% 0px'});
 document.querySelectorAll('.series-grid').forEach(g=>[...g.children].forEach((el,i)=>el.style.setProperty('--i',i%6)));
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const nav=document.getElementById('nav');
-const cfig=document.querySelector('.cover-figure'),cback=document.querySelector('.cover-name.back');
-const reduceM=matchMedia('(prefers-reduced-motion:reduce)').matches;
-addEventListener('scroll',()=>{
-  const y=scrollY;
-  nav.classList.toggle('solid',y>60);
-  if(!reduceM && innerWidth>820 && y<900){
-    cfig.style.transform='translateX(-50%) translateY('+(y*0.07).toFixed(1)+'px)';
-    cback.style.transform='translateY('+(y*-0.05).toFixed(1)+'px)';
-  }
-},{passive:true});
+addEventListener('scroll',()=>{nav.classList.toggle('solid',scrollY>60)},{passive:true});
+const _hs=()=>{const d=document.documentElement;d.style.setProperty('--s',Math.min(innerWidth/1440,1.25));d.style.setProperty('--sm',Math.min(innerWidth/390,1.3))};
+addEventListener('resize',_hs);_hs();
 document.getElementById('yr').textContent=new Date().getFullYear();
 </script>
 </body>
